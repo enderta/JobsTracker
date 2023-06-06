@@ -32,26 +32,13 @@ app.get('/api/jobs', async (req, res) => {
         });
     }
     else{
-        /*
-        * CREATE TABLE Jobs (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(100),
-  company VARCHAR(100),
-  location VARCHAR(100),
-  description TEXT,
-  requirements TEXT,
-  posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-        * */
+
         const jobs=await pool.query(`select * from jobs where title ilike '%${searchTerm}%' or company ilike '%${searchTerm}%' or location ilike '%${searchTerm}%' or description ilike '%${searchTerm}%' or requirements ilike '%${searchTerm}%'`)
         res.json({
             status: "success",
             message: `Retrieved ${jobs.rows.length} jobs`,
             data: jobs.rows
         });
-
-
     }
 });
 
