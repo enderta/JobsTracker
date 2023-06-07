@@ -33,7 +33,7 @@ function Jumbo() {
                         left: 0,
                         width: '100%',
                         height: '100%',
-                        backgroundImage: 'url("https://picsum.photos/200/300")',
+                        backgroundImage: 'url("https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg")',
                         backgroundSize: 'cover',
                         opacity: 0.5, // Adjust the opacity as desired
                         zIndex: -1,
