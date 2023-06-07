@@ -1,12 +1,30 @@
-.star-wars-container {
+html,
+body,
+#root {
+  height: 100%;
   width: 100%;
-  height: 200px;
-  overflow: hidden;
 }
 
-.star-wars-text {
-  font-family: 'Star Jedi', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  white-space: nowrap;
+body {
+  font-family: system-ui;
+  margin: 0;
+}
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.flex.fill {
+  height: 100%;
+}
+
+.flex.center {
+  justify-content: center;
 }

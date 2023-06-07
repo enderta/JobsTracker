@@ -1,0 +1,26 @@
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container > div {
+    cursor: pointer;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 800;
+    font-size: 5em;
+    will-change: transform, opacity;
+    text-shadow: 0 2px 40px #00000020, 0 2px 5px #00000030;
+    -webkit-user-select: none;
+    user-select: none;
+}
