@@ -60,7 +60,7 @@ function Cards(props) {
         <div>
             <div className="row">
                 {data.map((job) => (
-                    <div key={job.id} className="col-md-4 mb-3">
+                    <div key={job.id} className="col-md-3 mb-3">
                         <Card
                             className={props.dark ? '' : ''}
                             style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
