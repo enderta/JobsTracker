@@ -71,14 +71,28 @@ app.post('/api/jobs', async (req, res) => {
 
 app.put('/api/jobs/:id', async (req, res) => {
     const id = req.params.id;
-    const { title, company, location, description, requirements } = req.body;
-    const job = await pool.query("UPDATE jobs SET title = $1, company = $2, location = $3, description = $4, requirements = $5 WHERE id = $6 RETURNING *", [title, company, location, description, requirements, id]);
+    const { title, company, location, description,is_applied, requirements } = req.body;
+    const job = await pool.query("UPDATE jobs SET title = $1, company = $2, location = $3, description = $4, is_applied = $5, requirements = $6 WHERE id = $7 RETURNING *", [title, company, location, description, is_applied, requirements, id]);
     res.json({
         status: "success",
         message: `Updated job with id ${id}`,
         data: job.rows[0]
     });
+
 });
+//patch only is_applied
+app.patch('/api/jobs/:id', async (req, res) => {
+    const id = req.params.id;
+    const { is_applied } = req.body;
+    const job = await pool.query("UPDATE jobs SET is_applied = $1 WHERE id = $2 RETURNING *", [is_applied, id]);
+    res.json({
+        status: "success",
+        message: `Updated job with id ${id}`,
+        data: job.rows[0]
+    });
+
+});
+
 
 app.delete('/api/jobs/:id', async (req, res) => {
     const id = req.params.id;
