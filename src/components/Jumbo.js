@@ -66,7 +66,7 @@ function Jumbo() {
                             height: '100%',
                             backgroundImage: 'url("https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg")',
                             backgroundSize: 'cover',
-                            opacity: 0.2, // Adjust the opacity as desired
+                            opacity: 0.4, // Adjust the opacity as desired
                             zIndex: -1,
                         }}
                     ></div>

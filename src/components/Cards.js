@@ -38,6 +38,21 @@ function Cards(props) {
                 console.log(err);
             });
     };
+    const handleDelete = (id) => {
+        fetch(`http://localhost:5000/api/jobs/${id}`, {
+            method: 'DELETE',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const updatedJobs = data.filter((job) => job.id !== id);
+                setData(updatedJobs);
+
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        window.location.reload();
+    }
 
     return (
         <div>
@@ -58,6 +73,14 @@ function Cards(props) {
                                 >
                                     {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
                                 </h6>
+                                <br/>
+                                <Button
+                                    variant={props.dark ? 'outline-danger' : 'outline-danger'}
+                                    onClick={() => handleDelete(job.id)}
+                                >
+                                    Delete
+                                </Button>
+
                             </Card.Body>
                         </Card>
                     </div>
