@@ -5,23 +5,24 @@ function Cards(props) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        fetchJobs();
+    }, []);
+
+    const fetchJobs = () => {
         fetch('http://localhost:5000/api/jobs')
             .then((res) => res.json())
             .then((data) => {
                 setData(data.data);
+            })
+            .catch((err) => {
+                console.log(err);
             });
-    }, []);
+    };
 
     const handleCheck = (id, isApplied) => {
-        const updatedJobs = data.map((job) => {
-            if (job.id === id) {
-                return {
-                    ...job,
-                    is_applied: !isApplied,
-                };
-            }
-            return job;
-        });
+        const updatedJobs = data.map((job) =>
+            job.id === id ? { ...job, is_applied: !isApplied } : job
+        );
 
         fetch(`http://localhost:5000/api/jobs/${id}`, {
             method: 'PATCH',
@@ -38,6 +39,7 @@ function Cards(props) {
                 console.log(err);
             });
     };
+
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/api/jobs/${id}`, {
             method: 'DELETE',
@@ -46,13 +48,12 @@ function Cards(props) {
             .then((data) => {
                 const updatedJobs = data.filter((job) => job.id !== id);
                 setData(updatedJobs);
-
             })
             .catch((err) => {
                 console.log(err);
             });
         window.location.reload();
-    }
+    };
 
     return (
         <div>
@@ -73,14 +74,13 @@ function Cards(props) {
                                 >
                                     {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
                                 </h6>
-                                <br/>
+                                <br />
                                 <Button
                                     variant={props.dark ? 'outline-danger' : 'outline-danger'}
                                     onClick={() => handleDelete(job.id)}
                                 >
                                     Delete
                                 </Button>
-
                             </Card.Body>
                         </Card>
                     </div>
@@ -90,4 +90,4 @@ function Cards(props) {
     );
 }
 
-export default Cards
+export default Cards;
