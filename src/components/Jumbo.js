@@ -33,8 +33,12 @@ function Jumbo() {
     return (
         <div style={{ margin: '10px' }}>
             <div style={{ margin: '10px' }}>
-            <Button variant={darkMode ? 'outline-success':'outline-dark'} onClick={handleDarkMode}>
-                {darkMode ? 'Light' : 'Dark'} Mode
+            <Button variant={darkMode ? 'outline-warning':'outline-dark'} onClick={handleDarkMode}>
+                {darkMode ? (
+                    <span style={{ color: 'goldenrod' }}>&#x2600; </span>
+                ) : (
+                    <span style={{ color: 'darkgray' }}>&#127769;</span>
+                )}
             </Button>
 
             </div>
