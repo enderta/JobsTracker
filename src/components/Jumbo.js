@@ -7,7 +7,7 @@ import Cards from "./Cards";
 function Jumbo() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [darkMode, setDarkMode] = useState(false);
+    const [darkMode, setDarkMode] = useState(true);
 
     const handleDarkMode = () => {
         setDarkMode(!darkMode);
