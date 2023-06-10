@@ -41,18 +41,19 @@ function Cards(props) {
     };
 
     const handleDelete = (id) => {
+        const updatedJobs = data.filter((job) => job.id !== id);
+
         fetch(`http://localhost:5000/api/jobs/${id}`, {
             method: 'DELETE',
         })
             .then((res) => res.json())
             .then((data) => {
-                const updatedJobs = data.filter((job) => job.id !== id);
                 setData(updatedJobs);
             })
             .catch((err) => {
                 console.log(err);
             });
-        window.location.reload();
+
     };
 
     return (
