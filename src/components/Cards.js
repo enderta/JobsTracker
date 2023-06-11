@@ -21,7 +21,7 @@ function Cards(props) {
 
     useEffect(() => {
         fetchJobs();
-    }, []);
+    }, [city, jobTitle, search]);
 
     const fetchJobs = () => {
         let apiUrl = 'http://localhost:5000/api/jobs';
@@ -42,11 +42,6 @@ function Cards(props) {
             .catch((err) => {
                 console.log(err);
             });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        fetchJobs();
     };
 
     const handleCheck = (id, isApplied) => {
@@ -85,42 +80,33 @@ function Cards(props) {
             });
     };
 
-    const handleFilterReset = () => {
-        setCity('');
-        setSearch('');
-        setJobTitle('');
-    };
-
     return (
         <div>
-            <div className="row" style={{margin:"10px"}}>
-                <div className="col-md-3">
-                    <Form onSubmit={handleSubmit}>
-                        {/*<input type="text" placeholder="Search" value={search} onChange={handleSearch} />*/}
-                        <FormSelect onChange={handleCity} value={city} style={{margin:"5px"}}>
-                            <option value="">Select City</option>
-                            {Array.from(new Set(data.map((job) => job.location))).map((location) => (
-                                <option key={location} value={location}>
-                                    {location}
-                                </option>
-                            ))}
-                        </FormSelect>
-                        <FormSelect onChange={handleJobTitle} value={jobTitle} style={{margin:"5px"}}>
-                            <option value="">Select Job Title</option>
-                            {Array.from(new Set(data.map((job) => job.title))).map((title) => (
-                                <option key={title} value={title}>
-                                    {title}
-                                </option>
-                            ))}
-                        </FormSelect>
-                        <br />
-                        <Button variant="outline-success" type="submit" style={{margin:"5px"}}>
-                            Apply Filters
-                        </Button>
-                        <Button variant="outline-warning" onClick={handleFilterReset}>
-                            Reset Filters
-                        </Button>
-                    </Form>
+            <div style={{marginTop:"10px",marginBottom:"10px"}}>
+
+                <div className="row">
+                    <div className="col-md-3">
+
+                        <Form>
+                            {/* <input type="text" placeholder="Search" value={search} onChange={handleSearch} />*/}
+                            <FormSelect onChange={handleCity} value={city} style={{margin:"5px"}}>
+                                <option value="">Select City</option>
+                                {Array.from(new Set(data.map((job) => job.location))).map((location) => (
+                                    <option key={location} value={location}>
+                                        {location}
+                                    </option>
+                                ))}
+                            </FormSelect>
+                            <FormSelect onChange={handleJobTitle} value={jobTitle} style={{margin:"5px"}}>
+                                <option value="">Select Job Title</option>
+                                {Array.from(new Set(data.map((job) => job.title))).map((title) => (
+                                    <option key={title} value={title}>
+                                        {title}
+                                    </option>
+                                ))}
+                            </FormSelect>
+                        </Form>
+                    </div>
                 </div>
             </div>
 
