@@ -119,7 +119,7 @@ function Cards(props) {
                                 className={props.dark ? '' : ''}
                                 style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
                             >
-                                <Card.Body style={{height: "300px", width: '400px'}}>
+                                <Card.Body style={{height: "200px", width: '400px'}}>
                                     <Card.Title>{job.title}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
                                     <Card.Text>{job.description}</Card.Text>
@@ -135,14 +135,18 @@ function Cards(props) {
                                     >
                                         {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
                                     </h6>
-                                    <br />
+
+
+                                </Card.Body>
+                                <br />
+                                <Card.Footer>
                                     <Button
                                         variant={props.dark ? 'outline-danger' : 'outline-danger'}
                                         onClick={() => handleDelete(job.id)}
                                     >
                                         Delete
                                     </Button>
-                                </Card.Body>
+                                </Card.Footer>
                             </Card>
                         </div>
                     ))}
