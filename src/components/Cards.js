@@ -46,7 +46,7 @@ function Cards(props) {
 
     const handleCheck = (id, isApplied) => {
         const updatedJobs = data.map((job) =>
-            job.id === id ? { ...job, is_applied: !isApplied } : job
+            job.id === id ? { ...job, is_applied: !isApplied, updated_at: new Date().toISOString() } : job
         );
 
         fetch(`http://localhost:5000/api/jobs/${id}`, {
@@ -54,7 +54,10 @@ function Cards(props) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ is_applied: !isApplied }),
+            body: JSON.stringify({
+                is_applied: !isApplied,
+                updated_at: new Date().toISOString(),
+            }),
         })
             .then((res) => res.json())
             .then((data) => {
@@ -82,24 +85,21 @@ function Cards(props) {
 
     return (
         <div>
-            <div style={{marginTop:"10px",marginBottom:"10px"}}>
-
+            <div style={{ marginTop: '10px', marginBottom: '10px' }}>
                 <div className="row">
                     <div className="col-md-3">
-
                         <Form>
-                            {/* <input type="text" placeholder="Search" value={search} onChange={handleSearch} />*/}
-                            <FormSelect onChange={handleCity} value={city} style={{margin:"5px"}}>
+                            <FormSelect onChange={handleCity} value={city} style={{ margin: '5px' }}>
                                 <option value="">Select City</option>
-                                {Array.from(new Set(data.map((job) => job.location))).map((location) => (
+                                {[...new Set(data.map((job) => job.location))].map((location) => (
                                     <option key={location} value={location}>
                                         {location}
                                     </option>
                                 ))}
                             </FormSelect>
-                            <FormSelect onChange={handleJobTitle} value={jobTitle} style={{margin:"5px"}}>
+                            <FormSelect onChange={handleJobTitle} value={jobTitle} style={{ margin: '5px' }}>
                                 <option value="">Select Job Title</option>
-                                {Array.from(new Set(data.map((job) => job.title))).map((title) => (
+                                {[...new Set(data.map((job) => job.title))].map((title) => (
                                     <option key={title} value={title}>
                                         {title}
                                     </option>
@@ -111,33 +111,41 @@ function Cards(props) {
             </div>
 
             <div className="row">
-                {data.map((job) => (
-                    <div key={job.id} className="col-md-3 mb-3">
-                        <Card
-                            className={props.dark ? '' : ''}
-                            style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
-                        >
-                            <Card.Body>
-                                <Card.Title>{job.title}</Card.Title>
-                                <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
-                                <Card.Text>{job.description}</Card.Text>
-                                <h6
-                                    className="card-subtitle mb-2 text-muted"
-                                    onClick={() => handleCheck(job.id, job.is_applied)}
-                                >
-                                    {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
-                                </h6>
-                                <br />
-                                <Button
-                                    variant={props.dark ? 'outline-danger' : 'outline-danger'}
-                                    onClick={() => handleDelete(job.id)}
-                                >
-                                    Delete
-                                </Button>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                ))}
+                {data
+                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                    .map((job) => (
+                        <div key={job.id} className="col-md-3 mb-3">
+                            <Card
+                                className={props.dark ? '' : ''}
+                                style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
+                            >
+                                <Card.Body style={{height: "300px", width: '400px'}}>
+                                    <Card.Title>{job.title}</Card.Title>
+                                    <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
+                                    <Card.Text>{job.description}</Card.Text>
+                                    <Card.Text>{job.location}</Card.Text>
+                                    {job.is_applied ? (
+                                        <Card.Text>
+                                            Applied At: {new Date(job.updated_at).toString().split(' ').slice(0, 4).join(' ')}
+                                        </Card.Text>
+                                    ) : null}
+                                    <h6
+                                        className="card-subtitle mb-2 text-muted"
+                                        onClick={() => handleCheck(job.id, job.is_applied)}
+                                    >
+                                        {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
+                                    </h6>
+                                    <br />
+                                    <Button
+                                        variant={props.dark ? 'outline-danger' : 'outline-danger'}
+                                        onClick={() => handleDelete(job.id)}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    ))}
             </div>
         </div>
     );

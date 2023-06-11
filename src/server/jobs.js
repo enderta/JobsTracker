@@ -83,13 +83,14 @@ app.put('/api/jobs/:id', async (req, res) => {
 //patch only is_applied
 app.patch('/api/jobs/:id', async (req, res) => {
     const id = req.params.id;
-    const { is_applied } = req.body;
-    const job = await pool.query("UPDATE jobs SET is_applied = $1 WHERE id = $2 RETURNING *", [is_applied, id]);
+    const { is_applied, updated_at } = req.body;
+    const job = await pool.query("UPDATE jobs SET is_applied = $1, updated_at = $2 WHERE id = $3 RETURNING *", [is_applied, updated_at, id]);
     res.json({
         status: "success",
         message: `Updated job with id ${id}`,
         data: job.rows[0]
     });
+
 
 });
 

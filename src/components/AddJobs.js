@@ -62,9 +62,12 @@ function AddJobs(props) {
     return (
         <div>
             <div className="container">
+
                 <Modal show={props.show} onHide={props.handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add Job</Modal.Title>
+                        <Modal.Title>
+                            <h3 style={{color:"black"}}>Add Job</h3>
+                        </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={onSubmitForm}>
