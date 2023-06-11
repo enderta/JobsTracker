@@ -4,6 +4,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {Button, Container} from 'react-bootstrap';
 import Cards from "./Cards";
 
+
 function Jumbo() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -42,8 +43,6 @@ function Jumbo() {
             </Button>
 
             </div>
-
-
             {loading ? (
                 <h1>Loading...</h1>
             ) : (
