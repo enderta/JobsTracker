@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import {Button, Container} from 'react-bootstrap';
-import Cards from "./Cards";
-
+import { Button, Container } from 'react-bootstrap';
+import Cards from './Cards';
+import AddJobs from './AddJobs';
 
 function Jumbo() {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [darkMode, setDarkMode] = useState(true);
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -33,16 +37,23 @@ function Jumbo() {
 
     return (
         <div style={{ margin: '10px' }}>
-            <div style={{ margin: '10px' }}>
-            <Button variant={darkMode ? 'outline-warning':'outline-dark'} onClick={handleDarkMode}>
-                {darkMode ? (
-                    <span style={{ color: 'goldenrod' }}>&#x2600; </span>
-                ) : (
-                    <span style={{ color: 'darkgray' }}>&#127769;</span>
-                )}
-            </Button>
+            <div className="d-flex justify-content-between" style={{ margin: '10px' }}>
+                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleShow}>
+                    +
+                </Button>
 
+                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleDarkMode}>
+                    {darkMode ? (
+                        <span style={{ color: 'goldenrod' }}>&#x2600; </span>
+                    ) : (
+                        <span style={{ color: 'darkgray' }}>&#127769;</span>
+                    )}
+                </Button>
             </div>
+
+            <AddJobs show={show} handleClose={handleClose} />
+
+
             {loading ? (
                 <h1>Loading...</h1>
             ) : (
@@ -50,9 +61,9 @@ function Jumbo() {
                     className="jumbotron jumbotron-fluid"
                     style={{
                         position: 'relative',
-                        width: '100%', // Adjust the width as desired
-                        height: '500px', // Adjust the height as desired
-                        borderRadius: '0', // Remove rounded corners for a square shape
+                        width: '100%',
+                        height: '500px',
+                        borderRadius: '0',
                     }}
                 >
                     <div
@@ -63,9 +74,10 @@ function Jumbo() {
                             left: 0,
                             width: '100%',
                             height: '100%',
-                            backgroundImage: 'url("https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg")',
+                            backgroundImage:
+                                'url("https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg")',
                             backgroundSize: 'cover',
-                            opacity: 0.4, // Adjust the opacity as desired
+                            opacity: 0.4,
                             zIndex: -1,
                         }}
                     ></div>
@@ -83,7 +95,6 @@ function Jumbo() {
                             centerSlidePercentage={100}
                             stopOnHover={true}
                             autoPlay={true}
-
                         >
                             {jobs.map((job) => (
                                 <div key={job.id}>
@@ -95,10 +106,10 @@ function Jumbo() {
                             ))}
                         </Carousel>
                     </Container>
+                </div>
+            )}
 
-                </div>  )}
-
-            <div style={{margin:"10px"}}>
+            <div style={{ margin: '10px' }}>
                 <Container>
                     <Cards data={jobs} setData={setJobs} dark={darkMode} />
                 </Container>
