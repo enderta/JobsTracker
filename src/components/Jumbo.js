@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import { Button, Container } from 'react-bootstrap';
+import {Button, Container, Modal} from 'react-bootstrap';
 import Cards from './Cards';
 import AddJobs from './AddJobs';
 import { motion, useViewportScroll } from 'framer-motion';
@@ -13,9 +13,19 @@ function Jumbo() {
     const [darkMode, setDarkMode] = useState(true);
     const [show, setShow] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [jumboData, setJumboData] = useState({});
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleJumboClick = (id) => {
+        setIsOpen(true);
+          const jumboData = jobs.find((job) => job.id === id);
+            setJumboData(jumboData);
+    };
+
+    const handleJumboClose = () => setIsOpen(false);
+
 
     const handleDarkMode = () => {
         setDarkMode(!darkMode);
@@ -100,6 +110,7 @@ function Jumbo() {
                             centerSlidePercentage={100}
                             stopOnHover={true}
                             autoPlay={true}
+
                         >
                             {jobs.map((job) => (
                                 <div key={job.id}>
@@ -107,8 +118,27 @@ function Jumbo() {
                                     <h4>{job.company}</h4>
                                     <p>{job.location}</p>
                                     <p>{job.description}</p>
+                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={() => handleJumboClick(job.id)}>View</Button>
+                                    <Modal show={isOpen} onHide={handleJumboClose}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>
+                                                <h4 style={{ color: 'goldenrod' }}>{jumboData.title}</h4>
+                                            </Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>
+                                            <h4 style={{ color: 'darkgreen' }}>Company:{' '} {jumboData.company}</h4>
+                                            <h5 style={{ color: 'darkgreen' }}>Location:{' '} {jumboData.location}</h5>
+                                            <h5 style={{ color: 'darkgreen' }}>Description:{' '}{jumboData.description}</h5>
+                                        </Modal.Body>
+                                        <Modal.Footer>
+                                            <Button variant="secondary" onClick={handleJumboClose}>
+                                                Close
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </div>
                             ))}
+
                         </Carousel>
                     </Container>
                 </motion.div>
