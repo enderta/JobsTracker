@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Card, Form, FormSelect } from 'react-bootstrap';
+import { motion } from 'framer-motion';
 
 function Cards(props) {
     const [data, setData] = useState([]);
     const [city, setCity] = useState('');
     const [search, setSearch] = useState('');
     const [jobTitle, setJobTitle] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleCity = (e) => {
         setCity(e.target.value);
@@ -85,72 +87,82 @@ function Cards(props) {
 
     return (
         <div>
-            <div style={{ marginTop: '10px', marginBottom: '10px' }}>
-                <div className="row">
-                    <div className="col-md-3">
-                        <Form>
-                            <FormSelect onChange={handleCity} value={city} style={{ margin: '5px' }}>
-                                <option value="">Select City</option>
-                                {[...new Set(data.map((job) => job.location))].map((location) => (
-                                    <option key={location} value={location}>
-                                        {location}
-                                    </option>
-                                ))}
-                            </FormSelect>
-                            <FormSelect onChange={handleJobTitle} value={jobTitle} style={{ margin: '5px' }}>
-                                <option value="">Select Job Title</option>
-                                {[...new Set(data.map((job) => job.title))].map((title) => (
-                                    <option key={title} value={title}>
-                                        {title}
-                                    </option>
-                                ))}
-                            </FormSelect>
-                        </Form>
+            <motion.div
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                layout
+                data-isOpen={isOpen}
+                initial={{ borderRadius: 50 }}
+                className="parent"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                    <div className="row">
+                        <div className="col-md-3">
+                            <Form>
+                                <FormSelect onChange={handleCity} value={city} style={{ margin: '5px' }}>
+                                    <option value="">Select City</option>
+                                    {[...new Set(data.map((job) => job.location))].map((location) => (
+                                        <option key={location} value={location}>
+                                            {location}
+                                        </option>
+                                    ))}
+                                </FormSelect>
+                                <FormSelect onChange={handleJobTitle} value={jobTitle} style={{ margin: '5px' }}>
+                                    <option value="">Select Job Title</option>
+                                    {[...new Set(data.map((job) => job.title))].map((title) => (
+                                        <option key={title} value={title}>
+                                            {title}
+                                        </option>
+                                    ))}
+                                </FormSelect>
+                            </Form>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div className="row">
-                {data
-                    .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                    .map((job) => (
-                        <div key={job.id} className="col-md-3 mb-3">
-                            <Card
-                                className={props.dark ? '' : ''}
-                                style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
-                            >
-                                <Card.Body style={{height: "200px", width: '400px'}}>
-                                    <Card.Title>{job.title}</Card.Title>
-                                    <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
-                                    <Card.Text>{job.description}</Card.Text>
-                                    <Card.Text>{job.location}</Card.Text>
-                                    {job.is_applied ? (
-                                        <Card.Text>
-                                            Applied At: {new Date(job.updated_at).toString().split(' ').slice(0, 4).join(' ')}
-                                        </Card.Text>
-                                    ) : null}
-                                    <h6
-                                        className="card-subtitle mb-2 text-muted"
-                                        onClick={() => handleCheck(job.id, job.is_applied)}
-                                    >
-                                        {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
-                                    </h6>
+                <div className="row">
+                    {data
+                        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                        .map((job) => (
+                            <div key={job.id} className="col-md-3 mb-3">
+                                <Card
+                                    className={props.dark ? '' : ''}
+                                    style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
+                                >
+                                    <Card.Body style={{height: "200px", width: '400px'}}>
+                                        <Card.Title>{job.title}</Card.Title>
+                                        <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
+                                        <Card.Text>{job.description}</Card.Text>
+                                        <Card.Text>{job.location}</Card.Text>
+                                        {job.is_applied ? (
+                                            <Card.Text>
+                                                Applied At: {new Date(job.updated_at).toString().split(' ').slice(0, 4).join(' ')}
+                                            </Card.Text>
+                                        ) : null}
+                                        <h6
+                                            className="card-subtitle mb-2 text-muted"
+                                            onClick={() => handleCheck(job.id, job.is_applied)}
+                                        >
+                                            {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
+                                        </h6>
 
 
-                                </Card.Body>
-                                <br />
-                                <Card.Footer>
-                                    <Button
-                                        variant={props.dark ? 'outline-danger' : 'outline-danger'}
-                                        onClick={() => handleDelete(job.id)}
-                                    >
-                                        Delete
-                                    </Button>
-                                </Card.Footer>
-                            </Card>
-                        </div>
-                    ))}
-            </div>
+                                    </Card.Body>
+                                    <br />
+                                    <Card.Footer>
+                                        <Button
+                                            variant={props.dark ? 'outline-danger' : 'outline-danger'}
+                                            onClick={() => handleDelete(job.id)}
+                                        >
+                                            Delete
+                                        </Button>
+                                    </Card.Footer>
+                                </Card>
+                            </div>
+                        ))}
+                </div>
+            </motion.div>
         </div>
     );
 }

@@ -4,12 +4,15 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Button, Container } from 'react-bootstrap';
 import Cards from './Cards';
 import AddJobs from './AddJobs';
+import { motion, useViewportScroll } from 'framer-motion';
 
 function Jumbo() {
+    const { scrollYProgress } = useViewportScroll();
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [darkMode, setDarkMode] = useState(true);
     const [show, setShow] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -53,11 +56,10 @@ function Jumbo() {
 
             <AddJobs show={show} handleClose={handleClose} />
 
-
             {loading ? (
                 <h1>Loading...</h1>
             ) : (
-                <div
+                <motion.div
                     className="jumbotron jumbotron-fluid"
                     style={{
                         position: 'relative',
@@ -65,6 +67,9 @@ function Jumbo() {
                         height: '500px',
                         borderRadius: '0',
                     }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                 >
                     <div
                         className="jumbotron-background"
@@ -106,7 +111,7 @@ function Jumbo() {
                             ))}
                         </Carousel>
                     </Container>
-                </div>
+                </motion.div>
             )}
 
             <div style={{ margin: '10px' }}>
