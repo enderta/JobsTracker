@@ -168,34 +168,36 @@ function Cards(props) {
                                         >
                                             {job.location}
                                         </Card.Text>
-                                        {job.is_applied ? (
-                                            <Card.Text
+
+                                        <Card.Text
+                                            style={{
+                                                fontSize: '1rem',
+                                                marginBottom: '0.5rem',
+
+                                            }
+                                            }
+                                        >
+                                            <h6
+
+                                                onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
                                                     fontSize: '1rem',
-                                                    marginBottom: '0.5rem',
+                                                    cursor: 'pointer',
+                                                    color:job.is_applied ? 'lightgreen' : 'goldenrod',
                                                     // Add more responsive styles here
                                                 }}
                                             >
-                                                Applied At:{' '}
-                                                {new Date(job.updated_at)
-                                                    .toString()
-                                                    .split(' ')
-                                                    .slice(0, 4)
-                                                    .join(' ')}
-                                            </Card.Text>
-                                        ) : null}
-                                        <h6
-                                            className="card-subtitle mb-2 text-muted"
-                                            onClick={() => handleCheck(job.id, job.is_applied)}
-                                            style={{
-                                                fontSize: '1rem',
-                                                cursor: 'pointer',
-                                                // Add more responsive styles here
-                                            }}
-                                        >
-                                            {job.is_applied ? 'Applied: ✅' : 'Applied: ❌'}
-                                        </h6>
-                                    </Card.Body>
+
+                                                {job.is_applied ?
+                                                    "Applied At: " +
+                                                    new Date(job.updated_at)
+                                                        .toString()
+                                                        .split(' ')
+                                                        .slice(0, 4)
+                                                        .join(' '):  "Not Applied"}
+                                            </h6>
+                                        </Card.Text>
+                                        </Card.Body>
                                     <br />
                                     <Card.Footer>
                                         <Button
