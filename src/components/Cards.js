@@ -183,7 +183,7 @@ function Cards(props) {
                                                 style={{
                                                     fontSize: '1rem',
                                                     cursor: 'pointer',
-                                                    color:job.is_applied ? 'lightgreen' : 'goldenrod',
+                                                    color:job.is_applied ? 'forestgreen' : 'goldenrod',
                                                     // Add more responsive styles here
                                                 }}
                                             >
