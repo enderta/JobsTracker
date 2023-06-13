@@ -2,17 +2,6 @@ import React, {useState} from 'react'
 import {Button, Form, Modal} from "react-bootstrap";
 
 function AddJobs(props) {
-    /*
-    * title VARCHAR(100),
-  company VARCHAR(100),
-  location VARCHAR(100),
-  description TEXT,
-  requirements TEXT,
-  is_applied BOOLEAN DEFAULT FALSE,
-  posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    *
-    * */
     const [title, setTitle] = useState("");
     const [company, setCompany] = useState("");
     const [location, setLocation] = useState("");
@@ -27,9 +16,7 @@ function AddJobs(props) {
         try {
             const body = {title, company, location, description, requirements, is_applied, posted_at, updated_at};
             const response = await fetch("http://localhost:5000/api/jobs", {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(body)
+                method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)
             });
             console.log(response);
             window.location = "/";
@@ -58,7 +45,6 @@ function AddJobs(props) {
         }
     }
 
-
     return (
         <div>
             <div className="container">
@@ -66,7 +52,7 @@ function AddJobs(props) {
                 <Modal show={props.show} onHide={props.handleClose}>
                     <Modal.Header closeButton>
                         <Modal.Title>
-                            <h3 style={{color:"black"}}>Add Job</h3>
+                            <h3 style={{color: "black"}}>Add Job</h3>
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
@@ -116,9 +102,7 @@ function AddJobs(props) {
                     </Modal.Footer>
                 </Modal>
             </div>
-        </div>
-    )
-
+        </div>)
 }
 
 export default AddJobs

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card, Form, FormSelect } from 'react-bootstrap';
-import { motion } from 'framer-motion';
+import React, {useEffect, useState} from 'react';
+import {Button, Card, Form, FormSelect} from 'react-bootstrap';
+import {motion} from 'framer-motion';
 
 function Cards(props) {
     const [data, setData] = useState([]);
@@ -47,18 +47,17 @@ function Cards(props) {
     };
 
     const handleCheck = (id, isApplied) => {
-        const updatedJobs = data.map((job) =>
-            job.id === id ? { ...job, is_applied: !isApplied, updated_at: new Date().toISOString() } : job
-        );
+        const updatedJobs = data.map((job) => job.id === id ? {
+            ...job,
+            is_applied: !isApplied,
+            updated_at: new Date().toISOString()
+        } : job);
 
         fetch(`http://localhost:5000/api/jobs/${id}`, {
-            method: 'PATCH',
-            headers: {
+            method: 'PATCH', headers: {
                 'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                is_applied: !isApplied,
-                updated_at: new Date().toISOString(),
+            }, body: JSON.stringify({
+                is_applied: !isApplied, updated_at: new Date().toISOString(),
             }),
         })
             .then((res) => res.json())
@@ -85,36 +84,33 @@ function Cards(props) {
             });
     };
 
-    return (
-        <div>
+    return (<div>
             <motion.div
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
+                animate={{opacity: 1}}
+                exit={{opacity: 0}}
                 layout
                 data-isOpen={isOpen}
-                initial={{ borderRadius: 50 }}
+                initial={{borderRadius: 50}}
                 className="parent"
                 onClick={() => setIsOpen(!isOpen)}
             >
-                <div style={{ marginTop: '10px', marginBottom: '10px' }}>
+                <div style={{marginTop: '10px', marginBottom: '10px'}}>
                     <div className="row">
                         <div className="col-md-3">
                             <Form>
-                                <FormSelect onChange={handleCity} value={city} style={{ margin: '5px' }}>
+                                <FormSelect onChange={handleCity} value={city} style={{margin: '5px'}}>
                                     <option value="">Select City</option>
                                     {[...new Set(data.map((job) => job.location))].map((location) => (
                                         <option key={location} value={location}>
                                             {location}
-                                        </option>
-                                    ))}
+                                        </option>))}
                                 </FormSelect>
-                                <FormSelect onChange={handleJobTitle} value={jobTitle} style={{ margin: '5px' }}>
+                                <FormSelect onChange={handleJobTitle} value={jobTitle} style={{margin: '5px'}}>
                                     <option value="">Select Job Title</option>
                                     {[...new Set(data.map((job) => job.title))].map((title) => (
                                         <option key={title} value={title}>
                                             {title}
-                                        </option>
-                                    ))}
+                                        </option>))}
                                 </FormSelect>
                             </Form>
                         </div>
@@ -124,13 +120,12 @@ function Cards(props) {
                 <div className="row">
                     {data
                         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                        .map((job) => (
-                            <div key={job.id} className="col-md-3 mb-3">
+                        .map((job) => (<div key={job.id} className="col-md-3 mb-3">
                                 <Card
                                     className={props.dark ? '' : ''}
-                                    style={{ backgroundColor: props.dark ? '#070f23' : 'white' }}
+                                    style={{backgroundColor: props.dark ? '#070f23' : 'white'}}
                                 >
-                                    <Card.Body style={{ height: '200px', width: '400px' }}>
+                                    <Card.Body style={{height: '200px', width: '400px'}}>
                                         <Card.Title
                                             style={{
 
@@ -159,22 +154,19 @@ function Cards(props) {
                                                 onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
 
-                                                    color:job.is_applied ? 'forestgreen' : 'goldenrod',
-                                                    // Add more responsive styles here
+                                                    color: job.is_applied ? 'forestgreen' : 'goldenrod', // Add more responsive styles here
                                                 }}
                                             >
 
-                                                {job.is_applied ?
-                                                    "Applied At: " +
-                                                    new Date(job.updated_at)
-                                                        .toString()
-                                                        .split(' ')
-                                                        .slice(0, 4)
-                                                        .join(' '):  "Not Applied"}
+                                                {job.is_applied ? "Applied At: " + new Date(job.updated_at)
+                                                    .toString()
+                                                    .split(' ')
+                                                    .slice(0, 4)
+                                                    .join(' ') : "Not Applied"}
                                             </h6>
                                         </Card.Text>
-                                        </Card.Body>
-                                    <br />
+                                    </Card.Body>
+                                    <br/>
                                     <Card.Footer>
                                         <Button
                                             variant={props.dark ? 'outline-danger' : 'outline-danger'}
@@ -184,12 +176,10 @@ function Cards(props) {
                                         </Button>
                                     </Card.Footer>
                                 </Card>
-                            </div>
-                        ))}
+                            </div>))}
                 </div>
             </motion.div>
-        </div>
-    );
+        </div>);
 }
 
 export default Cards;

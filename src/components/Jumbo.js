@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Carousel } from 'react-responsive-carousel';
+import React, {useEffect, useState} from 'react';
+import {Carousel} from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {Button, Container, Modal} from 'react-bootstrap';
 import Cards from './Cards';
 import AddJobs from './AddJobs';
-import { motion, useViewportScroll } from 'framer-motion';
+import {motion, useViewportScroll} from 'framer-motion';
 
 function Jumbo() {
-    const { scrollYProgress } = useViewportScroll();
+    const {scrollYProgress} = useViewportScroll();
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [darkMode, setDarkMode] = useState(true);
@@ -20,8 +20,8 @@ function Jumbo() {
 
     const handleJumboClick = (id) => {
         setIsOpen(true);
-          const jumboData = jobs.find((job) => job.id === id);
-            setJumboData(jumboData);
+        const jumboData = jobs.find((job) => job.id === id);
+        setJumboData(jumboData);
     };
 
     const handleJumboClose = () => setIsOpen(false);
@@ -49,22 +49,22 @@ function Jumbo() {
     }, []);
 
     return (
-        <div style={{ margin: '10px' }}>
-            <div className="d-flex justify-content-between" style={{ margin: '10px' }}>
+        <div style={{margin: '10px'}}>
+            <div className="d-flex justify-content-between" style={{margin: '10px'}}>
                 <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleShow}>
                     +
                 </Button>
 
                 <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleDarkMode}>
                     {darkMode ? (
-                        <span style={{ color: 'goldenrod' }}>&#x2600; </span>
+                        <span style={{color: 'goldenrod'}}>&#x2600; </span>
                     ) : (
-                        <span style={{ color: 'darkgray' }}>&#127769;</span>
+                        <span style={{color: 'darkgray'}}>&#127769;</span>
                     )}
                 </Button>
             </div>
 
-            <AddJobs show={show} handleClose={handleClose} />
+            <AddJobs show={show} handleClose={handleClose}/>
 
             {loading ? (
                 <h1>Loading...</h1>
@@ -77,9 +77,9 @@ function Jumbo() {
                         height: '500px',
                         borderRadius: '0',
                     }}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    initial={{opacity: 0}}
+                    animate={{opacity: 1}}
+                    exit={{opacity: 0}}
                 >
                     <div
                         className="jumbotron-background"
@@ -118,17 +118,18 @@ function Jumbo() {
                                     <h4>{job.company}</h4>
                                     <p>{job.location}</p>
                                     <p>{job.description}</p>
-                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={() => handleJumboClick(job.id)}>View</Button>
+                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'}
+                                            onClick={() => handleJumboClick(job.id)}>View</Button>
                                     <Modal show={isOpen} onHide={handleJumboClose}>
                                         <Modal.Header closeButton>
                                             <Modal.Title>
-                                                <h4 style={{ color: 'goldenrod' }}>{jumboData.title}</h4>
+                                                <h4 style={{color: 'goldenrod'}}>{jumboData.title}</h4>
                                             </Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <h4 style={{ color: 'darkgreen' }}>Company:{' '} {jumboData.company}</h4>
-                                            <h5 style={{ color: 'darkgreen' }}>Location:{' '} {jumboData.location}</h5>
-                                            <h5 style={{ color: 'darkgreen' }}>Description:{' '}{jumboData.description}</h5>
+                                            <h4 style={{color: 'darkgreen'}}>Company:{' '} {jumboData.company}</h4>
+                                            <h5 style={{color: 'darkgreen'}}>Location:{' '} {jumboData.location}</h5>
+                                            <h5 style={{color: 'darkgreen'}}>Description:{' '}{jumboData.description}</h5>
                                         </Modal.Body>
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={handleJumboClose}>
@@ -144,9 +145,9 @@ function Jumbo() {
                 </motion.div>
             )}
 
-            <div style={{ margin: '10px' }}>
+            <div style={{margin: '10px'}}>
                 <Container>
-                    <Cards data={jobs} setData={setJobs} dark={darkMode} />
+                    <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                 </Container>
             </div>
         </div>
