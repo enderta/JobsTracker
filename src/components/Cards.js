@@ -133,8 +133,7 @@ function Cards(props) {
                                     <Card.Body style={{ height: '200px', width: '400px' }}>
                                         <Card.Title
                                             style={{
-                                                fontSize: '1.5rem',
-                                                marginBottom: '0.5rem',
+
                                                 // Add more responsive styles here
                                             }}
                                         >
@@ -142,47 +141,24 @@ function Cards(props) {
                                         </Card.Title>
                                         <Card.Subtitle
                                             className="mb-2 text-muted"
-                                            style={{
-                                                fontSize: '1rem',
-                                                marginBottom: '0.5rem',
-                                                // Add more responsive styles here
-                                            }}
                                         >
                                             {job.company}
                                         </Card.Subtitle>
                                         <Card.Text
-                                            style={{
-                                                fontSize: '1rem',
-                                                marginBottom: '0.5rem',
-                                                // Add more responsive styles here
-                                            }}
                                         >
                                             {job.description}
                                         </Card.Text>
                                         <Card.Text
-                                            style={{
-                                                fontSize: '1rem',
-                                                marginBottom: '0.5rem',
-                                                // Add more responsive styles here
-                                            }}
                                         >
                                             {job.location}
                                         </Card.Text>
 
-                                        <Card.Text
-                                            style={{
-                                                fontSize: '1rem',
-                                                marginBottom: '0.5rem',
-
-                                            }
-                                            }
-                                        >
+                                        <Card.Text>
                                             <h6
 
                                                 onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
-                                                    fontSize: '1rem',
-                                                    cursor: 'pointer',
+
                                                     color:job.is_applied ? 'forestgreen' : 'goldenrod',
                                                     // Add more responsive styles here
                                                 }}
