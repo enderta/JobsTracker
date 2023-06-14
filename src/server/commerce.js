@@ -292,7 +292,7 @@ const PAGE_SIZE = 6;
 app.get('/api/products', async (req, res) => {
     const {page} = req.query;
     const search = req.query.search || "";
-    const sort = req.query.sort || "order_date";
+    const sort = req.query.sort || "created_at";
     const product = req.query.order || "desc";
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
@@ -461,42 +461,45 @@ app.get('/api/products', async (req, res) => {
     app.get('/api/orders', async (req, res) => {
         const {page} = req.query;
         const search = req.query.search || "";
-        const sort = req.query.sort || "order_date";
+        const sort = req.query.sort || "created_at";
         const order = req.query.order || "desc";
         jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+
             if (error) {
                 res.status(401).json({error: "Unauthorized"});
-            } else {
-                let query = "SELECT * FROM orders WHERE user_id = $1";
-                const {rows} = await pool.query(query, [decoded.id]);
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order not found",
+            }
+            else {
+                //all the orders
+                if (page === "all") {
+                    const {rows}= await pool.query('select * from orders;');
+                    res.status(200).json({
+                        status: "success",
+                        message: `${rows.length} orders found`,
+                        data: rows,
                     });
-                } else {
-                    if (page === "all") {
-                        const {rows} = await pool.query(query);
-                        res.status(200).json({
-                            status: "success",
-                            message: "All orders",
-                            data: rows,
-                            total: rows.length,
+
+                }
+                else {
+                    const {rows} = await pool.query(
+                        "SELECT * FROM orders WHERE user_id = $1",
+                        [decoded.id]
+                    );
+                    if (rows.length === 0) {
+                        res.status(404).json({
+                            status: "error",
+                            message: "Order not found",
                         });
                     } else {
-                        query += " LIMIT $1 OFFSET $2";
-                        const {rows} = await pool.query(query, [PAGE_SIZE, (page - 1) * PAGE_SIZE]);
                         res.status(200).json({
                             status: "success",
-                            message: "All orders",
+                            message: "Order found",
                             data: rows,
-                            page: page,
-                            total: rows.length,
                         });
                     }
                 }
+
             }
-        });
+           });
     });
 
     app.get('/api/orders/:id', async (req, res) => {
@@ -630,47 +633,33 @@ app.get('/api/products', async (req, res) => {
             }
         });
     });
+    /*
+    * CREATE TABLE order_items (
+  id SERIAL PRIMARY KEY,
+  order_id INT REFERENCES orders(id),
+  product_id INT REFERENCES products(id),
+  quantity INT,
+  price DECIMAL(10, 2)
+);
+    * */
 
-    app.get('/api/order_items', async (req, res) => {
-        const {page} = req.query;
-        const search = req.query.search || "";
-        const sort = req.query.sort || "order_date";
-        const item = req.query.order || "desc";
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                let query = "SELECT * FROM order_items WHERE user_id = $1";
-                const {rows} = await pool.query(query, [decoded.id]);
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order item not found",
-                    });
+    app.get('/api/orderItems', async (req, res) => {
+         jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+                if (error) {
+                 res.status(401).json({error: "Unauthorized"});
                 } else {
-                    if (page === "all") {
-                        const {rows} = await pool.query(query);
-                        res.status(200).json({
-                            status: "success",
-                            message: "All order items",
-                            data: rows,
-                            total: rows.length,
-                        });
-                    } else {
-                        query += " LIMIT $1 OFFSET $2";
-                        const {rows} = await pool.query(query, [PAGE_SIZE, (page - 1) * PAGE_SIZE]);
-                        res.status(200).json({
-                            status: "success",
-                            message: "All order items",
-                            data: rows,
-                            page: page,
-                            total: rows.length,
-                        });
-                    }
+                 const {rows} = await pool.query(
+                      "select * from order_items;"
+                 );
+                 res.status(200).json({
+                      status: "success",
+                      message: "Order items found",
+                      data: rows,
+                 });
                 }
-            }
-        });
+          });
     });
+
 
     app.get('/api/order_items/:id', async (req, res) => {
         jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
@@ -756,6 +745,6 @@ app.get('/api/products', async (req, res) => {
 });
 const port=5000;
 app.listen(port, () => {
-    console.log(`App running on port ${port}.`)
-})
+    console.log(`Server is running on port ${port}.`);
+});
 
