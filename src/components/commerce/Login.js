@@ -4,9 +4,9 @@ import {Button, Form} from "react-bootstrap";
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true' ? true : false);
 
-
+    console.log(localStorage.getItem('darkMode'))
     const handleChanges = (e) => {
         if (e.target.name === 'email') {
             setEmail(e.target.value);
@@ -36,9 +36,11 @@ function Login() {
 
     useEffect(() => {
         if (darkMode) {
+            localStorage.setItem('darkMode', darkMode);
             document.body.style.backgroundColor = "black";
             document.body.style.color = '#3a2f2f';
         } else {
+            localStorage.setItem('darkMode', !darkMode);
             document.body.style.backgroundColor = '#e7e7e7';
             document.body.style.color = 'darkgray';
         }

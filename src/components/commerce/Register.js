@@ -21,20 +21,25 @@ const handleChanges = (e) => {
         setFirstName(e.target.value);
     }
 }
-const handleDarkMode = () => {
-    setDarkMode(!darkMode);
-    localStorage.setItem('darkMode', darkMode);
-}
-
     useEffect(() => {
         if (darkMode) {
+            localStorage.setItem('darkMode', darkMode);
             document.body.style.backgroundColor = "black";
             document.body.style.color = '#3a2f2f';
         } else {
+            localStorage.setItem('darkMode', !darkMode);
             document.body.style.backgroundColor = '#e7e7e7';
             document.body.style.color = 'darkgray';
         }
     }, [darkMode]);
+
+const handleDarkMode = () => {
+
+    setDarkMode(!darkMode);
+    localStorage.setItem('darkMode', darkMode);
+}
+
+    console.log(   localStorage.getItem('darkMode'))
 
 const handleSubmit = (e) => {
     e.preventDefault();
