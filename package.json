@@ -23,6 +23,7 @@
     "react-dom": "^18.2.0",
     "react-intersection-observer": "^9.4.4",
     "react-responsive-carousel": "^3.2.23",
+    "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
     "react-spring": "^9.7.1",
     "web-vitals": "^2.1.4"
