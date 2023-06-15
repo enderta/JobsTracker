@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {Alert, Button, Form} from "react-bootstrap";
-import {color} from "framer-motion";
+import { ToastContainer, toast } from 'react-toastify';
 
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 const [passwordConfirmation, setPasswordConfirmation] = useState('');
-const [firstName, setFirstName] = useState('');
+const [name, setFirstName] = useState('');
 const [darkMode, setDarkMode] = useState(true);
 
 const handleChanges = (e) => {
@@ -39,8 +39,8 @@ const handleDarkMode = () => {
 const handleSubmit = (e) => {
     e.preventDefault();
     if (password === passwordConfirmation) {
-        const body = {email, password, firstName};
-        fetch('http://localhost:5000/api/users', {
+        const body = {email, password, name};
+        fetch('http://localhost:5000/api/users/register', {
             method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
         })
             .then(response => response.json())
@@ -51,7 +51,7 @@ const handleSubmit = (e) => {
             .catch(err => console.error(err.message));
     }
     else {
-        alert('Passwords do not match');
+       alert('Passwords do not match');
 
     }
 
@@ -85,7 +85,7 @@ const handleSubmit = (e) => {
                             </Form.Group>
                             <Form.Group controlId="formBasicFirstName">
                                 <Form.Label style={{color: darkMode ? 'goldenrod' : 'darkgray'}}>First Name</Form.Label>
-                                <Form.Control type="text" placeholder="Enter First Name" name="firstName" value={firstName} onChange={handleChanges} />
+                                <Form.Control type="text" placeholder="Enter First Name" name="firstName" value={name} onChange={handleChanges} />
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label style={{color: darkMode ? 'goldenrod' : 'darkgray'}}>Password</Form.Label>
