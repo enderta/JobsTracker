@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Form} from "react-bootstrap";
+import {Button, Card, Form} from "react-bootstrap";
 
 function Login() {
     const [email, setEmail] = useState('');
@@ -61,11 +61,16 @@ function Login() {
                     )}
                 </Button>
             </div>
+
                 <div className="container" >
                     <div className="row" >
                         <div className="col-md-6 offset-md-3">
                             <h1 className="text-center"
                                 style={{margin: '10px', color: darkMode ? 'goldenrod' : 'darkgray'}}>Login</h1>
+                            <Card
+                                className={darkMode ? 'bg-dark text-light' : ''}
+                                style={{ margin: '10px', padding: '10px' }}
+                            >
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label style={{color: darkMode ? 'goldenrod' : 'darkgray'}}>Email address</Form.Label>
@@ -86,9 +91,12 @@ function Login() {
                                 </div>
 
                             </Form>
+                            </Card>
+
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 )
