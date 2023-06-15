@@ -101,9 +101,16 @@ const handleSubmit = (e) => {
                                 <Form.Control type="password" placeholder="Password Confirmation" name="passwordConfirmation" value={passwordConfirmation} onChange={handleChanges} />
                             </Form.Group>
                             <br />
-                            <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} type="submit">
-                                Submit
-                            </Button>
+                            <div className="d-flex justify-content-between" >
+                                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} type="submit">
+                                    Register
+                                </Button>
+                                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={() => {
+                                    window.location = '/login';}
+                                }>Login</Button>
+                            </div>
+
+
                         </Form>
                     </div>
                 </div>

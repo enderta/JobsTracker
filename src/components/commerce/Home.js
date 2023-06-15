@@ -1,9 +1,15 @@
 import React from 'react'
+import {Button} from "react-bootstrap";
 
 function Home() {
     return (
-        <div>Home</div>
+        <div><Button onClick={() => {
+            window.location = '/login';}
+        }>Login</Button>
+        </div>
     )
-}
+
+        }
+
 
 export default Home

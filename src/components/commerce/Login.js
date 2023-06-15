@@ -76,9 +76,15 @@ function Login() {
                                     <Form.Control type="password" placeholder="Password" name="password" value={password} onChange={handleChanges} />
                                 </Form.Group>
                                 <br />
-                                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} type="submit">
-                                    Login
-                                </Button>
+                                <div className="d-flex justify-content-between" >
+                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} type="submit">
+                                        Login
+                                    </Button>
+                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={() => {
+                                        window.location = '/';}
+                                    }>Register</Button>
+                                </div>
+
                             </Form>
                         </div>
                     </div>
