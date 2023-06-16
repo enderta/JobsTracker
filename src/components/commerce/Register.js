@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Button, Card, Form } from 'react-bootstrap';
-import { ToastContainer, toast } from 'react-toastify';
+import { Button, Card, Form } from 'react-bootstrap';
+
 
 function Register() {
     const [email, setEmail] = useState('');
