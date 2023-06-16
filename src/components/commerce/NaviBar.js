@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -29,19 +29,20 @@ function NaviBar(props) {
     }
 
     return (
-        <div style={{margin:"1px", backgroundColor: darkMode ? 'grey' : 'white'}}>
-            <Navbar expand="xxl"  style={{height:"50px"}} >
-                <Container >
-                    <div >
-                        <div className="d-flex justify-content-between" >
-                            <Button style={{alignSelf:"start"}} variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleDarkMode}>
+        <div style={{margin: "1px", backgroundColor: darkMode ? 'grey' : 'white'}}>
+            <Navbar expand="xxl" style={{height: "50px"}}>
+                <Container>
+                    <div>
+                        <div className="d-flex justify-content-between">
+                            <Button style={{alignSelf: "start"}} variant={darkMode ? 'outline-warning' : 'outline-dark'}
+                                    onClick={handleDarkMode}>
                                 {darkMode ? <span style={{color: 'goldenrod'}}>&#x2600; </span> :
                                     <span style={{color: 'darkgray'}}>&#127769;</span>}
                             </Button>
                         </div>
                     </div>
                     <Navbar.Brand></Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
 
@@ -49,16 +50,23 @@ function NaviBar(props) {
                             <Nav.Link href="#link">Link</Nav.Link>
 
                         </Nav>
-                        <Nav>
-                            <NavDropdown title="Account" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                                <NavDropdown.Item href="/">Register</NavDropdown.Item>
-                                <NavDropdown.Item  onClick={handleLogout}>Logout</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
-                            </NavDropdown>
-                        </Nav>
+                        {
+                            localStorage.getItem('token') ? (
+                                <NavDropdown title="Account" id="basic-nav-dropdown">
+                                    <NavDropdown.Item href="/login">Orders</NavDropdown.Item>
+                                    <NavDropdown.Item href="/">Settings</NavDropdown.Item>
+                                    <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                    <NavDropdown.Divider/>
+                                </NavDropdown>) : (
+                                <Nav>
+                                    <NavDropdown title="Account" id="basic-nav-dropdown">
+                                        <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                                        <NavDropdown.Item href="/">Register</NavDropdown.Item>
+                                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
+                                        <NavDropdown.Divider/>
+                                    </NavDropdown>
+                                </Nav>)
+                        }
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
