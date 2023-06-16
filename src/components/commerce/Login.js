@@ -89,7 +89,7 @@ function Login() {
                                     <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={() => {
                                         window.location = '/register';}
                                     }>
-                                        Not a member? Register
+                                        Not a member? Register!
                                     </Button>
                                 </div>
 

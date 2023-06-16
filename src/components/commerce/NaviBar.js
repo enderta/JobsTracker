@@ -25,7 +25,7 @@ function NaviBar(props) {
     };
     const handleLogout = () => {
         localStorage.removeItem('token');
-        window.location = '/login';
+        window.location = '/';
     }
 
     return (
@@ -53,7 +53,7 @@ function NaviBar(props) {
                         {
                             localStorage.getItem('token') ? (
                                 <NavDropdown title="Account" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/login">Orders</NavDropdown.Item>
+                                    <NavDropdown.Item href="/">Orders</NavDropdown.Item>
                                     <NavDropdown.Item href="/">Settings</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                     <NavDropdown.Divider/>
@@ -61,7 +61,7 @@ function NaviBar(props) {
                                 <Nav>
                                     <NavDropdown title="Account" id="basic-nav-dropdown">
                                         <NavDropdown.Item href="/login">Login</NavDropdown.Item>
-                                        <NavDropdown.Item href="/">Register</NavDropdown.Item>
+                                        <NavDropdown.Item href="/register">Register</NavDropdown.Item>
                                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                         <NavDropdown.Divider/>
                                     </NavDropdown>
