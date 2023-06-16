@@ -5,9 +5,9 @@ import NaviBar from "./NaviBar";
 function Home() {
 
     return (
-        <>
-           <div className={"container"}>
-               <NaviBar/>
+        <div style={{margin:'5px'}}>
+           <div className={"container"} >
+               <NaviBar />
            </div>
             <div>
                 <h1>Home</h1>
@@ -17,7 +17,7 @@ function Home() {
             }
             }>Login</Button>
             </div>
-        </>
+        </div>
 
     )
 
