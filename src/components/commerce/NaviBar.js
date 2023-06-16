@@ -29,7 +29,7 @@ function NaviBar(props) {
     }
 
     return (
-        <div style={{margin: "1px", backgroundColor: darkMode ? 'grey' : 'white'}}>
+        <div style={{margin: "1px", backgroundColor: darkMode ? '#4c3956' : "whitesmoke"}}>
             <Navbar expand="xxl" style={{height: "50px"}}>
                 <Container>
                     <div>

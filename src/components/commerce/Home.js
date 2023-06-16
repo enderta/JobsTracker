@@ -6,7 +6,9 @@ function Home() {
 
     return (
         <>
-            <NaviBar/>
+           <div className={"container"}>
+               <NaviBar/>
+           </div>
             <div>
                 <h1>Home</h1>
             </div>
