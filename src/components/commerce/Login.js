@@ -24,6 +24,7 @@ function Login() {
             .then(response => response.json())
             .then(data => {
                 console.log(data);
+                localStorage.setItem('token', data.token);
                 window.location = '/home';
             })
             .catch(err => console.error(err.message));

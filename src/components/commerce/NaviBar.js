@@ -23,6 +23,10 @@ function NaviBar(props) {
         setDarkMode(!darkMode);
 
     };
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        window.location = '/login';
+    }
 
     return (
         <div style={{margin:"1px", backgroundColor: darkMode ? 'grey' : 'white'}}>
@@ -47,8 +51,9 @@ function NaviBar(props) {
                         </Nav>
                         <Nav>
                             <NavDropdown title="Account" id="basic-nav-dropdown">
-                                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                                <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                                <NavDropdown.Item href="/">Register</NavDropdown.Item>
+                                <NavDropdown.Item  onClick={handleLogout}>Logout</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
