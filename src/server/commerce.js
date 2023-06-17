@@ -294,222 +294,168 @@ app.get('/api/products', async (req, res) => {
     const search = req.query.search || "";
     const sort = req.query.sort || "created_at";
     const product = req.query.order || "desc";
+    const {rows} = await pool.query(
+        `SELECT * FROM products WHERE name ILIKE $1 ORDER BY ${sort} ${product}`,
+        [`%${search}%`]
+
+    );
+    res.status(200).json({
+        status: "success",
+        message: "All products",
+        data: rows,
+        page: page,
+        total: rows.length,
+
+    });
+});
+
+
+app.get('/api/products/:id', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
             res.status(401).json({error: "Unauthorized"});
         } else {
-            let query = "SELECT * FROM products";
-            if (search) {
-                query += " WHERE name ILIKE '%" + search + "%'";
-            }
-            query += " ORDER BY " + sort + " " + product;
-            if (page === undefined) {
-                const {rows} = await pool.query(query);
-                res.status(200).json({
-                    status: "success",
-                    message: "All products",
-                    data: rows,
-                    total: rows.length,
+            const {rows} = await pool.query(
+                "SELECT * FROM products WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Product not found",
                 });
             } else {
-                if (page === "all") {
-                    const {rows} = await pool.query(query);
-                    res.status(200).json({
-                        status: "success",
-                        message: "All products",
-                        data: rows,
-                        total: rows.length,
-                    });
-                } else {
-                    query += " LIMIT $1 OFFSET $2";
-                    const {rows} = await pool.query(query, [PAGE_SIZE, (page - 1) * PAGE_SIZE]);
-                    res.status(200).json({
-                        status: "success",
-                        message: "All products",
-                        data: rows,
-                        page: page,
-                        total: rows.length,
-                    });
-                }
+                res.status(200).json({
+                    status: "success",
+                    message: "Product found",
+                    data: rows[0],
+                });
             }
         }
     });
+});
 
-    app.get('/api/products/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
+
+app.put('/api/products/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM products WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Product not found",
+                });
             } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM products WHERE id = $1",
+                const {name, price, description} = req.body;
+                await pool.query(
+                    "UPDATE products SET name = $1, price = $2, description = $3 WHERE id = $4",
+                    [name, price, description, req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Product updated",
+                });
+            }
+        }
+    });
+});
+
+
+app.delete('/api/products/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM products WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Product not found",
+                });
+            } else {
+                await pool.query(
+                    "DELETE FROM products WHERE id = $1",
                     [req.params.id]
                 );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Product not found",
-                    });
-                } else {
-                    res.status(200).json({
-                        status: "success",
-                        message: "Product found",
-                        data: rows[0],
-                    });
-                }
+                res.status(200).json({
+                    status: "success",
+                    message: "Product deleted",
+                });
             }
-        });
+        }
     });
+});
 
+/*
+* CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+  total_amount DECIMAL(10, 2),
+  created_at TIMESTAMP DEFAULT NOW()
+);
 
-    app.put('/api/products/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
+* */
+
+app.post('/api/orders', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM users WHERE id = $1",
+                [decoded.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "User not found",
+                });
             } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM products WHERE id = $1",
-                    [req.params.id]
+                const {total_amount} = req.body;
+                await pool.query(
+                    "INSERT INTO orders (user_id, total_amount) VALUES ($1, $2)",
+                    [decoded.id, total_amount]
                 );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Product not found",
-                    });
-                } else {
-                    const {name, price, description} = req.body;
-                    await pool.query(
-                        "UPDATE products SET name = $1, price = $2, description = $3 WHERE id = $4",
-                        [name, price, description, req.params.id]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Product updated",
-                    });
-                }
+                res.status(200).json({
+                    status: "success",
+                    message: "Order added",
+                });
             }
-        });
+        }
     });
+});
 
+app.get('/api/orders', async (req, res) => {
+    const {page} = req.query;
+    const search = req.query.search || "";
+    const sort = req.query.sort || "created_at";
+    const order = req.query.order || "desc";
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
 
-    app.delete('/api/products/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            //all the orders
+            if (page === "all") {
+                const {rows} = await pool.query('select * from orders;');
+                res.status(200).json({
+                    status: "success",
+                    message: `${rows.length} orders found`,
+                    data: rows,
+                });
+
             } else {
                 const {rows} = await pool.query(
-                    "SELECT * FROM products WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Product not found",
-                    });
-                } else {
-                    await pool.query(
-                        "DELETE FROM products WHERE id = $1",
-                        [req.params.id]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Product deleted",
-                    });
-                }
-            }
-        });
-    });
-
-    /*
-    * CREATE TABLE orders (
-      id SERIAL PRIMARY KEY,
-      user_id INT REFERENCES users(id),
-      total_amount DECIMAL(10, 2),
-      created_at TIMESTAMP DEFAULT NOW()
-    );
-
-    * */
-
-    app.post('/api/orders', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM users WHERE id = $1",
+                    "SELECT * FROM orders WHERE user_id = $1",
                     [decoded.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "User not found",
-                    });
-                } else {
-                    const {total_amount} = req.body;
-                    await pool.query(
-                        "INSERT INTO orders (user_id, total_amount) VALUES ($1, $2)",
-                        [decoded.id, total_amount]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Order added",
-                    });
-                }
-            }
-        });
-    });
-
-    app.get('/api/orders', async (req, res) => {
-        const {page} = req.query;
-        const search = req.query.search || "";
-        const sort = req.query.sort || "created_at";
-        const order = req.query.order || "desc";
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            }
-            else {
-                //all the orders
-                if (page === "all") {
-                    const {rows}= await pool.query('select * from orders;');
-                    res.status(200).json({
-                        status: "success",
-                        message: `${rows.length} orders found`,
-                        data: rows,
-                    });
-
-                }
-                else {
-                    const {rows} = await pool.query(
-                        "SELECT * FROM orders WHERE user_id = $1",
-                        [decoded.id]
-                    );
-                    if (rows.length === 0) {
-                        res.status(404).json({
-                            status: "error",
-                            message: "Order not found",
-                        });
-                    } else {
-                        res.status(200).json({
-                            status: "success",
-                            message: "Order found",
-                            data: rows,
-                        });
-                    }
-                }
-
-            }
-           });
-    });
-
-    app.get('/api/orders/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM orders WHERE id = $1",
-                    [req.params.id]
                 );
                 if (rows.length === 0) {
                     res.status(404).json({
@@ -520,230 +466,257 @@ app.get('/api/products', async (req, res) => {
                     res.status(200).json({
                         status: "success",
                         message: "Order found",
-                        data: rows[0],
+                        data: rows,
                     });
                 }
             }
-        });
-    });
 
-    app.put('/api/orders/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
+        }
+    });
+});
+
+app.get('/api/orders/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM orders WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order not found",
+                });
             } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM orders WHERE id = $1",
+                res.status(200).json({
+                    status: "success",
+                    message: "Order found",
+                    data: rows[0],
+                });
+            }
+        }
+    });
+});
+
+app.put('/api/orders/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM orders WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order not found",
+                });
+            } else {
+                const {total_amount} = req.body;
+                await pool.query(
+                    "UPDATE orders SET total_amount = $1 WHERE id = $2",
+                    [total_amount, req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Order updated",
+                });
+            }
+        }
+    });
+});
+
+app.delete('/api/orders/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM orders WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order not found",
+                });
+            } else {
+                await pool.query(
+                    "DELETE FROM orders WHERE id = $1",
                     [req.params.id]
                 );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order not found",
-                    });
-                } else {
-                    const {total_amount} = req.body;
-                    await pool.query(
-                        "UPDATE orders SET total_amount = $1 WHERE id = $2",
-                        [total_amount, req.params.id]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Order updated",
-                    });
-                }
+                res.status(200).json({
+                    status: "success",
+                    message: "Order deleted",
+                });
             }
-        });
+        }
     });
+});
 
-    app.delete('/api/orders/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM orders WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order not found",
-                    });
-                } else {
-                    await pool.query(
-                        "DELETE FROM orders WHERE id = $1",
-                        [req.params.id]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Order deleted",
-                    });
-                }
-            }
-        });
-    });
-
-    /*
-    * CREATE TABLE order_items (
-  id SERIAL PRIMARY KEY,
-  order_id INT REFERENCES orders(id),
-  product_id INT REFERENCES products(id),
-  quantity INT,
-  price DECIMAL(10, 2)
+/*
+* CREATE TABLE order_items (
+id SERIAL PRIMARY KEY,
+order_id INT REFERENCES orders(id),
+product_id INT REFERENCES products(id),
+quantity INT,
+price DECIMAL(10, 2)
 );
-    * */
+* */
 
-    app.post('/api/order_items', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
+app.post('/api/order_items', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM orders WHERE id = $1",
+                [req.body.order_id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order not found",
+                });
             } else {
                 const {rows} = await pool.query(
-                    "SELECT * FROM orders WHERE id = $1",
-                    [req.body.order_id]
+                    "SELECT * FROM products WHERE id = $1",
+                    [req.body.product_id]
                 );
                 if (rows.length === 0) {
                     res.status(404).json({
                         status: "error",
-                        message: "Order not found",
-                    });
-                } else {
-                    const {rows} = await pool.query(
-                        "SELECT * FROM products WHERE id = $1",
-                        [req.body.product_id]
-                    );
-                    if (rows.length === 0) {
-                        res.status(404).json({
-                            status: "error",
-                            message: "Product not found",
-                        });
-                    } else {
-                        const {quantity, price} = req.body;
-                        await pool.query(
-                            "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ($1, $2, $3, $4)",
-                            [req.body.order_id, req.body.product_id, quantity, price]
-                        );
-                        res.status(200).json({
-                            status: "success",
-                            message: "Order item added",
-                        });
-                    }
-                }
-            }
-        });
-    });
-    /*
-    * CREATE TABLE order_items (
-  id SERIAL PRIMARY KEY,
-  order_id INT REFERENCES orders(id),
-  product_id INT REFERENCES products(id),
-  quantity INT,
-  price DECIMAL(10, 2)
-);
-    * */
-
-    app.get('/api/orderItems', async (req, res) => {
-         jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-                if (error) {
-                 res.status(401).json({error: "Unauthorized"});
-                } else {
-                 const {rows} = await pool.query(
-                      "select * from order_items;"
-                 );
-                 res.status(200).json({
-                      status: "success",
-                      message: "Order items found",
-                      data: rows,
-                 });
-                }
-          });
-    });
-
-
-    app.get('/api/order_items/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM order_items WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order item not found",
-                    });
-                } else {
-                    res.status(200).json({
-                        status: "success",
-                        message: "Order item found",
-                        data: rows[0],
-                    });
-                }
-            }
-        });
-    });
-
-    app.put('/api/order_items/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM order_items WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order item not found",
+                        message: "Product not found",
                     });
                 } else {
                     const {quantity, price} = req.body;
                     await pool.query(
-                        "UPDATE order_items SET quantity = $1, price = $2 WHERE id = $3",
-                        [quantity, price, req.params.id]
+                        "INSERT INTO order_items (order_id, product_id, quantity, price) VALUES ($1, $2, $3, $4)",
+                        [req.body.order_id, req.body.product_id, quantity, price]
                     );
                     res.status(200).json({
                         status: "success",
-                        message: "Order item updated",
+                        message: "Order item added",
                     });
                 }
             }
-        });
-    });
-
-    app.delete('/api/order_items/:id', async (req, res) => {
-        jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {rows} = await pool.query(
-                    "SELECT * FROM order_items WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "Order item not found",
-                    });
-                } else {
-                    await pool.query(
-                        "DELETE FROM order_items WHERE id = $1",
-                        [req.params.id]
-                    );
-                    res.status(200).json({
-                        status: "success",
-                        message: "Order item deleted",
-                    });
-                }
-            }
-        });
+        }
     });
 });
-const port=5000;
+/*
+* CREATE TABLE order_items (
+id SERIAL PRIMARY KEY,
+order_id INT REFERENCES orders(id),
+product_id INT REFERENCES products(id),
+quantity INT,
+price DECIMAL(10, 2)
+);
+* */
+
+app.get('/api/orderItems', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "select * from order_items;"
+            );
+            res.status(200).json({
+                status: "success",
+                message: "Order items found",
+                data: rows,
+            });
+        }
+    });
+});
+
+
+app.get('/api/order_items/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM order_items WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order item not found",
+                });
+            } else {
+                res.status(200).json({
+                    status: "success",
+                    message: "Order item found",
+                    data: rows[0],
+                });
+            }
+        }
+    });
+});
+
+app.put('/api/order_items/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM order_items WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order item not found",
+                });
+            } else {
+                const {quantity, price} = req.body;
+                await pool.query(
+                    "UPDATE order_items SET quantity = $1, price = $2 WHERE id = $3",
+                    [quantity, price, req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Order item updated",
+                });
+            }
+        }
+    });
+});
+
+app.delete('/api/order_items/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM order_items WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order item not found",
+                });
+            } else {
+                await pool.query(
+                    "DELETE FROM order_items WHERE id = $1",
+                    [req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Order item deleted",
+                });
+            }
+        }
+    });
+});
+
+const port = 5000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}.`);
 });
