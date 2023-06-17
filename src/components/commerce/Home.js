@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import {Button} from 'react-bootstrap';
 import NaviBar from './NaviBar';
 import JumboComm from './JumboComm';
 
@@ -13,16 +13,16 @@ function Home() {
     }, []);
 
     return (
-        <div >
-            <div style={{margin:"10px"}}>
-                <NaviBar />
-            </div>
+        <div>
 
-            <div style={{margin:"10px"}}>
-                <JumboComm  />
-            </div>
+            <NaviBar/>
+
+
+        <JumboComm/>
+
 
         </div>
+
     );
 }
 
