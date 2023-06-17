@@ -60,9 +60,8 @@ function NaviBar(props) {
                                 </NavDropdown>) : (
                                 <Nav>
                                     <NavDropdown title="Account" id="basic-nav-dropdown">
-                                        <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+                                        <NavDropdown.Item style={{color:"black"}} href="/login">Login</NavDropdown.Item>
                                         <NavDropdown.Item href="/register">Register</NavDropdown.Item>
-                                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                         <NavDropdown.Divider/>
                                     </NavDropdown>
                                 </Nav>)
