@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import {Button} from "react-bootstrap";
 
 function NaviBar(props) {
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
     useEffect(() => {
         if (darkMode) {
 
@@ -21,6 +21,7 @@ function NaviBar(props) {
 
     const handleDarkMode = () => {
         setDarkMode(!darkMode);
+        localStorage.setItem('darkMode', !darkMode);
 
     };
     const handleLogout = () => {

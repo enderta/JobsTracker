@@ -1,16 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Button} from 'react-bootstrap';
 import NaviBar from './NaviBar';
 import JumboComm from './JumboComm';
+import Products from "./Products";
 
 function Home() {
-    const [prod, setProd] = useState([]);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/api/products')
-            .then((res) => res.json())
-            .then((data) => setProd(data.data));
-    }, []);
 
     return (
         <div>
@@ -19,6 +13,7 @@ function Home() {
 
 
         <JumboComm/>
+            <Products/>
 
 
         </div>
