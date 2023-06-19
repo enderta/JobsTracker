@@ -593,7 +593,7 @@ price DECIMAL(10, 2)
 );
 * */
 
-app.get('/api/orderItems/', async (req, res) => {
+app.get('/api/orderItems', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
             res.status(401).json({error: "Unauthorized"});
@@ -601,7 +601,7 @@ app.get('/api/orderItems/', async (req, res) => {
         else {
             //join order_items and products
             const {rows} = await pool.query(
-                "SELECT * FROM order_items INNER JOIN products ON order_items.product_id = products.id"
+                "SELECT * FROM order_items INNER JOIN products ON order_items.product_id = products.id join orders on order_items.order_id = orders.id"
             );
             if (rows.length === 0) {
                 res.status(404).json({
@@ -702,6 +702,133 @@ app.delete('/api/order_items/:id', async (req, res) => {
         }
     });
 });
+/*CREATE TABLE basket (
+    id SERIAL PRIMARY KEY,
+    user_id INT REFERENCES users(id),
+    product_id INT REFERENCES products(id),
+    quantity INT,
+    price DECIMAL(10, 2),
+    total_amount DECIMAL(10, 2),
+    created_at TIMESTAMP DEFAULT NOW()
+);*/
+
+app.post('/api/basket/:prodId', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM basket WHERE id = $1",
+                [req.params.prodId]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+            } else {
+                const {user_id, product_id, quantity, price, total_amount} = req.body;
+                await pool.query(
+                    "INSERT INTO basket (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)",
+                    [user_id, product_id, quantity, price, total_amount]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Basket added",
+                });
+            }
+        }
+    });
+});
+
+//get all the products in the basket
+app.get('/api/basket', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        }
+        else {
+            //join order_items and products
+            const {rows} = await pool.query(
+                "select p.*,b.* from basket b join products p on b.product_id=p.id;"
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+
+            } else {
+                res.status(200).json({
+                    status: "success",
+                    message: `${rows.length} basket found`,
+                    data: rows,
+                });
+            }
+        }
+    });
+});
+//delete a product from the basket
+app.delete('/api/basket/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM basket WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+            } else {
+                await pool.query(
+                    "DELETE FROM basket WHERE id = $1",
+                    [req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Basket deleted",
+                });
+            }
+        }
+    });
+});
+
+//update a product in the basket
+app.put('/api/basket/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM basket WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+            } else {
+                const {quantity, price} = req.body;
+                await pool.query(
+                    "UPDATE basket SET quantity = $1, price = $2 WHERE id = $3",
+                    [quantity, price, req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Basket updated",
+                });
+            }
+        }
+    });
+});
+
+
+
 
 const port = 5000;
 app.listen(port, () => {
