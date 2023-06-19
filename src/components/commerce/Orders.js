@@ -31,9 +31,15 @@ function Orders() {
                 headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
               });
                 const data = await response.json();
-                setBasket(data.data);
+               let info = [];
+          let orders =data.data
+            for (let i = 0; i < orders.length; i++) {
+                if(orders[i].user_id == localStorage.getItem('userId')){
+                    info.push(orders[i])
+                }
 
-
+            }
+            setBasket(info);
         }
 
         fetchData();
@@ -50,7 +56,7 @@ function Orders() {
 const handleHome = () => {
         window.location = '/home';
 }
-
+    console.log(localStorage.getItem('userId'));
 
     return (
         <div>
@@ -64,7 +70,11 @@ const handleHome = () => {
                                 style={{ margin: '10px', color: darkMode ? 'goldenrod' : 'darkgray' }}
                             >
                                 {`Your Orders`}
+
                             </h1>
+                            <h3>
+                                {`Total: ${total}`}
+                            </h3>
                             {
                                 basket.map((item) => (
                                     <Card
