@@ -7,6 +7,9 @@ import {Button} from "react-bootstrap";
 
 function NaviBar(props) {
     const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
+
+
+
     useEffect(() => {
         if (darkMode) {
 
@@ -54,7 +57,7 @@ function NaviBar(props) {
                         {
                             localStorage.getItem('token') ? (
                                 <NavDropdown title="Account" id="basic-nav-dropdown">
-                                    <NavDropdown.Item href="/">Orders</NavDropdown.Item>
+                                    <NavDropdown.Item href="/orders">Orders</NavDropdown.Item>
                                     <NavDropdown.Item href="/">Settings</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                                     <NavDropdown.Divider/>
