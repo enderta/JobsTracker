@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Card} from "react-bootstrap";
+import NaviBar from "./NaviBar";
 
 function Orders() {
     const [basket, setBasket] = useState([]);
@@ -54,13 +55,7 @@ const handleHome = () => {
     return (
         <div>
             <div>
-                <div style={{ margin: '10px' }}>
-                    <div className="d-flex justify-content-between" style={{ margin: '10px' }}>
-                        <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleDarkMode}>
-                            {darkMode ? <span style={{ color: 'goldenrod' }}>&#x2600; </span> : <span style={{ color: 'darkgray' }}>&#127769;</span>}
-                        </Button>
-                    </div>
-                </div>
+                <NaviBar/>
                 <div className="container">
                     <div className="row">
                         <div className="col-md-6 offset-md-3">
