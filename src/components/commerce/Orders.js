@@ -46,7 +46,9 @@ function Orders() {
         });
         setTotal(total);
     }, [basket]);
-
+const handleHome = () => {
+        window.location = '/home';
+}
 
 
     return (
@@ -92,6 +94,9 @@ function Orders() {
                         </div>
                     </div>
                 </div>
+                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleHome}>
+                    {`Home`}
+                </Button>
             </div>
         </div>
     )
