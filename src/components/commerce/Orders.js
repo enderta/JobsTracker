@@ -46,13 +46,6 @@ function Orders() {
     }, []);
     console.log(basket)
 
-    useEffect(() => {
-        let total = "";
-        basket.forEach((item) => {
-            total += item.total_amount;
-        });
-        setTotal(total);
-    }, [basket]);
 const handleHome = () => {
         window.location = '/home';
 }
@@ -73,7 +66,10 @@ const handleHome = () => {
 
                             </h1>
                             <h3>
-                                {`Total: ${total}`}
+                                total:{" "}{
+                                   basket.reduce((a, b) => a + parseFloat(b.total_amount), 0)
+
+                                }
                             </h3>
                             {
                                 basket.map((item) => (
