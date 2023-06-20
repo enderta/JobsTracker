@@ -67,8 +67,7 @@ const handleHome = () => {
                             </h1>
                             <h3>
                                 total:{" "}{
-                                   basket.reduce((a, b) => a + parseFloat(b.total_amount), 0)
-
+                                    basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
                                 }
                             </h3>
                             {
