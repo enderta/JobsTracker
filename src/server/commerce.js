@@ -715,35 +715,58 @@ app.delete('/api/order_items/:id', async (req, res) => {
 );*/
 
 app.post('/api/basket/:prodId', async (req, res) => {
+    try {
+        const decoded = jwt.verify(req.headers.authorization, secret);
+        const { prodId } = req.params;
+
+        const { rows } = await pool.query('SELECT * FROM basket WHERE product_id = $1', [prodId]);
+        if (rows.length === 0) {
+            const { user_id, product_id, quantity, price, total_amount } = req.body;
+            await pool.query(
+                'INSERT INTO basket (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)',
+                [user_id, product_id, quantity, price, total_amount]
+            );
+            res.status(200).json({
+                status: 'success',
+                message: 'Basket item added',
+                data: rows[0],
+            });
+        } else {
+            // Increment quantity and total amount
+            const { quantity, price, total_amount } = req.body;
+            await pool.query(
+                'UPDATE basket SET quantity = $1, price = $2, total_amount = $3 WHERE product_id = $4',
+                [quantity, price, total_amount, prodId]
+            );
+            res.status(200).json({
+                status: 'success',
+                message: 'Basket item updated',
+            });
+        }
+    } catch (error) {
+        res.status(401).json({ error: 'Unauthorized' });
+    }
+});
+//get users basket
+app.get('/api/basket/:userId', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
             res.status(401).json({error: "Unauthorized"});
         } else {
             const {rows} = await pool.query(
-                "SELECT * FROM basket WHERE product_id = $1",
-                [req.params.prodId]
+                "SELECT * FROM basket WHERE user_id = $1",
+                [req.params.userId]
             );
             if (rows.length === 0) {
-                const {user_id, product_id, quantity, price, total_amount} = req.body;
-                await pool.query(
-                    "INSERT INTO basket (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)",
-                    [user_id, product_id, quantity, price, total_amount]
-                );
-                res.status(200).json({
-                    status: "success",
-                    message: "Basket item added",
-                    data: rows[0],
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
                 });
             } else {
-              //increment quantity and total amount
-                const {quantity, price, total_amount} = req.body;
-                await pool.query(
-                    "UPDATE basket SET quantity = $1, price = $2, total_amount = $3 WHERE product_id = $4",
-                    [quantity, price, total_amount, req.params.prodId]
-                );
                 res.status(200).json({
                     status: "success",
-                    message: "Basket item updated",
+                    message: `${rows.length} basket found`,
+                    data: rows,
                 });
             }
         }

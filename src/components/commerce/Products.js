@@ -27,7 +27,7 @@ function Products() {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    if (data.success) {
+                    if (data.status=== 'success') {
                         window.location = '/basket';
                     }
                 })
