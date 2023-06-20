@@ -297,9 +297,11 @@ app.get('/api/products', async (req, res) => {
     const sort = req.query.sort || "created_at";
     const product = req.query.order || "desc";
     const {rows} = await pool.query(
-        `SELECT * FROM products WHERE name ILIKE $1 ORDER BY ${sort} ${product}`,
+        `SELECT *
+         FROM products
+         WHERE name ILIKE $1
+         ORDER BY ${sort} ${product}`,
         [`%${search}%`]
-
     );
     res.status(200).json({
         status: "success",
@@ -598,8 +600,7 @@ app.get('/api/orderItems', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
             res.status(401).json({error: "Unauthorized"});
-        }
-        else {
+        } else {
             //join order_items and products
             const {rows} = await pool.query(
                 "SELECT * FROM order_items INNER JOIN products ON order_items.product_id = products.id join orders on order_items.order_id = orders.id"
@@ -719,15 +720,10 @@ app.post('/api/basket/:prodId', async (req, res) => {
             res.status(401).json({error: "Unauthorized"});
         } else {
             const {rows} = await pool.query(
-                "SELECT * FROM basket WHERE id = $1",
+                "SELECT * FROM basket WHERE product_id = $1",
                 [req.params.prodId]
             );
             if (rows.length === 0) {
-                res.status(404).json({
-                    status: "error",
-                    message: "Basket not found",
-                });
-            } else {
                 const {user_id, product_id, quantity, price, total_amount} = req.body;
                 await pool.query(
                     "INSERT INTO basket (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)",
@@ -735,7 +731,19 @@ app.post('/api/basket/:prodId', async (req, res) => {
                 );
                 res.status(200).json({
                     status: "success",
-                    message: "Basket added",
+                    message: "Basket item added",
+                    data: rows[0],
+                });
+            } else {
+              //increment quantity and total amount
+                const {quantity, price, total_amount} = req.body;
+                await pool.query(
+                    "UPDATE basket SET quantity = $1, price = $2, total_amount = $3 WHERE product_id = $4",
+                    [quantity, price, total_amount, req.params.prodId]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Basket item updated",
                 });
             }
         }
@@ -747,8 +755,7 @@ app.get('/api/basket', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
             res.status(401).json({error: "Unauthorized"});
-        }
-        else {
+        } else {
             //join order_items and products
             const {rows} = await pool.query(
                 "select p.*,b.* from basket b join products p on b.product_id=p.id;"
@@ -827,8 +834,6 @@ app.put('/api/basket/:id', async (req, res) => {
         }
     });
 });
-
-
 
 
 const port = 5000;

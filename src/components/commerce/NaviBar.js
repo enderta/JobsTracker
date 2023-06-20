@@ -29,7 +29,7 @@ function NaviBar(props) {
     };
     const handleLogout = () => {
         localStorage.removeItem('token');
-        window.location = '/';
+        window.location = '/home';
     }
 
     return (
