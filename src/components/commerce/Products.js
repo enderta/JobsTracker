@@ -59,7 +59,7 @@ function Products() {
                 {products.map(product => (
                     <Card
                         key={product.id}
-                        style={{ width: '18rem', margin: '10px', backgroundColor: darkMode ? 'darkolivegreen' : '' }}
+                        style={{ width: '18rem', margin: '10px',  backgroundColor: darkMode ? '#3656a2' : 'white',}}
                     >
                         <Card.Img variant="top" src={product.image} />
                         <Card.Body>

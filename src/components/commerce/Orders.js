@@ -60,46 +60,48 @@ function Orders() {
                                 {`Your Orders`}
 
                             </h1>
-                            <h3>
+                            <h3 style={{
+                                color: darkMode ? '#3656a2' : 'white',
+                                margin: '10px'
+                            }}>
                                 total:{" "}{
                                 basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
                             }
                             </h3>
-                            <div className="row" style={{
-                                margin: '10px',
-                            }}>
+                            <div className="row">
                                 {
-                                    basket.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((item) => (
-                                        <div key={item.id} className="col-md-4 mb-4">
+                                    basket.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((item, index) => (
+                                        <div className="col-md-4" key={index}>
                                             <Card
-                                                className={darkMode ? '' : ''}
+                                                className="text-center"
                                                 style={{
                                                     backgroundColor: darkMode ? '#3656a2' : 'white',
-
-
+                                                    color: darkMode ? 'white' : 'black',
+                                                    margin: '10px'
                                                 }}
-
                                             >
-                                                <Card.Body >
+
+                                                <Card.Body>
                                                     <Card.Title
                                                         style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
                                                     <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                       Description:{" "} {item.description}
+                                                        Description:{" "} {item.description}
                                                     </Card.Text>
                                                     <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                        Amount Paid:{" "}{item.total_amount}
+                                                        Paid:{" "}{item.total_amount}
                                                     </Card.Text>
                                                     <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                        Order Date:{" "}   {new Date(item.created_at).toLocaleString()}
+                                                        Order Date:{" "}   {new Date(item.created_at).toLocaleString()
+                                                        .split(',')[0]}
                                                     </Card.Text>
                                                 </Card.Body>
                                             </Card>
                                         </div>
-
                                     ))
 
                                 }
-                            </div>
+
+                        </div>
                         </div>
                     </div>
                 </div>
