@@ -25,16 +25,16 @@ function Orders() {
 
     useEffect(() => {
         async function fetchData() {
-           //get method and auth token
-              const response = await fetch('http://localhost:5000/api/basket', {
+            //get method and auth token
+            const response = await fetch('http://localhost:5000/api/basket', {
                 method: 'GET',
-                headers: { 'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token') },
-              });
-                const data = await response.json();
-               let info = [];
-          let orders =data.data
+                headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
+            });
+            const data = await response.json();
+            let info = [];
+            let orders = data.data
             for (let i = 0; i < orders.length; i++) {
-                if(orders[i].user_id == localStorage.getItem('userId')){
+                if (orders[i].user_id == localStorage.getItem('userId')) {
                     info.push(orders[i])
                 }
 
@@ -55,37 +55,51 @@ function Orders() {
                         <div className="col-md-6 offset-md-3">
                             <h1
                                 className="text-center"
-                                style={{ margin: '10px', color: darkMode ? 'goldenrod' : 'darkgray' }}
+                                style={{margin: '10px', color: darkMode ? 'goldenrod' : 'darkgray'}}
                             >
                                 {`Your Orders`}
 
                             </h1>
                             <h3>
                                 total:{" "}{
-                                    basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
-                                }
-                            </h3>
-                            {
-                                basket.map((item) => (
-                                    <Card
-                                        key={item.id}
-                                        className={darkMode ? 'bg-dark text-light' : ''}
-
-                                    >
-                                        <Card.Header>{item.name}</Card.Header>
-                                        <Card.Body>
-                                            <Card.Title> {`Quantity: ${item.quantity}`}</Card.Title>
-                                            <Card.Text>
-                                                {`Price: ${item.price}`}
-                                            </Card.Text>
-                                            <Card.Text>
-                                                {`Total: ${item.total_amount}`}
-                                            </Card.Text>
-                                        </Card.Body>
-                                    </Card>
-                                ))
-
+                                basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
                             }
+                            </h3>
+                            <div className="row" style={{
+                                margin: '10px',
+                            }}>
+                                {
+                                    basket.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((item) => (
+                                        <div key={item.id} className="col-md-4 mb-4">
+                                            <Card
+                                                className={darkMode ? '' : ''}
+                                                style={{
+                                                    backgroundColor: darkMode ? '#3656a2' : 'white',
+
+
+                                                }}
+
+                                            >
+                                                <Card.Body >
+                                                    <Card.Title
+                                                        style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
+                                                    <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                       Description:{" "} {item.description}
+                                                    </Card.Text>
+                                                    <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                        Amount Paid:{" "}{item.total_amount}
+                                                    </Card.Text>
+                                                    <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                        Order Date:{" "}   {new Date(item.created_at).toLocaleString()}
+                                                    </Card.Text>
+                                                </Card.Body>
+                                            </Card>
+                                        </div>
+
+                                    ))
+
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
