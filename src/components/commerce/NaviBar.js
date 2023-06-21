@@ -33,8 +33,9 @@ function NaviBar(props) {
     }
 
     return (
-        <div style={{margin: "1px", backgroundColor: darkMode ? '#4c3956' : "whitesmoke"}}>
-            <Navbar expand="xxl" style={{height: "50px"}}>
+        <div style={{margin: "5px",   backgroundColor: darkMode ? '#a144ce' : 'white',
+            color: darkMode ? 'white' : 'black',}}>
+            <Navbar >
                 <Container>
                     <div>
                         <div className="d-flex justify-content-between">

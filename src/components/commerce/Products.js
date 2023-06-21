@@ -1,19 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Card } from 'react-bootstrap';
+import React, {useEffect, useState} from 'react';
+import {Button, Card} from 'react-bootstrap';
 import Basket from './Basket';
 
 function Products() {
     const [products, setProducts] = useState([]);
     const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode') === 'true');
+    const [quantities, setQuantities] = useState([]);
+
+    const handleQuantity = (productId, quantity) => {
+        const newQuantities = [...quantities];
+        const index = newQuantities.findIndex(item => item.productId === productId);
+
+        if (index === -1) {
+            newQuantities.push({productId, quantity});
+        } else {
+            newQuantities[index].quantity = quantity;
+        }
+
+        setQuantities(newQuantities);
+    }
 
     const handleAddToBasket = (product, userID) => {
+        const quantity = quantities.find(item => item.productId === product.id)?.quantity || 1;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+
         if (localStorage.getItem('token')) {
             const data = {
                 product_id: product.id,
                 user_id: userID,
-                quantity: 1,
+                quantity: quantity,
                 price: product.price,
-                total_amount: product.price * 1,
+                total_amount: product.price * quantity,
             };
 
             fetch(`http://localhost:5000/api/basket/${userID}`, {
@@ -27,7 +44,7 @@ function Products() {
                 .then(response => response.json())
                 .then(data => {
                     console.log(data);
-                    if (data.status=== 'success') {
+                    if (data.status === 'success') {
                         window.location = '/basket';
                     }
                 })
@@ -37,6 +54,7 @@ function Products() {
         } else {
             alert('Please login to add to basket');
         }
+
     };
 
     useEffect(() => {
@@ -53,19 +71,53 @@ function Products() {
         fetchData();
     }, []);
     console.log(products);
+
     return (
         <div>
             <div className="d-flex justify-content-center">
                 {products.map(product => (
                     <Card
                         key={product.id}
-                        style={{ width: '18rem', margin: '10px',  backgroundColor: darkMode ? '#3656a2' : 'white',}}
+                        style={{width: '18rem', margin: '10px', backgroundColor: darkMode ? '#3656a2' : 'white',}}
                     >
-                        <Card.Img variant="top" src={product.image} />
+                        <Card.Img variant="top" src={product.image}/>
                         <Card.Body>
                             <Card.Title>{product.name}</Card.Title>
                             <Card.Text>{product.description}</Card.Text>
-                            <Card.Text>{product.price}</Card.Text>
+                            {/*quantity setter plus and decrease sign*/}
+                            <Card.Text>
+                                <div className="quantity-control">
+                                    <button
+                                        className="quantity-btn"
+                                        onClick={() => handleQuantity(product.id, parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) - 1)}
+                                        disabled={parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) <= 1}
+                                    >
+                                        -
+                                    </button>
+                                    <input
+                                        style={{width: '50px', textAlign: 'center'}}
+                                        name="quantity"
+                                        min="1"
+                                        max="10"
+                                        value={quantities.find(item => item.productId === product.id)?.quantity || 1}
+                                        onChange={e => handleQuantity(product.id, e.target.value)}
+                                    />
+                                    <button
+                                        className="quantity-btn"
+                                        onClick={() => handleQuantity(product.id, parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) + 1)}
+                                        disabled={parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) >= 10}
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </Card.Text>
+
+
+                            <Card.Text>Price:{" "}{product.price}</Card.Text>
+                            <Card.Text>Pay:{" "}
+                                {product.price *
+                                    (quantities.find(item => item.productId === product.id)?.quantity || 1)}
+                            </Card.Text>
                         </Card.Body>
                         <Card.Footer>
                             <Button
