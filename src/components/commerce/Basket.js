@@ -43,18 +43,14 @@ function Basket() {
             })
     }, []);
     console.log(basket)
-    const handleHome = () => {
-        window.location = '/home';
-    }
+
     return (
         <div>
             <div>
                 <NaviBar/>
             </div>
 basket
-            <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleHome}>
-                {`Home`}
-            </Button>
+
         </div>
     )
 }

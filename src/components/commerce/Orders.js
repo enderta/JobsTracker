@@ -44,12 +44,7 @@ function Orders() {
 
         fetchData();
     }, []);
-    console.log(basket)
 
-const handleHome = () => {
-        window.location = '/home';
-}
-    console.log(localStorage.getItem('userId'));
 
     return (
         <div>
@@ -94,9 +89,6 @@ const handleHome = () => {
                         </div>
                     </div>
                 </div>
-                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleHome}>
-                    {`Home`}
-                </Button>
             </div>
         </div>
     )
