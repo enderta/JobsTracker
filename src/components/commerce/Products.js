@@ -87,28 +87,31 @@ function Products() {
                             {/*quantity setter plus and decrease sign*/}
                             <Card.Text>
                                 <div className="quantity-control">
-                                    <button
-                                        className="quantity-btn"
+                                    <Button
+                                        style={{border: 'none'}}
+                                        variant={darkMode ? 'outline-danger' : 'outline-dark'}
                                         onClick={() => handleQuantity(product.id, parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) - 1)}
                                         disabled={parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) <= 1}
                                     >
-                                        -
-                                    </button>
+                                        ▼
+                                    </Button>
                                     <input
-                                        style={{width: '50px', textAlign: 'center'}}
+                                        style={{width: '20px', textAlign: 'center', backgroundColor: darkMode ? '#3656a2' : 'white', color: darkMode ? 'white' : 'black'
+                                    ,border: 'none'}}
                                         name="quantity"
                                         min="1"
                                         max="10"
                                         value={quantities.find(item => item.productId === product.id)?.quantity || 1}
                                         onChange={e => handleQuantity(product.id, e.target.value)}
                                     />
-                                    <button
-                                        className="quantity-btn"
+                                    <Button
+                                        style={{border: 'none'}}
+                                        variant={darkMode ? 'outline-success' : 'outline-dark'}
                                         onClick={() => handleQuantity(product.id, parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) + 1)}
                                         disabled={parseInt(quantities.find(item => item.productId === product.id)?.quantity || 1) >= 10}
                                     >
-                                        +
-                                    </button>
+                                        ▲
+                                    </Button>
                                 </div>
                             </Card.Text>
 
