@@ -95,15 +95,9 @@ function Products() {
                                     >
                                         ▼
                                     </Button>
-                                    <input
-                                        style={{width: '20px', textAlign: 'center', backgroundColor: darkMode ? '#3656a2' : 'white', color: darkMode ? 'white' : 'black'
-                                    ,border: 'none'}}
-                                        name="quantity"
-                                        min="1"
-                                        max="10"
-                                        value={quantities.find(item => item.productId === product.id)?.quantity || 1}
-                                        onChange={e => handleQuantity(product.id, e.target.value)}
-                                    />
+                                    <h4 style={{margin: '0 10px'}}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
+                                        {" "}{quantities?.find(item => item.productId === product.id)?.quantity > 1 ? 'items' : 'item'}
+                                    </h4>
                                     <Button
                                         style={{border: 'none'}}
                                         variant={darkMode ? 'outline-success' : 'outline-dark'}
@@ -118,8 +112,8 @@ function Products() {
 
                             <Card.Text>Price:{" "}{product.price}</Card.Text>
                             <Card.Text>Pay:{" "}
-                                {product.price *
-                                    (quantities.find(item => item.productId === product.id)?.quantity || 1)}
+                                {parseFloat(product.price *
+                                    (quantities.find(item => item.productId === product.id)?.quantity || 1)).toFixed(2)}
                             </Card.Text>
                         </Card.Body>
                         <Card.Footer>
