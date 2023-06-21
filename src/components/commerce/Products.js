@@ -84,7 +84,6 @@ function Products() {
                         <Card.Body>
                             <Card.Title>{product.name}</Card.Title>
                             <Card.Text>{product.description}</Card.Text>
-                            {/*quantity setter plus and decrease sign*/}
                             <Card.Text>
                                 <div className="quantity-control">
                                     <Button
@@ -95,7 +94,7 @@ function Products() {
                                     >
                                         ▼
                                     </Button>
-                                    <h4 style={{margin: '0 10px'}}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
+                                    <h4 style={{margin: '0 10px',color: darkMode ? 'goldenrod' : 'darkgray'}}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
                                         {" "}{quantities?.find(item => item.productId === product.id)?.quantity > 1 ? 'items' : 'item'}
                                     </h4>
                                     <Button
