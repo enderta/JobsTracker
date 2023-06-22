@@ -751,22 +751,28 @@ app.post('/api/basket/:prodId', async (req, res) => {
 app.get('/api/basket/:userId', async (req, res) => {
     jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
         if (error) {
-            res.status(401).json({error: "Unauthorized"});
+            res.status(401).json({ error: "Unauthorized" });
         } else {
-            const {rows} = await pool.query(
-                "SELECT * FROM basket WHERE user_id = $1",
+            const { rows } = await pool.query(
+                "SELECT basket.*, products.name, products.price, products.description FROM basket JOIN products ON basket.product_id = products.id WHERE basket.user_id = $1",
                 [req.params.userId]
             );
+
             if (rows.length === 0) {
                 res.status(404).json({
                     status: "error",
                     message: "Basket not found",
                 });
             } else {
+                const formattedRows = rows.map(row => ({
+                    ...row,
+                    created_at: row.created_at.toJSON() // Format created_at as JSON string
+                }));
+
                 res.status(200).json({
                     status: "success",
                     message: `${rows.length} basket found`,
-                    data: rows,
+                    data: formattedRows,
                 });
             }
         }
