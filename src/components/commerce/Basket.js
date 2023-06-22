@@ -61,6 +61,7 @@ function Basket() {
                                                     <th>Product Name</th>
                                                     <th>Quantity</th>
                                                     <th>Price</th>
+                                                    <th>Date</th>
                                                     <th>Total</th>
                                                 </tr>
                                                 </thead>
@@ -73,6 +74,10 @@ function Basket() {
                                                             <td>{item.name}</td>
                                                             <td>{item.quantity}</td>
                                                             <td>{item.price}</td>
+                                                            <td>
+                                                                {new Date(item.created_at).toLocaleString()
+                                                                    .split(',')[0]}
+                                                            </td>
                                                             <td>{item.total_amount}</td>
                                                         </tr>
                                                     ))
