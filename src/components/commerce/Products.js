@@ -95,7 +95,7 @@ function Products() {
                                         ▼
                                     </Button>
                                     <h4 style={{margin: '0 10px',color: darkMode ? 'goldenrod' : 'darkgray'}}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
-                                        {" "}{quantities?.find(item => item.productId === product.id)?.quantity > 1 ? 'items' : 'item'}
+                                        {" "}{quantities?.find(item => item.productId === product.id)?.quantity > 1 ? 'pieces' : 'piece'}
                                     </h4>
                                     <Button
                                         style={{border: 'none'}}
