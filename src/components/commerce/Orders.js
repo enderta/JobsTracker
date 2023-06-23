@@ -30,12 +30,13 @@ function Orders() {
                 method: 'GET',
                 headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
             });
+
             const data = await response.json();
-            let info = [];
-            let orders = data.data
             if(response.status===200){
+                let info = [];
+                let orders = data.data
                 for (let i = 0; i < orders.length; i++) {
-                    if (orders[i].user_id === localStorage.getItem('userId')) {
+                    if (orders[i].user_id == localStorage.getItem('userId')) {
                         info.push(orders[i])
                     }
 
@@ -43,15 +44,14 @@ function Orders() {
                 setBasket(info);
             }
             else{
-                setBasket(null);
+                setBasket([])
             }
-
         }
 
 
-        fetchData().then(r => console.log(r));
+        fetchData();
     }, []);
-const handleDelete = (id) => {
+    const handleDelete = (id) => {
         fetch(`http://localhost:5000/api/basket/${id}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
@@ -66,8 +66,7 @@ const handleDelete = (id) => {
                     console.error('Error:', error);
                 }
             );
-}
-    console.log(basket);
+    }
 
     return (
         <div>
@@ -88,64 +87,57 @@ const handleDelete = (id) => {
                                 margin: '10px'
                             }}>
                                 total:{" "}{
-                                basket===null ? (
-
-                                       0.00
-
-                                ) : (
-                                    basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
-                                )
-
+                                basket.reduce((acc, item) => acc + parseFloat(item.total_amount), 0).toFixed(2)
                             }
                             </h3>
                             <div className="row">
                                 {
-                                    basket===null ? (
-                                        <div className="col-12">
-                                            <h3 className="text-center">No orders</h3>
-                                        </div>
-                                    ) : (
-                                        basket.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((item, index) => (
-                                            <div className="col-md-4" key={index}>
-                                                <Card
-                                                    className="text-center"
-                                                    style={{
-                                                        backgroundColor: darkMode ? '#3656a2' : 'white',
-                                                        color: darkMode ? 'white' : 'black',
-                                                        margin: '10px'
-                                                    }}
-                                                >
+                                   basket.length>0? (
+                                       basket.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map((item, index) => (
+                                           <div className="col-md-4" key={index}>
+                                               <Card
+                                                   className="text-center"
+                                                   style={{
+                                                       backgroundColor: darkMode ? '#3656a2' : 'white',
+                                                       color: darkMode ? 'white' : 'black',
+                                                       margin: '10px'
+                                                   }}
+                                               >
 
-                                                    <Card.Body>
-                                                        <Card.Title
-                                                            style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
-                                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                            Description:{" "} {item.description}
-                                                        </Card.Text>
-                                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                            Paid:{" "}{item.total_amount}
-                                                        </Card.Text>
-                                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                                            Order Date:{" "}   {new Date(item.created_at).toLocaleString()
-                                                            .split(',')[0]}
-                                                        </Card.Text>
-                                                    </Card.Body>
-                                                    <Card.Footer className="text-muted">
-                                                        <Button
-                                                            variant="outline-danger"
-                                                            onClick={() => handleDelete(item.id)}
-                                                            style={{color: darkMode ? 'white' : 'black'}}
-                                                        >
-                                                            <h3>🗑</h3>
-                                                        </Button>
-                                                    </Card.Footer>
-                                                </Card>
-                                            </div>
-                                        )))
+                                                   <Card.Body>
+                                                       <Card.Title
+                                                           style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
+                                                       <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                           Description:{" "} {item.description}
+                                                       </Card.Text>
+                                                       <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                           Paid:{" "}{item.total_amount}
+                                                       </Card.Text>
+                                                       <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                           Order Date:{" "}   {new Date(item.created_at).toLocaleString()
+                                                           .split(',')[0]}
+                                                       </Card.Text>
+                                                   </Card.Body>
+                                                   <Card.Footer className="text-muted">
+                                                       <Button
+                                                           variant="outline-danger"
+                                                           onClick={() => handleDelete(item.id)}
+                                                           style={{color: darkMode ? 'white' : 'black'}}
+                                                       >
+                                                           <h3>🗑</h3>
+                                                       </Button>
+                                                   </Card.Footer>
+                                               </Card>
+                                           </div>
+                                       ))
+
+                                   ):(
+                                        <h4 style={{color: darkMode ? 'goldenrod' : 'darkgray'}}>No Orders</h4>
+                                      )
 
                                 }
 
-                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
