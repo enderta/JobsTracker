@@ -44,7 +44,22 @@ function Orders() {
 
         fetchData();
     }, []);
-
+const handleDelete = (id) => {
+        fetch(`http://localhost:5000/api/basket/${id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                    alert("Order deleted");
+                    window.location.reload();
+                }
+            )
+            .catch((error) => {
+                    console.error('Error:', error);
+                }
+            );
+}
 
     return (
         <div>
@@ -95,6 +110,15 @@ function Orders() {
                                                         .split(',')[0]}
                                                     </Card.Text>
                                                 </Card.Body>
+                                                <Card.Footer className="text-muted">
+                                                    <Button
+                                                        variant="outline-danger"
+                                                        onClick={() => handleDelete(item.id)}
+                                                        style={{color: darkMode ? 'white' : 'black'}}
+                                                    >
+                                                        <h3>🚮</h3>
+                                                    </Button>
+                                                </Card.Footer>
                                             </Card>
                                         </div>
                                     ))
