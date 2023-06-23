@@ -116,7 +116,7 @@ const handleDelete = (id) => {
                                                         onClick={() => handleDelete(item.id)}
                                                         style={{color: darkMode ? 'white' : 'black'}}
                                                     >
-                                                        <h3>🚮</h3>
+                                                        <h3>🗑</h3>
                                                     </Button>
                                                 </Card.Footer>
                                             </Card>
