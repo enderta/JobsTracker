@@ -120,7 +120,7 @@ function Products() {
                                 variant={darkMode ? 'outline-warning' : 'outline-dark'}
                                 onClick={() => handleAddToBasket(product, localStorage.getItem('userId'))}
                             >
-                                Add to basket 🛒
+                                Add to cart 🛒
                             </Button>
                         </Card.Footer>
                     </Card>
