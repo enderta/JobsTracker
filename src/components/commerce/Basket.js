@@ -41,58 +41,65 @@ function Basket() {
             );
 
     }, []);
-     console.log(basket.filter((item) =>  (item.created_at.split("T")[0])));
+     console.log(basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])));
     return (
         <div>
             <div>
                 <NaviBar/>
             </div>
-            <div className="container">
-                <div className="row">
-                    <div className="col-12">
-                        <h1 className="text-center">Basket</h1>
-                        <div className="row">
-                            <div className="col-12">
+            <h1 style={{color: darkMode ? 'blueviolet' : 'black'}}>Basket</h1>
+            <div className={'container'}>
+                <div className={'row'}>
+                    {
+                        basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])).map((item) => (
+                            <div className="col-md-4" >
+                                <Card
+                                    className="text-center"
+                                    style={{
+                                        backgroundColor: darkMode ? '#3656a2' : 'white',
+                                        color: darkMode ? 'white' : 'black',
+                                        margin: '10px'
+                                    }}
+                                >
 
-                                            <Table striped bordered hover variant={darkMode ? 'dark' : 'light'}>
-                                                <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>Product Name</th>
-                                                    <th>Quantity</th>
-                                                    <th>Price</th>
-                                                    <th>Date</th>
-                                                    <th>Total</th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                {/*filter today`s order*/}
-                                                {
-                                                    basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])).map((item, index) => (
-                                                        <tr key={item.id}>
-                                                            <td>{index + 1}</td>
-                                                            <td>{item.name}</td>
-                                                            <td>{item.quantity}</td>
-                                                            <td>{item.price}</td>
-                                                            <td>
-                                                                {new Date(item.created_at).toLocaleString()
-                                                                    .split(',')[0]}
-                                                            </td>
-                                                            <td>{item.total_amount}</td>
-                                                        </tr>
-                                                    ))
+                                    <Card.Body>
+                                        <Card.Title
+                                            style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
+                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                            Description:{" "} {item.description}
+                                        </Card.Text>
+                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                            Price:{" "}{item.price}
+                                        </Card.Text>
+                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                            Quantity:{" "}{item.quantity}
+                                        </Card.Text>
+                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                            Paid:{" "}{item.total_amount}
+                                        </Card.Text>
+                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                            Order Date:{" "}   {new Date(item.created_at).toLocaleString()
+                                            .split(',')[0]}
+                                        </Card.Text>
+                                    </Card.Body>
+                                    <Card.Footer className="text-muted">
+                                        <Button
+                                            variant={darkMode ? 'outline-light' : 'outline-dark'}
+                                            >
+                                            Go to Checkout
+                                        </Button>
+                                    </Card.Footer>
+                                </Card>
 
-                                                }
-                                                </tbody>
-
-                                            </Table>
                             </div>
-                        </div>
-                    </div>
+                        ))
+
+                    }
                 </div>
             </div>
         </div>
     )
+
 }
 
 export default Basket
