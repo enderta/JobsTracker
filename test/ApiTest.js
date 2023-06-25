@@ -8,14 +8,12 @@ describe('api testing', () => {
         // eslint-disable-next-line no-undef
         //search for a product
         // eslint-disable-next-line no-undef
-       browser.findElement("xpath", "//input[@id='twotabsearchtextbox']")
-            .sendKeys("iphone 12 pro max");
+     browser.options.headless = false;
         // eslint-disable-next-line no-undef
-        browser.findElement("xpath", "//input[@id='nav-search-submit-button']")
-            .click();
+        browser.globals.waitForConditionTimeout = 5000;
 
 
-
+        // eslint-disable-next-line no-undef
         const title = browser.getTitle();
         console.log(title);
         //expect(title).to.equal('Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more');

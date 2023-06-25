@@ -2,7 +2,7 @@ Starting ChromeDriver 114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-re
 Only local connections are allowed.
 Please see https://chromedriver.chromium.org/security-considerations for suggestions on keeping ChromeDriver safe.
 ChromeDriver was started successfully.
-[1687600423.767][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] COMMAND InitSession {
+[1687693101.284][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] COMMAND InitSession {
    "capabilities": {
       "alwaysMatch": {
          "browserName": "chrome",
@@ -15,7 +15,7 @@ ChromeDriver was started successfully.
       } ]
    }
 }
-[1687600423.768][INFO]: Populating Preferences file: {
+[1687693101.284][INFO]: Populating Preferences file: {
    "alternate_error_pages": {
       "enabled": false
    },
@@ -68,7 +68,7 @@ ChromeDriver was started successfully.
       "enabled": false
    }
 }
-[1687600423.768][INFO]: Populating Local State file: {
+[1687693101.284][INFO]: Populating Local State file: {
    "background_mode": {
       "enabled": false
    },
@@ -78,142 +78,142 @@ ChromeDriver was started successfully.
       }
    }
 }
-[1687600423.768][INFO]: Launching chrome: /usr/bin/google-chrome --allow-pre-commit-input --disable-background-networking --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-automation --enable-logging=stderr --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir=/tmp/.com.google.Chrome.4bztoa data:,
-[6091:6091:0624/105343.804154:WARNING:chrome_main_delegate.cc(593)] This is Chrome version 114.0.5735.133 (not a warning)
-[6091:6091:0624/105344.016167:INFO:chrome_browser_cloud_management_controller.cc(167)] Starting CBCM Controller Initialization
-[6091:6091:0624/105344.016238:INFO:chrome_browser_cloud_management_controller.cc(195)] No machine level policy manager exists.
+[1687693101.284][INFO]: Launching chrome: /usr/bin/google-chrome --allow-pre-commit-input --disable-background-networking --disable-client-side-phishing-detection --disable-default-apps --disable-hang-monitor --disable-popup-blocking --disable-prompt-on-repost --disable-sync --enable-automation --enable-logging=stderr --log-level=0 --no-first-run --no-service-autorun --password-store=basic --remote-debugging-port=0 --test-type=webdriver --use-mock-keychain --user-data-dir=/tmp/.com.google.Chrome.90Tih3 data:,
+[16899:16899:0625/123821.316457:WARNING:chrome_main_delegate.cc(593)] This is Chrome version 114.0.5735.133 (not a warning)
+[16899:16899:0625/123821.510704:INFO:chrome_browser_cloud_management_controller.cc(167)] Starting CBCM Controller Initialization
+[16899:16899:0625/123821.510794:INFO:chrome_browser_cloud_management_controller.cc(195)] No machine level policy manager exists.
 
-DevTools listening on ws://127.0.0.1:39193/devtools/browser/9d6aed47-2275-4908-ab76-c70acc83e129
-[1687600424.088][DEBUG]: DevTools HTTP Request: http://localhost:39193/json/version
+DevTools listening on ws://127.0.0.1:45079/devtools/browser/21b285fb-490a-424e-a388-819a6f70cd03
+[1687693101.597][DEBUG]: DevTools HTTP Request: http://localhost:45079/json/version
 MESA-INTEL: warning: Haswell Vulkan support is incomplete
-[6136:6136:0624/105344.178398:WARNING:sandbox_linux.cc(393)] InitializeSandbox() called with multiple threads in process gpu-process.
-[6091:6091:0624/105344.250741:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
-[1687600424.265][DEBUG]: DevTools HTTP Response: {
+[16944:16944:0625/123821.666651:WARNING:sandbox_linux.cc(393)] InitializeSandbox() called with multiple threads in process gpu-process.
+[16899:16899:0625/123821.686420:WARNING:bluez_dbus_manager.cc(247)] Floss manager not present, cannot set Floss enable/disable.
+[1687693101.700][DEBUG]: DevTools HTTP Response: {
    "Browser": "Chrome/114.0.5735.133",
    "Protocol-Version": "1.3",
    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36",
    "V8-Version": "11.4.183.23",
    "WebKit-Version": "537.36 (@fbfa2ce68d01b2201d8c667c2e73f648a61c4f4a)",
-   "webSocketDebuggerUrl": "ws://localhost:39193/devtools/browser/9d6aed47-2275-4908-ab76-c70acc83e129"
+   "webSocketDebuggerUrl": "ws://localhost:45079/devtools/browser/21b285fb-490a-424e-a388-819a6f70cd03"
 }
 
-[1687600424.265][DEBUG]: DevTools HTTP Request: http://localhost:39193/json/list
-[1687600424.294][DEBUG]: DevTools HTTP Response: [ {
+[1687693101.700][DEBUG]: DevTools HTTP Request: http://localhost:45079/json/list
+[1687693101.726][DEBUG]: DevTools HTTP Response: [ {
    "description": "",
-   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=localhost:39193/devtools/page/64B842234D50C42ACE13916C61E92E71",
-   "id": "64B842234D50C42ACE13916C61E92E71",
+   "devtoolsFrontendUrl": "/devtools/inspector.html?ws=localhost:45079/devtools/page/112A5B2A637C2B982642E678B0A38D62",
+   "id": "112A5B2A637C2B982642E678B0A38D62",
    "title": "",
    "type": "page",
    "url": "data:,",
-   "webSocketDebuggerUrl": "ws://localhost:39193/devtools/page/64B842234D50C42ACE13916C61E92E71"
+   "webSocketDebuggerUrl": "ws://localhost:45079/devtools/page/112A5B2A637C2B982642E678B0A38D62"
 } ]
 
-[1687600424.298][INFO]: resolved localhost to ["::1","127.0.0.1"]
-[1687600424.322][DEBUG]: DevTools WebSocket Command: Target.getTargets (id=1) (session_id=) browser {
+[1687693101.727][INFO]: resolved localhost to ["::1","127.0.0.1"]
+[1687693101.733][DEBUG]: DevTools WebSocket Command: Target.getTargets (id=1) (session_id=) browser {
 }
-[1687600424.326][DEBUG]: DevTools WebSocket Response: Target.getTargets (id=1) (session_id=) browser {
+[1687693101.735][DEBUG]: DevTools WebSocket Response: Target.getTargets (id=1) (session_id=) browser {
    "targetInfos": [ {
       "attached": false,
-      "browserContextId": "1C2D16FC7441704A9C0D81743A7FD0F2",
+      "browserContextId": "5E981AA634E753AB7034572D6E1E49B0",
       "canAccessOpener": false,
-      "targetId": "64B842234D50C42ACE13916C61E92E71",
+      "targetId": "112A5B2A637C2B982642E678B0A38D62",
       "title": "",
       "type": "page",
       "url": "data:,"
    } ]
 }
-[1687600424.326][DEBUG]: DevTools WebSocket Command: Target.attachToTarget (id=2) (session_id=) browser {
+[1687693101.735][DEBUG]: DevTools WebSocket Command: Target.attachToTarget (id=2) (session_id=) browser {
    "flatten": true,
-   "targetId": "64B842234D50C42ACE13916C61E92E71"
+   "targetId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600424.330][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=) browser {
-   "sessionId": "CAB68543F0739491CB9E06311A94B414",
+[1687693101.762][DEBUG]: DevTools WebSocket Event: Target.attachedToTarget (session_id=) browser {
+   "sessionId": "26DF4DFCA8A455295623A94D90E018C0",
    "targetInfo": {
       "attached": true,
-      "browserContextId": "1C2D16FC7441704A9C0D81743A7FD0F2",
+      "browserContextId": "5E981AA634E753AB7034572D6E1E49B0",
       "canAccessOpener": false,
-      "targetId": "64B842234D50C42ACE13916C61E92E71",
+      "targetId": "112A5B2A637C2B982642E678B0A38D62",
       "title": "",
       "type": "page",
       "url": "data:,"
    },
    "waitingForDebugger": false
 }
-[1687600424.330][DEBUG]: DevTools WebSocket Response: Target.attachToTarget (id=2) (session_id=) browser {
-   "sessionId": "CAB68543F0739491CB9E06311A94B414"
+[1687693101.762][DEBUG]: DevTools WebSocket Response: Target.attachToTarget (id=2) (session_id=) browser {
+   "sessionId": "26DF4DFCA8A455295623A94D90E018C0"
 }
-[1687600424.330][DEBUG]: DevTools WebSocket Command: Page.addScriptToEvaluateOnNewDocument (id=3) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.762][DEBUG]: DevTools WebSocket Command: Page.addScriptToEvaluateOnNewDocument (id=3) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "source": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
 }
-[1687600424.331][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=4) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.762][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=4) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "(function () {window.cdc_adoQpoasnfa76pfcZLmcfl_Array = window.Array;window.cdc_adoQpoasnfa76pfcZLmcfl_Object = window.Object;window.cdc_adoQpoasnfa76pfcZLmcfl_Promise = window.Promise;window.cdc_a..."
 }
-[1687600424.331][DEBUG]: DevTools WebSocket Command: Log.enable (id=5) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.763][DEBUG]: DevTools WebSocket Command: Log.enable (id=5) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.331][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=6) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.763][DEBUG]: DevTools WebSocket Command: Target.setAutoAttach (id=6) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "autoAttach": true,
    "flatten": true,
    "waitForDebuggerOnStart": false
 }
-[1687600424.331][DEBUG]: DevTools WebSocket Command: Page.enable (id=7) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.763][DEBUG]: DevTools WebSocket Command: Page.enable (id=7) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.331][DEBUG]: DevTools WebSocket Command: Page.enable (id=8) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.763][DEBUG]: DevTools WebSocket Command: Page.enable (id=8) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.351][DEBUG]: DevTools WebSocket Response: Page.addScriptToEvaluateOnNewDocument (id=3) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Page.addScriptToEvaluateOnNewDocument (id=3) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "identifier": "1"
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=4) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=4) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "type": "undefined"
    }
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Response: Log.enable (id=5) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Log.enable (id=5) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=6) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Target.setAutoAttach (id=6) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Response: Page.enable (id=7) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Page.enable (id=7) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Response: Page.enable (id=8) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Response: Page.enable (id=8) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.352][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=9) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.771][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=9) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.354][DEBUG]: DevTools WebSocket Event: Page.loadEventFired (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "timestamp": 1105.440612
+[1687693101.772][DEBUG]: DevTools WebSocket Event: Page.loadEventFired (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "timestamp": 7140.853562
 }
-[1687600424.368][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "64B842234D50C42ACE13916C61E92E71"
+[1687693101.778][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600424.368][DEBUG]: DevTools WebSocket Event: Page.domContentEventFired (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "timestamp": 1105.441064
+[1687693101.778][DEBUG]: DevTools WebSocket Event: Page.domContentEventFired (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "timestamp": 7140.85382
 }
-[1687600424.368][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.778][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.368][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.778][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "context": {
       "auxData": {
-         "frameId": "64B842234D50C42ACE13916C61E92E71",
+         "frameId": "112A5B2A637C2B982642E678B0A38D62",
          "isDefault": true,
          "type": "default"
       },
       "id": 1,
       "name": "",
       "origin": "://",
-      "uniqueId": "-8219432348103209203.-6156589988563434294"
+      "uniqueId": "-2278714327039167758.-8237498767038415845"
    }
 }
-[1687600424.368][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=9) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.778][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=9) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.369][DEBUG]: DevTools WebSocket Command: Page.enable (id=10) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.778][DEBUG]: DevTools WebSocket Command: Page.enable (id=10) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.399][DEBUG]: DevTools WebSocket Response: Page.enable (id=10) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.779][DEBUG]: DevTools WebSocket Response: Page.enable (id=10) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.399][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=11) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.779][DEBUG]: DevTools WebSocket Command: Runtime.enable (id=11) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.401][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=11) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.781][DEBUG]: DevTools WebSocket Response: Runtime.enable (id=11) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.401][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=12) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.782][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=12) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.402][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=12) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.784][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=12) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frameTree": {
       "frame": {
          "adFrameStatus": {
@@ -222,8 +222,8 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
          "crossOriginIsolatedContextType": "NotIsolated",
          "domainAndRegistry": "",
          "gatedAPIFeatures": [  ],
-         "id": "64B842234D50C42ACE13916C61E92E71",
-         "loaderId": "BAD0F4648720ED299085014243A8D160",
+         "id": "112A5B2A637C2B982642E678B0A38D62",
+         "loaderId": "8C044A403D2648468B42ED09D85C9BCB",
          "mimeType": "text/plain",
          "secureContextType": "InsecureScheme",
          "securityOrigin": "://",
@@ -231,9 +231,9 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       }
    }
 }
-[1687600424.402][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=13) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.784][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=13) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.403][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=13) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.785][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=13) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frameTree": {
       "frame": {
          "adFrameStatus": {
@@ -242,8 +242,8 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
          "crossOriginIsolatedContextType": "NotIsolated",
          "domainAndRegistry": "",
          "gatedAPIFeatures": [  ],
-         "id": "64B842234D50C42ACE13916C61E92E71",
-         "loaderId": "BAD0F4648720ED299085014243A8D160",
+         "id": "112A5B2A637C2B982642E678B0A38D62",
+         "loaderId": "8C044A403D2648468B42ED09D85C9BCB",
          "mimeType": "text/plain",
          "secureContextType": "InsecureScheme",
          "securityOrigin": "://",
@@ -251,19 +251,19 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       }
    }
 }
-[1687600424.403][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=14) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.785][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=14) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "arguments": [  ],
    "awaitPromise": true,
    "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
    "generateWebDriverValue": true,
-   "objectGroup": "73a62a84-50d1-4a7f-92a6-739cafc7fdc6",
-   "uniqueContextId": "-8219432348103209203.-6156589988563434294"
+   "objectGroup": "80353d14-6e4d-47b6-a251-8a63ba612fc2",
+   "uniqueContextId": "-2278714327039167758.-8237498767038415845"
 }
-[1687600424.406][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=14) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.789][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=14) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "className": "Array",
       "description": "Array(1)",
-      "objectId": "-7429269733778947811.1.1",
+      "objectId": "-902402024878181302.1.1",
       "subtype": "array",
       "type": "object",
       "webDriverValue": {
@@ -275,20 +275,20 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       }
    }
 }
-[1687600424.406][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=15) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "objectGroup": "73a62a84-50d1-4a7f-92a6-739cafc7fdc6"
+[1687693101.789][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=15) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "objectGroup": "80353d14-6e4d-47b6-a251-8a63ba612fc2"
 }
-[1687600424.406][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] RESPONSE InitSession {
+[1687693101.790][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] RESPONSE InitSession {
    "capabilities": {
       "acceptInsecureCerts": false,
       "browserName": "chrome",
       "browserVersion": "114.0.5735.133",
       "chrome": {
          "chromedriverVersion": "114.0.5735.90 (386bc09e8f4f2e025eddae123f36f6263096ae49-refs/branch-heads/5735@{#1052})",
-         "userDataDir": "/tmp/.com.google.Chrome.4bztoa"
+         "userDataDir": "/tmp/.com.google.Chrome.90Tih3"
       },
       "goog:chromeOptions": {
-         "debuggerAddress": "localhost:39193"
+         "debuggerAddress": "localhost:45079"
       },
       "networkConnectionEnabled": false,
       "pageLoadStrategy": "normal",
@@ -309,43 +309,43 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "webauthn:extension:prf": true,
       "webauthn:virtualAuthenticators": true
    },
-   "sessionId": "687fe3fbf67c7a2cdc2cb55804e682da"
+   "sessionId": "2d4a8feb111cff33522c98b9c5647ec6"
 }
-[1687600424.407][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=15) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.795][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=15) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.564][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] COMMAND Navigate {
+[1687693101.912][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] COMMAND Navigate {
    "url": "https://www.amazon.com/"
 }
-[1687600424.564][INFO]: Waiting for pending navigations...
-[1687600424.564][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=16) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.912][INFO]: Waiting for pending navigations...
+[1687693101.912][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=16) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600424.566][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=16) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.914][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=16) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600424.566][INFO]: Done waiting for pending navigations. Status: ok
-[1687600424.566][DEBUG]: DevTools WebSocket Command: Page.navigate (id=17) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693101.914][INFO]: Done waiting for pending navigations. Status: ok
+[1687693101.914][DEBUG]: DevTools WebSocket Command: Page.navigate (id=17) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "url": "https://www.amazon.com/"
 }
-[1687600424.972][DEBUG]: DevTools WebSocket Response: Page.navigate (id=17) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "64B842234D50C42ACE13916C61E92E71",
-   "loaderId": "1F117A2912BE1D292B9A7B2BECE1BFB7"
+[1687693102.181][DEBUG]: DevTools WebSocket Response: Page.navigate (id=17) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "112A5B2A637C2B982642E678B0A38D62",
+   "loaderId": "203B336D1EB0023F75645D02BBFE7A46"
 }
-[1687600424.972][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=18) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.181][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=18) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "document.URL"
 }
-[1687600424.977][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.184][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.978][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "64B842234D50C42ACE13916C61E92E71"
+[1687693102.185][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600424.996][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.219][DEBUG]: DevTools WebSocket Event: Runtime.executionContextsCleared (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600424.996][DEBUG]: DevTools WebSocket Event: Page.frameNavigated (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.219][DEBUG]: DevTools WebSocket Event: Page.frameNavigated (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frame": {
       "adFrameStatus": {
          "adFrameType": "none"
@@ -353,8 +353,8 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "crossOriginIsolatedContextType": "NotIsolated",
       "domainAndRegistry": "amazon.com",
       "gatedAPIFeatures": [  ],
-      "id": "64B842234D50C42ACE13916C61E92E71",
-      "loaderId": "1F117A2912BE1D292B9A7B2BECE1BFB7",
+      "id": "112A5B2A637C2B982642E678B0A38D62",
+      "loaderId": "203B336D1EB0023F75645D02BBFE7A46",
       "mimeType": "text/html",
       "secureContextType": "Secure",
       "securityOrigin": "https://www.amazon.com",
@@ -362,117 +362,117 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
    },
    "type": "Navigation"
 }
-[1687600424.996][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.219][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "context": {
       "auxData": {
-         "frameId": "64B842234D50C42ACE13916C61E92E71",
+         "frameId": "112A5B2A637C2B982642E678B0A38D62",
          "isDefault": true,
          "type": "default"
       },
       "id": 1,
       "name": "",
       "origin": "https://www.amazon.com",
-      "uniqueId": "6207578796065078303.4692311994237663023"
+      "uniqueId": "-8011564664391238181.5717534507308278672"
    }
 }
-[1687600425.016][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=18) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.269][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=18) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "type": "string",
       "value": "https://www.amazon.com/"
    }
 }
-[1687600425.016][INFO]: Waiting for pending navigations...
-[1687600425.016][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=19) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.269][INFO]: Waiting for pending navigations...
+[1687693102.269][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+}
+[1687693102.269][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=19) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600425.017][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-}
-[1687600425.028][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=19) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.271][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=19) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600425.531][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=20) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.511][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+}
+[1687693102.511][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=20) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600425.562][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=20) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693102.558][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=20) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600425.597][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-}
-[1687600425.597][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=21) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.060][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=21) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600425.616][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=21) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.131][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=21) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600425.735][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "2D7762A6535A8B2405C4544CDDA2FBED",
-   "parentFrameId": "64B842234D50C42ACE13916C61E92E71",
+[1687693103.198][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C4099F3513011F141CBB052B8648D91B",
+   "parentFrameId": "112A5B2A637C2B982642E678B0A38D62",
    "stack": {
       "callFrames": [ {
          "columnNumber": 125,
          "functionName": "J",
-         "lineNumber": 1968,
-         "scriptId": "129",
+         "lineNumber": 1958,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 246,
          "functionName": "S",
-         "lineNumber": 1979,
-         "scriptId": "129",
+         "lineNumber": 1969,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 159,
          "functionName": "",
-         "lineNumber": 1998,
-         "scriptId": "129",
+         "lineNumber": 1988,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 56,
          "functionName": "",
-         "lineNumber": 1999,
-         "scriptId": "129",
+         "lineNumber": 1989,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 61,
          "functionName": "",
-         "lineNumber": 1999,
-         "scriptId": "129",
+         "lineNumber": 1989,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       } ]
    }
 }
-[1687600425.735][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=22) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.198][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=22) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600425.736][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "2D7762A6535A8B2405C4544CDDA2FBED"
+[1687693103.200][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C4099F3513011F141CBB052B8648D91B"
 }
-[1687600425.740][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.203][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "context": {
       "auxData": {
-         "frameId": "2D7762A6535A8B2405C4544CDDA2FBED",
+         "frameId": "C4099F3513011F141CBB052B8648D91B",
          "isDefault": true,
          "type": "default"
       },
       "id": 2,
       "name": "",
       "origin": "https://www.amazon.com",
-      "uniqueId": "1866855430997575308.6436953528713172374"
+      "uniqueId": "4523784575686872533.-2952109092853460864"
    }
 }
-[1687600425.740][DEBUG]: DevTools WebSocket Event: Page.documentOpened (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.203][DEBUG]: DevTools WebSocket Event: Page.documentOpened (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frame": {
       "adFrameStatus": {
          "adFrameType": "none",
@@ -481,67 +481,67 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "crossOriginIsolatedContextType": "NotIsolated",
       "domainAndRegistry": "amazon.com",
       "gatedAPIFeatures": [  ],
-      "id": "2D7762A6535A8B2405C4544CDDA2FBED",
-      "loaderId": "1BA2A2FFD5342AE47D84A0763E5E0AAA",
+      "id": "C4099F3513011F141CBB052B8648D91B",
+      "loaderId": "B78D82E5C859023E9E9A57C2987CCA0E",
       "mimeType": "text/html",
-      "name": "32jk0v131p",
-      "parentId": "64B842234D50C42ACE13916C61E92E71",
+      "name": "lj5zln66oga",
+      "parentId": "112A5B2A637C2B982642E678B0A38D62",
       "secureContextType": "Secure",
       "securityOrigin": "https://www.amazon.com",
       "url": "https://www.amazon.com/"
    }
 }
-[1687600425.740][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "2D7762A6535A8B2405C4544CDDA2FBED"
+[1687693103.203][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C4099F3513011F141CBB052B8648D91B"
 }
-[1687600425.752][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "90349647F579131180AB1527721D654D",
-   "parentFrameId": "64B842234D50C42ACE13916C61E92E71",
+[1687693103.233][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C8B8DB25602863C311FB726966708EA3",
+   "parentFrameId": "112A5B2A637C2B982642E678B0A38D62",
    "stack": {
       "callFrames": [ {
          "columnNumber": 125,
          "functionName": "J",
-         "lineNumber": 1968,
-         "scriptId": "129",
+         "lineNumber": 1958,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 385,
          "functionName": "",
-         "lineNumber": 1998,
-         "scriptId": "129",
+         "lineNumber": 1988,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 56,
          "functionName": "",
-         "lineNumber": 1999,
-         "scriptId": "129",
+         "lineNumber": 1989,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       }, {
          "columnNumber": 61,
          "functionName": "",
-         "lineNumber": 1999,
-         "scriptId": "129",
+         "lineNumber": 1989,
+         "scriptId": "147",
          "url": "https://www.amazon.com/"
       } ]
    }
 }
-[1687600425.752][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "90349647F579131180AB1527721D654D"
+[1687693103.233][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C8B8DB25602863C311FB726966708EA3"
 }
-[1687600425.757][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.238][DEBUG]: DevTools WebSocket Event: Runtime.executionContextCreated (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "context": {
       "auxData": {
-         "frameId": "90349647F579131180AB1527721D654D",
+         "frameId": "C8B8DB25602863C311FB726966708EA3",
          "isDefault": true,
          "type": "default"
       },
       "id": 3,
       "name": "",
       "origin": "https://www.amazon.com",
-      "uniqueId": "-2638174743207287010.-8258537524986347951"
+      "uniqueId": "258439830191992374.-2559723891275862357"
    }
 }
-[1687600425.758][DEBUG]: DevTools WebSocket Event: Page.documentOpened (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.238][DEBUG]: DevTools WebSocket Event: Page.documentOpened (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frame": {
       "adFrameStatus": {
          "adFrameType": "none",
@@ -550,243 +550,115 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "crossOriginIsolatedContextType": "NotIsolated",
       "domainAndRegistry": "amazon.com",
       "gatedAPIFeatures": [  ],
-      "id": "90349647F579131180AB1527721D654D",
-      "loaderId": "44CA882572653E64D22BF1EB4737A5DA",
+      "id": "C8B8DB25602863C311FB726966708EA3",
+      "loaderId": "A9427994E7DDBE3F2107C903ACDC7839",
       "mimeType": "text/html",
-      "name": "jfukf76ti6t",
-      "parentId": "64B842234D50C42ACE13916C61E92E71",
+      "name": "keqalwvl6vd",
+      "parentId": "112A5B2A637C2B982642E678B0A38D62",
       "secureContextType": "Secure",
       "securityOrigin": "https://www.amazon.com",
       "url": "https://www.amazon.com/"
    }
 }
-[1687600425.758][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "90349647F579131180AB1527721D654D"
+[1687693103.238][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C8B8DB25602863C311FB726966708EA3"
 }
-[1687600425.778][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=22) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.262][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=22) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600425.797][DEBUG]: DevTools WebSocket Event: Page.domContentEventFired (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "timestamp": 1106.890819
+[1687693103.303][DEBUG]: DevTools WebSocket Event: Page.domContentEventFired (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "timestamp": 7142.381217
 }
-[1687600425.797][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=23) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.303][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=23) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600425.808][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=23) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.453][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=23) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600426.311][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=24) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693103.956][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=24) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600426.311][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=24) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.178][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=24) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600426.740][DEBUG]: DevTools WebSocket Event: Page.frameDetached (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "90349647F579131180AB1527721D654D",
-   "reason": "remove"
+[1687693104.252][DEBUG]: DevTools WebSocket Event: Page.loadEventFired (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "timestamp": 7143.331979
 }
-[1687600426.740][DEBUG]: DevTools WebSocket Event: Runtime.executionContextDestroyed (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "executionContextId": 3,
-   "executionContextUniqueId": "-2638174743207287010.-8258537524986347951"
-}
-[1687600426.740][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=25) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600426.749][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=25) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600427.252][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=26) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600427.252][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=26) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600427.754][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=27) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600427.864][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=27) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600428.367][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=28) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600428.367][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=28) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600428.870][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=29) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600428.885][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=29) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600429.388][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=30) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600429.388][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=30) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600429.891][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=31) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600429.892][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=31) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600430.395][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=32) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600430.397][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=32) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600430.759][DEBUG]: DevTools WebSocket Event: Page.frameDetached (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "2D7762A6535A8B2405C4544CDDA2FBED",
-   "reason": "remove"
-}
-[1687600430.759][DEBUG]: DevTools WebSocket Event: Runtime.executionContextDestroyed (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "executionContextId": 2,
-   "executionContextUniqueId": "1866855430997575308.6436953528713172374"
-}
-[1687600430.759][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=33) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600430.761][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=33) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600431.264][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=34) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600431.265][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=34) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600431.767][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=35) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600431.768][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=35) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600432.270][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=36) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600432.271][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=36) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600432.774][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=37) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600432.774][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=37) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "result": {
-      "description": "1",
-      "type": "number",
-      "value": 1
-   }
-}
-[1687600433.119][DEBUG]: DevTools WebSocket Event: Page.loadEventFired (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "timestamp": 1114.21103
-}
-[1687600433.119][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=38) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.252][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=25) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "awaitPromise": false,
    "expression": "document.readyState",
    "returnByValue": true,
-   "uniqueContextId": "6207578796065078303.4692311994237663023"
+   "uniqueContextId": "-8011564664391238181.5717534507308278672"
 }
-[1687600433.119][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "64B842234D50C42ACE13916C61E92E71"
+[1687693104.252][DEBUG]: DevTools WebSocket Event: Page.frameStoppedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600433.152][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=38) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.301][DEBUG]: DevTools WebSocket Event: Page.frameDetached (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "C8B8DB25602863C311FB726966708EA3",
+   "reason": "remove"
+}
+[1687693104.302][DEBUG]: DevTools WebSocket Event: Runtime.executionContextDestroyed (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "executionContextId": 3,
+   "executionContextUniqueId": "258439830191992374.-2559723891275862357"
+}
+[1687693104.306][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=25) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "type": "string",
       "value": "complete"
    }
 }
-[1687600433.152][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=39) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.306][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=26) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600433.169][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=39) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.373][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=26) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600433.169][INFO]: Done waiting for pending navigations. Status: ok
-[1687600433.169][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] RESPONSE Navigate
-[1687600433.176][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] COMMAND FullscreenWindow {
+[1687693104.373][INFO]: Done waiting for pending navigations. Status: ok
+[1687693104.373][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] RESPONSE Navigate
+[1687693104.381][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] COMMAND FullscreenWindow {
 }
-[1687600433.176][INFO]: Waiting for pending navigations...
-[1687600433.176][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=40) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.381][INFO]: Waiting for pending navigations...
+[1687693104.381][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=27) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600433.219][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=40) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.424][DEBUG]: DevTools WebSocket Event: Log.entryAdded (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "entry": {
+      "level": "error",
+      "networkRequestId": "16978.409",
+      "source": "network",
+      "text": "Failed to load resource: the server responded with a status of 404 ()",
+      "timestamp": 1.687693104423833e+12,
+      "url": "https://www.amazon.com/gp/product/sessionCacheUpdateHandler.html"
+   }
+}
+[1687693104.433][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=27) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600433.219][INFO]: Done waiting for pending navigations. Status: ok
-[1687600433.219][DEBUG]: DevTools WebSocket Command: Browser.getWindowForTarget (id=41) (session_id=) browser {
-   "targetId": "64B842234D50C42ACE13916C61E92E71"
+[1687693104.433][INFO]: Done waiting for pending navigations. Status: ok
+[1687693104.433][DEBUG]: DevTools WebSocket Command: Browser.getWindowForTarget (id=28) (session_id=) browser {
+   "targetId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600433.220][DEBUG]: DevTools WebSocket Response: Browser.getWindowForTarget (id=41) (session_id=) browser {
+[1687693104.434][DEBUG]: DevTools WebSocket Response: Browser.getWindowForTarget (id=28) (session_id=) browser {
    "bounds": {
       "height": 978,
       "left": 10,
@@ -794,92 +666,24 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "width": 945,
       "windowState": "normal"
    },
-   "windowId": 1862680396
+   "windowId": 176934566
 }
-[1687600433.220][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=42) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.434][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=29) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "awaitPromise": true,
    "expression": "document.documentElement.requestFullscreen()",
    "userGesture": true
 }
-[6091:6091:0624/105353.223641:INFO:CONSOLE(4)] "Error logged with the Track&Report JS errors API(http://tiny/1covqr6l8/wamazindeClieUserJava): {"m":"Late loading module @m/mash","csm":"v5 ueLogError callee","logLevel":"WARN","attribution":"MIX","pageURL":"https://www.amazon.com/","s":["function(){if(c.ue_err.erl){var a=c.ue_err.erl.length,g;for(g=0;g<a;g++){var b=c.ue_err.erl[g];B(b.ex,\nb.info)}ue_err.erl=[]}}","function(c,m){function y(a){if(a)return a.replace(/^\\s+|\\s+$/g,\"\")}function x(a,g){if(!a)return{};var b=\"INFO\"===g.logLevel;a.m&&a.m.message&&(a=a.m);var f=g.m||g.message||\"\";f=a.m&&a.m.message?f+a.m.message:a.m&&a.m.target&&a.m.target.tagName?f+(\"Error handler invoked by \"+a.m.target.tagName+\" tag\"):a.m?f+a.m:a.message?f+a.message:f+\"Unknown error\";f={m:f,name:a.name,type:a.type,csm:N+\" \"+(a.fromOnError?\"onerror\":\"ueLogError\")};var h,l=0;f.logLevel=g.logLevel||A;g.adb&&(f.adb=g.adb);if(h=g.attribution)f.at"],"t":8220} [object Object]", source: https://images-na.ssl-images-amazon.com/images/I/31bJewCvY-L.js (4)
-[1687600433.224][DEBUG]: DevTools WebSocket Event: Runtime.consoleAPICalled (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "args": [ {
-      "type": "string",
-      "value": "Error logged with the Track&Report JS errors API(http://tiny/1covqr6l8/wamazindeClieUserJava): {\"m\":\"Late loading module @m/mash\",\"csm\":\"v5 ueLogError callee\",\"logLevel\":\"WARN\",\"attribution\":\"MIX\",..."
-   }, {
-      "className": "Object",
-      "description": "Object",
-      "objectId": "-6203230425079316222.1.1",
-      "preview": {
-         "description": "Object",
-         "overflow": true,
-         "properties": [ {
-            "name": "m",
-            "type": "string",
-            "value": "Late loading module @m/mash"
-         }, {
-            "name": "name",
-            "type": "undefined",
-            "value": "undefined"
-         }, {
-            "name": "type",
-            "type": "undefined",
-            "value": "undefined"
-         }, {
-            "name": "csm",
-            "type": "string",
-            "value": "v5 ueLogError callee"
-         }, {
-            "name": "logLevel",
-            "type": "string",
-            "value": "WARN"
-         } ],
-         "type": "object"
-      },
-      "type": "object"
-   } ],
-   "executionContextId": 1,
-   "stackTrace": {
-      "callFrames": [ {
-         "columnNumber": 388,
-         "functionName": "B",
-         "lineNumber": 3,
-         "scriptId": "175",
-         "url": "https://images-na.ssl-images-amazon.com/images/I/31bJewCvY-L.js"
-      }, {
-         "columnNumber": 495,
-         "functionName": "",
-         "lineNumber": 4,
-         "scriptId": "175",
-         "url": "https://images-na.ssl-images-amazon.com/images/I/31bJewCvY-L.js"
-      }, {
-         "columnNumber": 24,
-         "functionName": "",
-         "lineNumber": 5,
-         "scriptId": "175",
-         "url": "https://images-na.ssl-images-amazon.com/images/I/31bJewCvY-L.js"
-      }, {
-         "columnNumber": 44,
-         "functionName": "",
-         "lineNumber": 5,
-         "scriptId": "175",
-         "url": "https://images-na.ssl-images-amazon.com/images/I/31bJewCvY-L.js"
-      } ]
-   },
-   "timestamp": 1.6876004332221128e+12,
-   "type": "error"
+[1687693104.605][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600433.339][DEBUG]: DevTools WebSocket Event: Page.frameResized (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-}
-[1687600433.339][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=42) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.605][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=29) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "type": "undefined"
    }
 }
-[1687600433.339][DEBUG]: DevTools WebSocket Command: Browser.getWindowBounds (id=43) (session_id=) browser {
-   "windowId": 1862680396
+[1687693104.605][DEBUG]: DevTools WebSocket Command: Browser.getWindowBounds (id=30) (session_id=) browser {
+   "windowId": 176934566
 }
-[1687600433.340][DEBUG]: DevTools WebSocket Response: Browser.getWindowBounds (id=43) (session_id=) browser {
+[1687693104.605][DEBUG]: DevTools WebSocket Response: Browser.getWindowBounds (id=30) (session_id=) browser {
    "bounds": {
       "height": 1080,
       "left": 0,
@@ -888,10 +692,10 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "windowState": "fullscreen"
    }
 }
-[1687600433.340][DEBUG]: DevTools WebSocket Command: Browser.getWindowForTarget (id=44) (session_id=) browser {
-   "targetId": "64B842234D50C42ACE13916C61E92E71"
+[1687693104.605][DEBUG]: DevTools WebSocket Command: Browser.getWindowForTarget (id=31) (session_id=) browser {
+   "targetId": "112A5B2A637C2B982642E678B0A38D62"
 }
-[1687600433.340][DEBUG]: DevTools WebSocket Response: Browser.getWindowForTarget (id=44) (session_id=) browser {
+[1687693104.606][DEBUG]: DevTools WebSocket Response: Browser.getWindowForTarget (id=31) (session_id=) browser {
    "bounds": {
       "height": 1080,
       "left": 0,
@@ -899,73 +703,79 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       "width": 1920,
       "windowState": "fullscreen"
    },
-   "windowId": 1862680396
+   "windowId": 176934566
 }
-[1687600433.340][INFO]: Waiting for pending navigations...
-[1687600433.340][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=45) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.606][INFO]: Waiting for pending navigations...
+[1687693104.606][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=32) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600433.420][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=45) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.677][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=32) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600433.420][INFO]: Done waiting for pending navigations. Status: ok
-[1687600433.420][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] RESPONSE FullscreenWindow {
+[1687693104.677][INFO]: Done waiting for pending navigations. Status: ok
+[1687693104.677][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] RESPONSE FullscreenWindow {
    "height": 1080,
    "width": 1920,
    "x": 0,
    "y": 0
 }
-[1687600433.432][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] COMMAND FindElements {
-   "using": "xpath",
-   "value": "//input[@id='twotabsearchtextbox']"
-}
-[1687600433.432][INFO]: Waiting for pending navigations...
-[1687600433.432][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=46) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "expression": "1"
-}
-[1687600433.446][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "98C89DBB9B899104981E29F2E3ACEE79",
-   "parentFrameId": "64B842234D50C42ACE13916C61E92E71",
+[1687693104.680][DEBUG]: DevTools WebSocket Event: Page.frameAttached (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "F5D9C1829ED3A8898B9D633B59205A0F",
+   "parentFrameId": "112A5B2A637C2B982642E678B0A38D62",
    "stack": {
       "callFrames": [ {
          "columnNumber": 344,
          "functionName": "",
-         "lineNumber": 1771,
-         "scriptId": "125",
+         "lineNumber": 1775,
+         "scriptId": "141",
          "url": "https://www.amazon.com/"
       } ]
    }
 }
-[1687600433.447][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "frameId": "98C89DBB9B899104981E29F2E3ACEE79"
+[1687693104.681][DEBUG]: DevTools WebSocket Event: Page.frameStartedLoading (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "frameId": "F5D9C1829ED3A8898B9D633B59205A0F"
 }
-[1687600433.457][DEBUG]: DevTools WebSocket Event: Log.entryAdded (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "entry": {
-      "level": "error",
-      "networkRequestId": "6170.412",
-      "source": "network",
-      "text": "Failed to load resource: the server responded with a status of 404 ()",
-      "timestamp": 1.687600433447271e+12,
-      "url": "https://www.amazon.com/gp/product/sessionCacheUpdateHandler.html"
-   }
+[1687693104.697][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] COMMAND GetTitle {
 }
-[1687600433.458][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=46) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.697][INFO]: Waiting for pending navigations...
+[1687693104.697][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=33) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "expression": "1"
+}
+[1687693104.722][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=33) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600433.458][INFO]: Done waiting for pending navigations. Status: ok
-[1687600433.458][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=47) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.722][INFO]: Done waiting for pending navigations. Status: ok
+[1687693104.722][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=34) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600433.475][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=47) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.732][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=34) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frameTree": {
       "childFrames": [ {
+         "frame": {
+            "adFrameStatus": {
+               "adFrameType": "none",
+               "explanations": [  ]
+            },
+            "crossOriginIsolatedContextType": "NotIsolated",
+            "domainAndRegistry": "amazon.com",
+            "gatedAPIFeatures": [  ],
+            "id": "C4099F3513011F141CBB052B8648D91B",
+            "loaderId": "B78D82E5C859023E9E9A57C2987CCA0E",
+            "mimeType": "text/html",
+            "name": "lj5zln66oga",
+            "parentId": "112A5B2A637C2B982642E678B0A38D62",
+            "secureContextType": "Secure",
+            "securityOrigin": "https://www.amazon.com",
+            "url": "https://www.amazon.com/"
+         }
+      }, {
          "frame": {
             "adFrameStatus": {
                "adFrameType": "none",
@@ -974,11 +784,11 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
             "crossOriginIsolatedContextType": "NotIsolatedFeatureDisabled",
             "domainAndRegistry": "",
             "gatedAPIFeatures": [  ],
-            "id": "98C89DBB9B899104981E29F2E3ACEE79",
-            "loaderId": "598245364CF12D15A9FADA5D8F7AC373",
+            "id": "F5D9C1829ED3A8898B9D633B59205A0F",
+            "loaderId": "4E4216143A9154AC094D2A68ACAFD2FD",
             "mimeType": "text/html",
             "name": "DAsis",
-            "parentId": "64B842234D50C42ACE13916C61E92E71",
+            "parentId": "112A5B2A637C2B982642E678B0A38D62",
             "secureContextType": "Secure",
             "securityOrigin": "://",
             "url": ":"
@@ -991,8 +801,8 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
          "crossOriginIsolatedContextType": "NotIsolated",
          "domainAndRegistry": "amazon.com",
          "gatedAPIFeatures": [  ],
-         "id": "64B842234D50C42ACE13916C61E92E71",
-         "loaderId": "1F117A2912BE1D292B9A7B2BECE1BFB7",
+         "id": "112A5B2A637C2B982642E678B0A38D62",
+         "loaderId": "203B336D1EB0023F75645D02BBFE7A46",
          "mimeType": "text/html",
          "secureContextType": "Secure",
          "securityOrigin": "https://www.amazon.com",
@@ -1000,11 +810,29 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       }
    }
 }
-[1687600433.475][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=48) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.732][DEBUG]: DevTools WebSocket Command: Page.getFrameTree (id=35) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600433.480][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=48) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.733][DEBUG]: DevTools WebSocket Response: Page.getFrameTree (id=35) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "frameTree": {
       "childFrames": [ {
+         "frame": {
+            "adFrameStatus": {
+               "adFrameType": "none",
+               "explanations": [  ]
+            },
+            "crossOriginIsolatedContextType": "NotIsolated",
+            "domainAndRegistry": "amazon.com",
+            "gatedAPIFeatures": [  ],
+            "id": "C4099F3513011F141CBB052B8648D91B",
+            "loaderId": "B78D82E5C859023E9E9A57C2987CCA0E",
+            "mimeType": "text/html",
+            "name": "lj5zln66oga",
+            "parentId": "112A5B2A637C2B982642E678B0A38D62",
+            "secureContextType": "Secure",
+            "securityOrigin": "https://www.amazon.com",
+            "url": "https://www.amazon.com/"
+         }
+      }, {
          "frame": {
             "adFrameStatus": {
                "adFrameType": "none",
@@ -1013,11 +841,11 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
             "crossOriginIsolatedContextType": "NotIsolatedFeatureDisabled",
             "domainAndRegistry": "",
             "gatedAPIFeatures": [  ],
-            "id": "98C89DBB9B899104981E29F2E3ACEE79",
-            "loaderId": "598245364CF12D15A9FADA5D8F7AC373",
+            "id": "F5D9C1829ED3A8898B9D633B59205A0F",
+            "loaderId": "4E4216143A9154AC094D2A68ACAFD2FD",
             "mimeType": "text/html",
             "name": "DAsis",
-            "parentId": "64B842234D50C42ACE13916C61E92E71",
+            "parentId": "112A5B2A637C2B982642E678B0A38D62",
             "secureContextType": "Secure",
             "securityOrigin": "://",
             "url": ":"
@@ -1030,8 +858,8 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
          "crossOriginIsolatedContextType": "NotIsolated",
          "domainAndRegistry": "amazon.com",
          "gatedAPIFeatures": [  ],
-         "id": "64B842234D50C42ACE13916C61E92E71",
-         "loaderId": "1F117A2912BE1D292B9A7B2BECE1BFB7",
+         "id": "112A5B2A637C2B982642E678B0A38D62",
+         "loaderId": "203B336D1EB0023F75645D02BBFE7A46",
          "mimeType": "text/html",
          "secureContextType": "Secure",
          "securityOrigin": "https://www.amazon.com",
@@ -1039,74 +867,50 @@ MESA-INTEL: warning: Haswell Vulkan support is incomplete
       }
    }
 }
-[1687600433.483][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=49) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.735][DEBUG]: DevTools WebSocket Command: Runtime.callFunctionOn (id=36) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "arguments": [  ],
    "awaitPromise": true,
    "functionDeclaration": "function(){ return (function() { // Copyright 2012 The Chromium Authors\n// Use of this source code is governed by a BSD-style license that can be\n// found in the LICENSE file.\n\n/**\n * Enum for WebD...",
    "generateWebDriverValue": true,
-   "objectGroup": "e0bb473e-3c15-40c0-af64-96534bb96f93",
-   "uniqueContextId": "6207578796065078303.4692311994237663023"
+   "objectGroup": "55e5ef6b-675b-400b-8565-7f19a0fbcf9e",
+   "uniqueContextId": "-8011564664391238181.5717534507308278672"
 }
-[1687600433.515][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=49) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.738][DEBUG]: DevTools WebSocket Response: Runtime.callFunctionOn (id=36) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "className": "Array",
-      "description": "Array(2)",
-      "objectId": "-6203230425079316222.1.2",
+      "description": "Array(1)",
+      "objectId": "1688233534765750342.1.1",
       "subtype": "array",
       "type": "object",
       "webDriverValue": {
          "type": "array",
          "value": [ {
             "type": "string",
-            "value": "{\"status\":0,\"value\":[{\"element-6066-11e4-a52e-4f735466cecf\":0}]}"
-         }, {
-            "type": "node",
-            "value": {
-               "attributes": {
-                  "aria-label": "Search Amazon",
-                  "autocomplete": "off",
-                  "class": "nav-input nav-progressive-attribute",
-                  "dir": "auto",
-                  "id": "twotabsearchtextbox",
-                  "name": "field-keywords",
-                  "placeholder": "Search Amazon",
-                  "spellcheck": "false",
-                  "tabindex": "0",
-                  "type": "text",
-                  "value": ""
-               },
-               "backendNodeId": 30,
-               "childNodeCount": 0,
-               "localName": "input",
-               "namespaceURI": "http://www.w3.org/1999/xhtml",
-               "nodeType": 1
-            }
+            "value": "{\"status\":0,\"value\":\"Amazon.com. Spend less. Smile more.\"}"
          } ]
       }
    }
 }
-[1687600433.515][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=50) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
-   "objectGroup": "e0bb473e-3c15-40c0-af64-96534bb96f93"
+[1687693104.738][DEBUG]: DevTools WebSocket Command: Runtime.releaseObjectGroup (id=37) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
+   "objectGroup": "55e5ef6b-675b-400b-8565-7f19a0fbcf9e"
 }
-[1687600433.516][INFO]: Waiting for pending navigations...
-[1687600433.516][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=51) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.738][INFO]: Waiting for pending navigations...
+[1687693104.739][DEBUG]: DevTools WebSocket Command: Runtime.evaluate (id=38) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "expression": "1"
 }
-[1687600433.545][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=50) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.739][DEBUG]: DevTools WebSocket Response: Runtime.releaseObjectGroup (id=37) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
 }
-[1687600433.549][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=51) (session_id=CAB68543F0739491CB9E06311A94B414) 64B842234D50C42ACE13916C61E92E71 {
+[1687693104.739][DEBUG]: DevTools WebSocket Response: Runtime.evaluate (id=38) (session_id=26DF4DFCA8A455295623A94D90E018C0) 112A5B2A637C2B982642E678B0A38D62 {
    "result": {
       "description": "1",
       "type": "number",
       "value": 1
    }
 }
-[1687600433.549][INFO]: Done waiting for pending navigations. Status: ok
-[1687600433.549][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] RESPONSE FindElements [ {
-   "element-6066-11e4-a52e-4f735466cecf": "1F117A2912BE1D292B9A7B2BECE1BFB7_element_30"
-} ]
-[1687600433.624][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] COMMAND Quit {
+[1687693104.739][INFO]: Done waiting for pending navigations. Status: ok
+[1687693104.739][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] RESPONSE GetTitle "Amazon.com. Spend less. Smile more."
+[1687693104.746][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] COMMAND Quit {
 }
-[1687600433.724][INFO]: [687fe3fbf67c7a2cdc2cb55804e682da] RESPONSE Quit
-[1687600433.724][DEBUG]: Log type 'driver' lost 0 entries on destruction
-[1687600433.725][DEBUG]: Log type 'browser' lost 2 entries on destruction
+[1687693104.797][INFO]: [2d4a8feb111cff33522c98b9c5647ec6] RESPONSE Quit
+[1687693104.797][DEBUG]: Log type 'driver' lost 0 entries on destruction
+[1687693104.797][DEBUG]: Log type 'browser' lost 1 entries on destruction

@@ -1,0 +1,189 @@
+1687692905128	geckodriver	INFO	Listening on 127.0.0.1:34535
+1687692905131	webdriver::server	DEBUG	-> GET /status 
+1687692905131	webdriver::server	DEBUG	<- 200 OK {"value":{"message":"","ready":true}}
+1687692905133	webdriver::server	DEBUG	-> POST /session {"capabilities":{"firstMatch":[{}],"alwaysMatch":{"browserName":"firefox"}}}
+1687692905133	geckodriver::capabilities	DEBUG	Trying to read firefox version from ini files
+1687692905133	geckodriver::capabilities	DEBUG	Found version 114.0.1
+1687692905135	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" MOZ_NO_REMOTE="1" "/usr/bin/firefox" "--marionette" "-no-remote" "-profile" "/tmp/rust_mozprofileqczom5"
+1687692905136	geckodriver::marionette	DEBUG	Waiting 60s to connect to browser on 127.0.0.1
+1687692905136	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905136	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905236	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905236	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905336	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905336	geckodriver::marionette	TRACE	Retrying in 100ms
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1687692905436	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905436	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905536	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905536	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905637	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905637	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905737	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905737	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905837	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905837	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692905937	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692905937	geckodriver::marionette	TRACE	Retrying in 100ms
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1687692906037	geckodriver::browser	TRACE	Failed to open /tmp/rust_mozprofileqczom5/MarionetteActivePort
+1687692906037	geckodriver::marionette	TRACE	Retrying in 100ms
+1687692906065	Marionette	INFO	Marionette enabled
+1687692906066	RemoteAgent	DEBUG	Setting recommended pref apz.content_response_timeout to 60000
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.contentblocking.introCount to 99
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.download.panel.shown to true
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.newtabpage.enabled to false
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.pagethumbnails.capturing_disabled to true
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.search.update to false
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.startup.couldRestoreSession.count to -1
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.closeWindowWithLastTab to false
+1687692906067	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.disableBackgroundZombification to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.unloadOnLowMemory to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.warnOnClose to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.warnOnCloseOtherTabs to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.tabs.warnOnOpen to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.toolbars.bookmarks.visibility to never
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.topsites.contile.enabled to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.usedOnWindows10.introURL to 
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.urlbar.merino.endpointURL to 
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref browser.urlbar.suggest.searches to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref datareporting.policy.dataSubmissionPolicyAccepted to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref dom.disable_open_during_load to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref dom.event.wheel-event-groups.enabled to false
+1687692906068	RemoteAgent	DEBUG	Setting recommended pref dom.file.createInChild to true
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.max_chrome_script_run_time to 0
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.max_script_run_time to 0
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.navigation.locationChangeRateLimit.count to 0
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.push.connection.enabled to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.screenorientation.allow-lock to true
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.successive_dialog_time_limit to 0
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref extensions.getAddons.cache.enabled to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref extensions.getAddons.discovery.api_url to data:, 
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref network.http.phishy-userpass-length to 255
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref network.http.prompt-temp-redirect to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref privacy.trackingprotection.enabled to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref security.fileuri.strict_origin_policy to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref security.notification_enable_delay to 0
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref signon.autofillForms to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref signon.rememberSignons to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref widget.windows.window_occlusion_tracking.enabled to false
+1687692906069	RemoteAgent	DEBUG	Setting recommended pref dom.disable_beforeunload to true
+1687692906070	Marionette	TRACE	Received observer notification final-ui-startup
+1687692906071	Marionette	INFO	Listening on port 33885
+1687692906071	Marionette	DEBUG	Marionette is listening
+Read port: 33885
+1687692906199	Marionette	DEBUG	Accepted connection 0 from 127.0.0.1:38114
+1687692906202	geckodriver::marionette	DEBUG	Connection to Marionette established on 127.0.0.1:33885.
+1687692906247	Marionette	DEBUG	0 -> [0,1,"WebDriver:NewSession",{"browserName":"firefox"}]
+1687692906251	Marionette	DEBUG	Waiting for initial application window
+console.error: ({})
+1687692908496	Marionette	TRACE	Received observer notification browser-idle-startup-tasks-finished
+1687692908502	RemoteAgent	TRACE	[8] ProgressListener Start: expectNavigation=false resolveWhenStarted=false unloadTimeout=200 waitForExplicitStart=false
+1687692908502	RemoteAgent	TRACE	[8] ProgressListener Setting unload timer (200ms)
+1687692908502	RemoteAgent	TRACE	[8] Document already finished loading: about:blank
+1687692908502	RemoteAgent	TRACE	[8] ProgressListener Stop: has error=false
+1687692908520	Marionette	DEBUG	0 <- [1,1,null,{"sessionId":"2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd","capabilities":{"browserName":"firefox","browserVersion":"114.0.1","platformName":"linux","acceptInsecureCerts":false,"pageLoadStrategy":"normal","setWindowRect":true,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"strictFileInteractability":false,"unhandledPromptBehavior":"dismiss and notify","moz:accessibilityChecks":false,"moz:buildID":"20230608214645","moz:headless":false,"moz:platformVersion":"6.2.6-76060206-generic","moz:processID":16391,"moz:profile":"/tmp/rust_mozprofileqczom5","moz:shutdownTimeout":60000,"moz:useNonSpecCompliantPointerOrigin":false,"moz:webdriverClick":true,"moz:windowless":false,"proxy":{}}}]
+1687692908529	webdriver::server	DEBUG	<- 200 OK {"value":{"sessionId":"2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd","capabilities":{"acceptInsecureCerts":false,"browserNa ... ctability":false,"timeouts":{"implicit":0,"pageLoad":300000,"script":30000},"unhandledPromptBehavior":"dismiss and notify"}}}
+1687692908537	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/url {"url":"https://www.rijksmuseum.nl/en"}
+1687692908538	Marionette	DEBUG	0 -> [0,2,"WebDriver:Navigate",{"url":"https://www.rijksmuseum.nl/en"}]
+1687692908545	Marionette	TRACE	[8] Received event beforeunload for about:blank
+1687692908625	Marionette	TRACE	Remoteness change detected. Set new top-level browsing context to 11
+1687692908632	Marionette	TRACE	[11] Received event beforeunload for about:blank
+1687692908634	Marionette	TRACE	[11] Received event pagehide for about:blank
+1687692908750	Marionette	TRACE	Canceled page load listener because the top-browsing context has been closed
+1687692908750	Marionette	DEBUG	0 <- [1,2,null,{"value":null}]
+1687692909232	webdriver::server	DEBUG	<- 200 OK {"value":null}
+1687692909238	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692909263	Marionette	TRACE	Received observer notification quit-application
+1687692909263	Marionette	INFO	Stopped listening on port 33885
+1687692909263	Marionette	DEBUG	Marionette stopped listening
+1687692909263	RemoteAgent	DEBUG	Resetting recommended pref apz.content_response_timeout
+1687692909263	RemoteAgent	DEBUG	Resetting recommended pref browser.contentblocking.introCount
+1687692909263	RemoteAgent	DEBUG	Resetting recommended pref browser.download.panel.shown
+1687692909264	RemoteAgent	DEBUG	Resetting recommended pref browser.newtabpage.enabled
+1687692909264	RemoteAgent	DEBUG	Resetting recommended pref browser.pagethumbnails.capturing_disabled
+1687692909264	RemoteAgent	DEBUG	Resetting recommended pref browser.search.update
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.startup.couldRestoreSession.count
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.closeWindowWithLastTab
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.disableBackgroundZombification
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.unloadOnLowMemory
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.warnOnClose
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.warnOnCloseOtherTabs
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.tabs.warnOnOpen
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.toolbars.bookmarks.visibility
+1687692909265	RemoteAgent	DEBUG	Resetting recommended pref browser.topsites.contile.enabled
+1687692909266	RemoteAgent	DEBUG	Resetting recommended pref browser.usedOnWindows10.introURL
+1687692909266	RemoteAgent	DEBUG	Resetting recommended pref browser.urlbar.merino.endpointURL
+1687692909268	RemoteAgent	DEBUG	Resetting recommended pref browser.urlbar.suggest.searches
+1687692909268	RemoteAgent	DEBUG	Resetting recommended pref datareporting.policy.dataSubmissionPolicyAccepted
+1687692909269	RemoteAgent	DEBUG	Resetting recommended pref dom.disable_open_during_load
+1687692909269	RemoteAgent	DEBUG	Resetting recommended pref dom.event.wheel-event-groups.enabled
+1687692909269	RemoteAgent	DEBUG	Resetting recommended pref dom.file.createInChild
+1687692909269	RemoteAgent	DEBUG	Resetting recommended pref dom.max_chrome_script_run_time
+1687692909269	RemoteAgent	DEBUG	Resetting recommended pref dom.max_script_run_time
+1687692909270	RemoteAgent	DEBUG	Resetting recommended pref dom.navigation.locationChangeRateLimit.count
+1687692909270	RemoteAgent	DEBUG	Resetting recommended pref dom.push.connection.enabled
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref dom.screenorientation.allow-lock
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref dom.successive_dialog_time_limit
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref extensions.getAddons.cache.enabled
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref extensions.getAddons.discovery.api_url
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref network.http.phishy-userpass-length
+1687692909271	RemoteAgent	DEBUG	Resetting recommended pref network.http.prompt-temp-redirect
+1687692909272	RemoteAgent	DEBUG	Resetting recommended pref privacy.trackingprotection.enabled
+1687692909272	RemoteAgent	DEBUG	Resetting recommended pref security.fileuri.strict_origin_policy
+1687692909272	RemoteAgent	DEBUG	Resetting recommended pref security.notification_enable_delay
+1687692909272	RemoteAgent	DEBUG	Resetting recommended pref signon.autofillForms
+1687692909273	RemoteAgent	DEBUG	Resetting recommended pref signon.rememberSignons
+1687692909274	RemoteAgent	DEBUG	Resetting recommended pref widget.windows.window_occlusion_tracking.enabled
+1687692909274	RemoteAgent	DEBUG	Resetting recommended pref dom.disable_beforeunload
+1687692909283	Marionette	DEBUG	0 -> [0,3,"WebDriver:FindElements",{"using":"css selector","value":".cookie-consent-bar-wrap"}]
+1687692909283	Marionette	DEBUG	0 <- [1,3,{"error":"no such window","message":"Browsing context has been discarded","stacktrace":"RemoteError@chrome://remote/content/shared/RemoteError.sys.mjs:8:8\nWebDriverError@chrome://remote/content/shared/webdriver/Er ... ote/content/marionette/server.sys.mjs:249:9\n_onJSONObjectReady/<@chrome://remote/content/marionette/transport.sys.mjs:496:20\n"},null]
+1687692909287	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"no such window","message":"Browsing context has been discarded","stacktrace":"RemoteError ... ontent/marionette/server.sys.mjs:249:9\n_onJSONObjectReady/<@chrome://remote/content/marionette/transport.sys.mjs:496:20\n"}}
+JavaScript error: chrome://remote/content/marionette/cert.sys.mjs, line 51: NS_ERROR_NOT_AVAILABLE: Component returned failure code: 0x80040111 (NS_ERROR_NOT_AVAILABLE) [nsICertOverrideService.setDisableAllSecurityChecksAndLetAttackersInterceptMyData]
+1687692909791	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692909791	webdriver::server	DEBUG	Teardown session
+1687692909797	geckodriver::marionette	ERROR	Failed to close browser connection: Socket not connected (os error 107)
+1687692909797	webdriver::server	DEBUG	<- 500 Internal Server Error {"value":{"error":"unknown error","message":"Failed to decode response from marionette","stacktrace":""}}
+1687692910800	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692910800	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692911303	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692911303	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692911806	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692911806	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692912309	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692912309	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692912814	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692912814	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692913318	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692913318	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692913820	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692913820	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692914323	webdriver::server	DEBUG	-> POST /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/elements {"using":"css selector","value":".cookie-consent-bar-wrap"}
+1687692914323	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692914329	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692914329	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692914833	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692914833	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692915339	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692915339	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692915845	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692915845	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692916350	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692916350	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692916856	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692916856	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692917361	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692917361	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692917864	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692917865	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692918369	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692918369	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692918872	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692918873	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692919376	webdriver::server	DEBUG	-> GET /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd/title 
+1687692919376	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
+1687692919383	webdriver::server	DEBUG	-> DELETE /session/2b17ddcf-b1fa-4e6e-b2ff-14090389bcfd 
+1687692919383	webdriver::server	DEBUG	<- 404 Not Found {"value":{"error":"invalid session id","message":"Tried to run command without establishing a connection","stacktrace":""}}
