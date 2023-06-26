@@ -101,7 +101,6 @@ app.post('/api/users/login',
                 status: "success",
                 message: `User ${user.rows[0].name} logged in successfully`,
                 userId: user.rows[0].id,
-
                 token
             });
         } catch (e) {
