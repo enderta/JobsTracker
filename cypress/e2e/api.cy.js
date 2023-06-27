@@ -1,7 +1,7 @@
 //require("cypress-xpath");
 
 describe("API Test", () => {
-    it.skip("API register", () => {
+    it("API register", () => {
         // eslint-disable-next-line no-undef
         cy.request({
             method: 'POST',
@@ -34,10 +34,24 @@ describe("API Test", () => {
             tkn = res.body.token
             id = res.body.userId
         })
-        // eslint-disable-next-line no-undef
 
 
     })
+
+    it("api get", () => {
+        // eslint-disable-next-line no-undef
+        cy.request({
+            method: 'GET',
+            url: 'http://localhost:5000/api/users/' + id,
+            headers: {
+                authorization: tkn
+            }
+        }).then((res) => {
+            expect(res.body.message).equal("User found")
+            expect(res.body.data.name).equal("et2")
+        })
+    })
+
     it("api delete", () => {
         // eslint-disable-next-line no-undef
         cy.request({
