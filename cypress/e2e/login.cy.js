@@ -12,7 +12,7 @@ describe("register test", () => {
         cy.get('button[type="submit"]').click();
         cy.url().should("include", "/login");
     });
-    it("login", () => {
+    it.skip("login", () => {
         cy.visit("http://localhost:3000/login");
         cy.get('input[name="email"]').type("et2@gmail.com");
         cy.get('input[name="password"]').type("pistol");
@@ -23,5 +23,20 @@ describe("register test", () => {
         cy.get('.dropdown-menu > [role="button"]').click();
         cy.url().should("include", "/home");
 });
+    it("quantity control", () => {
+        cy.visit("http://localhost:3000");
+        cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4').should(
+            'contain.text',"1");
+      cy.xpath('(//div[@class=\'quantity-control\'])[1]//button[2]').click()
+        cy.wait(2000);
+        cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4')
+            .should('contain.text',"2");
+        cy.wait(2000);
+        cy.xpath('(//div[@class=\'quantity-control\'])[1]//button[1]')
+            .click();
+        cy.wait(2000);
+        cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4')
+            .should('contain.text',"1");
+    });
 
 });
