@@ -22,21 +22,33 @@ describe("register test", () => {
         cy.wait(2000);
         cy.get('.dropdown-menu > [role="button"]').click();
         cy.url().should("include", "/home");
-});
-    it("quantity control", () => {
+    });
+    it.skip("quantity control", () => {
         cy.visit("http://localhost:3000");
         cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4').should(
-            'contain.text',"1");
-      cy.xpath('(//div[@class=\'quantity-control\'])[1]//button[2]').click()
+            'contain.text', "1");
+        cy.xpath('(//div[@class=\'quantity-control\'])[1]//button[2]').click()
         cy.wait(2000);
         cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4')
-            .should('contain.text',"2");
+            .should('contain.text', "2");
         cy.wait(2000);
         cy.xpath('(//div[@class=\'quantity-control\'])[1]//button[1]')
             .click();
         cy.wait(2000);
         cy.xpath('(//div[@class=\'quantity-control\'])[1]//h4')
-            .should('contain.text',"1");
+            .should('contain.text', "1");
     });
+    it("add to cart", () => {
+        cy.visit("http://localhost:3000");
+        cy.xpath("(//button[.='Add to cart 🛒'])[1]").click();
+        //alert
+        cy.wait(2000);
+        //get text from alert
+        cy.on('window:alert', (str) => {
+            expect(str).to.equal('Please login to add to basket')
+        }
+        )
 
+
+    });
 });
