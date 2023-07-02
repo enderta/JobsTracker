@@ -43,12 +43,57 @@ describe("register test", () => {
         cy.xpath("(//button[.='Add to cart 🛒'])[1]").click();
         //alert
         cy.wait(2000);
-        //get text from alert
+
         cy.on('window:alert', (str) => {
-            expect(str).to.equal('Please login to add to basket')
-        }
+                expect(str).to.equal('Please login to add to basket')
+            }
         )
+        //login
+        cy.get('#basic-nav-dropdown').click();
+        cy.wait(2000);
+        cy.xpath('//a[.="Login"]').click();
+        cy.url().should("include", "/login");
+        cy.get('input[name="email"]').type("et@gmail.com");
+        cy.get('input[name="password"]').type("123456");
+        cy.get('button[type="submit"]').click();
+        cy.url().should("include", "/home");
+        cy.wait(2000);
+        let product =""
+        cy.xpath("(//*[@class='card-title h5'])[1]").then(
+            ($el) => {
+                product = $el.text();
+                cy.log(product);
+            }
+        )
+        cy.xpath("(//button[.='Add to cart 🛒'])[1]").click();
+        cy.xpath("(//*[@class='card-title h5'])[1]").then(
+            ($el) => {
+                expect($el.text()).to.equal(product);
+            }
+        )
+        cy.wait(2000);
 
+        //get text from iframe
+      /*  cy.get('iframe').then(($iframe) => {
+            const $body = $iframe.contents().find('body')
+            cy.wrap($body).find('h2').should('contain.text', 'Login')
+        })
 
-    });
+        //get text from an element
+        cy.get('h2').then(($h2) => {
+            const txt = $h2.text();
+            cy.log(txt);
+        })
+
+        //get all elements as array
+        let arr = [];
+        cy.get('div').then(($div) => {
+            arr.push(
+                $div.text()
+            )
+        })
+        arr.find((el) => {
+            return el.includes('Login')
+        })*/
+    })
 });
