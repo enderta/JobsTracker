@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react'
-import {Button, Card, Table} from "react-bootstrap";
+import {Button, Card, Modal, Table} from "react-bootstrap";
 import NaviBar from "./NaviBar";
+import CheckOut from "./CheckOut";
 
 function Basket() {
     const [basket, setBasket] = useState([]);
     const [total, setTotal] = useState(0);
     const [darkMode, setDarkMode] = useState(true);
+    const [show, setShow] = useState(false);
 
     useEffect(() => {
         if (darkMode) {
@@ -85,9 +87,14 @@ function Basket() {
                                     <Card.Footer className="text-muted">
                                         <Button
                                             variant={darkMode ? 'outline-light' : 'outline-dark'}
+                                            onClick={() => setShow(true)}
                                             >
                                             Go to Checkout
                                         </Button>
+                                        <Modal show={show} onHide={() => setShow(false)}>
+                                            <CheckOut setShow={setShow} item={item}/>
+                                        </Modal>
+
                                     </Card.Footer>
                                 </Card>
 
