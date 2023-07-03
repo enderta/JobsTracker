@@ -112,7 +112,7 @@ function CheckOut(props) {
                         </div>
                     </div>
                 </div>
-                </form>
+            </form>
         </div>
     )
 

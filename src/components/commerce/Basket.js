@@ -32,10 +32,12 @@ function Basket() {
         })
             .then((response) => response.json())
             .then((data) => {
-                    console.log(data);
+                   if(data.message==='Basket not found'){
+                        setBasket([])
+                   }else {
                     setBasket(data.data);
                     setTotal(data.total);
-                }
+                }}
             )
             .catch((error) => {
                     console.error('Error:', error);
@@ -43,7 +45,7 @@ function Basket() {
             );
 
     }, []);
-     console.log(basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])));
+    console.log(basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])));
     return (
         <div>
             <div>
@@ -53,55 +55,55 @@ function Basket() {
             <div className={'container'}>
                 <div className={'row'}>
                     {
-                        basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])).map((item) => (
-                            <div className="col-md-4" >
-                                <Card
-                                    className="text-center"
-                                    style={{
-                                        backgroundColor: darkMode ? '#3656a2' : 'white',
-                                        color: darkMode ? 'white' : 'black',
-                                        margin: '10px'
-                                    }}
-                                >
+                        basket.length>0 ?
+                            ( basket.filter((item) =>  new Date().toISOString().includes(item.created_at.split("T")[0])).map((item) => (
+                                <div className="col-md-4" >
+                                    <Card
+                                        className="text-center"
+                                        style={{
+                                            backgroundColor: darkMode ? '#3656a2' : 'white',
+                                            color: darkMode ? 'white' : 'black',
+                                            margin: '10px'
+                                        }}
+                                    >
 
-                                    <Card.Body>
-                                        <Card.Title
-                                            style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
-                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                            Description:{" "} {item.description}
-                                        </Card.Text>
-                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                            Price:{" "}{item.price}
-                                        </Card.Text>
-                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                            Quantity:{" "}{item.quantity}
-                                        </Card.Text>
-                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                            Paid:{" "}{item.total_amount}
-                                        </Card.Text>
-                                        <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
-                                            Order Date:{" "}   {new Date(item.created_at).toLocaleString()
-                                            .split(',')[0]}
-                                        </Card.Text>
-                                    </Card.Body>
-                                    <Card.Footer className="text-muted">
-                                        <Button
-                                            variant={darkMode ? 'outline-light' : 'outline-dark'}
-                                            onClick={() => setShow(true)}
+                                        <Card.Body>
+                                            <Card.Title
+                                                style={{color: darkMode ? 'white' : 'black'}}>{item.name}</Card.Title>
+                                            <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                Description:{" "} {item.description}
+                                            </Card.Text>
+                                            <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                Price:{" "}{item.price}
+                                            </Card.Text>
+                                            <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                Quantity:{" "}{item.quantity}
+                                            </Card.Text>
+                                            <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                Paid:{" "}{item.total_amount}
+                                            </Card.Text>
+                                            <Card.Text style={{color: darkMode ? 'white' : 'black'}}>
+                                                Order Date:{" "}   {new Date(item.created_at).toLocaleString()
+                                                .split(',')[0]}
+                                            </Card.Text>
+                                        </Card.Body>
+                                        <Card.Footer className="text-muted">
+                                            <Button
+                                                variant={darkMode ? 'outline-light' : 'outline-dark'}
+                                                onClick={() => setShow(true)}
                                             >
-                                            Go to Checkout
-                                        </Button>
-                                        <Modal show={show} onHide={() => setShow(false)}>
-                                            <CheckOut setShow={setShow} item={item}/>
-                                        </Modal>
+                                                Go to Checkout
+                                            </Button>
+                                            <Modal show={show} onHide={() => setShow(false)}>
+                                                <CheckOut setShow={setShow} item={item}/>
+                                            </Modal>
 
-                                    </Card.Footer>
-                                </Card>
-
-                            </div>
-                        ))
-
+                                        </Card.Footer>
+                                    </Card>
+                                </div>
+                            ))):  <h1 style={{color: darkMode ? 'blueviolet' : 'black'}}>Basket is empty</h1>
                     }
+
                 </div>
             </div>
         </div>
