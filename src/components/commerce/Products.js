@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card} from 'react-bootstrap';
-import Basket from './Basket';
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -51,10 +50,43 @@ function Products() {
                 .catch(error => {
                     console.error('Error:', error);
                 });
+
         } else {
             alert('Please login to add to basket');
         }
 
+    };
+
+
+    const handleAddToHistry = (product, userID) => {
+        const quantity = quantities.find(item => item.productId === product.id)?.quantity || 1;
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+
+        if (localStorage.getItem('token')) {
+            const data = {
+                product_id: product.id,
+                user_id: userID,
+                quantity: quantity,
+                price: product.price,
+                total_amount: product.price * quantity,
+            };
+
+            fetch(`http://localhost:5000/api/order_history/${userID}`, {
+                method: 'POST', headers: {
+                    'Content-Type': 'application/json', Authorization: localStorage.getItem('token'),
+                }, body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+
+        } else {
+            alert('Please login to add to basket');
+        }
     };
 
     useEffect(() => {
@@ -70,7 +102,6 @@ function Products() {
 
         fetchData();
     }, []);
-    console.log(products);
 
     return (
         <div>
@@ -94,7 +125,9 @@ function Products() {
                                     >
                                         ▼
                                     </Button>
-                                    <h4 style={{margin: '0 10px',color: darkMode ? 'goldenrod' : 'darkgray'}}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
+                                    <h4 style={{
+                                        margin: '0 10px', color: darkMode ? 'goldenrod' : 'darkgray'
+                                    }}>{quantities.find(item => item.productId === product.id)?.quantity || 1}
                                         {" "}{quantities?.find(item => item.productId === product.id)?.quantity > 1 ? 'pieces' : 'piece'}
                                     </h4>
                                     <Button
@@ -118,7 +151,13 @@ function Products() {
                         <Card.Footer>
                             <Button
                                 variant={darkMode ? 'outline-warning' : 'outline-dark'}
-                                onClick={() => handleAddToBasket(product, localStorage.getItem('userId'))}
+                                onClick={() => {
+                                    handleAddToBasket(product, localStorage.getItem('userId'));
+                                    handleAddToHistry(product, localStorage.getItem('userId'))
+                                }
+
+                                }
+
                             >
                                 Add to cart 🛒
                             </Button>

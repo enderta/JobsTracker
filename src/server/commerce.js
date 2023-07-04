@@ -716,11 +716,11 @@ app.delete('/api/order_items/:id', async (req, res) => {
 app.post('/api/basket/:prodId', async (req, res) => {
     try {
         const decoded = jwt.verify(req.headers.authorization, secret);
-        const { prodId } = req.params;
+        const {prodId} = req.params;
 
-        const { rows } = await pool.query('SELECT * FROM basket WHERE product_id = $1', [prodId]);
+        const {rows} = await pool.query('SELECT * FROM basket WHERE product_id = $1', [prodId]);
         if (rows.length === 0) {
-            const { user_id, product_id, quantity, price, total_amount } = req.body;
+            const {user_id, product_id, quantity, price, total_amount} = req.body;
             await pool.query(
                 'INSERT INTO basket (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)',
                 [user_id, product_id, quantity, price, total_amount]
@@ -732,7 +732,7 @@ app.post('/api/basket/:prodId', async (req, res) => {
             });
         } else {
             // Increment quantity and total amount
-            const { quantity, price, total_amount } = req.body;
+            const {quantity, price, total_amount} = req.body;
             await pool.query(
                 'UPDATE basket SET quantity = $1, price = $2, total_amount = $3 WHERE product_id = $4',
                 [quantity, price, total_amount, prodId]
@@ -743,7 +743,7 @@ app.post('/api/basket/:prodId', async (req, res) => {
             });
         }
     } catch (error) {
-        res.status(401).json({ error: 'Unauthorized' });
+        res.status(401).json({error: 'Unauthorized'});
     }
 });
 //get users basket
@@ -862,7 +862,165 @@ app.put('/api/basket/:id', async (req, res) => {
         }
     });
 });
+/*
+* CREATE TABLE order_history (
+  id SERIAL PRIMARY KEY,
+  user_id INT REFERENCES users(id),
+   product_id INT REFERENCES products(id),
+    quantity INT,
+     price DECIMAL(10, 2),
+      total_amount DECIMAL(10, 2),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+* */
 
+app.post('/api/order_history/:prodId', async (req, res) => {
+    try {
+        const decoded = jwt.verify(req.headers.authorization, secret);
+        const {prodId} = req.params;
+
+        const {rows} = await pool.query('SELECT * FROM order_history WHERE product_id = $1', [prodId]);
+        if (rows.length === 0) {
+            const {user_id, product_id, quantity, price, total_amount} = req.body;
+            await pool.query(
+                'INSERT INTO order_history (user_id, product_id, quantity, price, total_amount) VALUES ($1, $2, $3, $4, $5)',
+                [user_id, product_id, quantity, price, total_amount]
+            );
+            res.status(200).json({
+                status: 'success',
+                message: 'Basket item added',
+                data: rows[0],
+            });
+        } else {
+            // Increment quantity and total amount
+            const {quantity, price, total_amount} = req.body;
+            await pool.query(
+                'UPDATE order_history SET quantity = $1, price = $2, total_amount = $3 WHERE product_id = $4',
+                [quantity, price, total_amount, prodId]
+            );
+            res.status(200).json({
+                status: 'success',
+                message: 'Basket item updated',
+            });
+        }
+    } catch (error) {
+        res.status(401).json({error: 'Unauthorized'});
+    }
+});
+
+//get all the products in the order histor
+
+app.get('/api/order_history', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            //join order_items and products
+            const {rows} = await pool.query(
+                "select h.*,p.* from order_history h join products p on h.product_id=p.id;"
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+
+            } else {
+                res.status(200).json({
+                    status: "success",
+                    message: `${rows.length} basket found`,
+                    data: rows,
+                });
+            }
+        }
+    });
+});
+
+app.delete('/api/order_history/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM order_history WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order history not found",
+                });
+            } else {
+                await pool.query(
+                    "DELETE FROM order_history WHERE id = $1",
+                    [req.params.id]
+                );
+                res.status(200).json({
+                    status: "success",
+                    message: "Order history deleted",
+                });
+            }
+        }
+    });
+});
+
+app.get('/api/order_history/:id', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                "SELECT * FROM order_history WHERE id = $1",
+                [req.params.id]
+            );
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Order history not found",
+                });
+            } else {
+                res.status(200).json({
+                    status: "success",
+                    message: "Order history found",
+                    data: rows[0],
+                });
+            }
+        }
+    });
+});
+app.get('/api/order_history/:userId', async (req, res) => {
+    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
+        if (error) {
+            res.status(401).json({error: "Unauthorized"});
+        } else {
+            const {rows} = await pool.query(
+                `SELECT h.*, products.name, products.price, products.description
+                 FROM order_history h
+                          JOIN products ON h.product_id = products.id
+                 WHERE h.user_id = $1`,
+                    [req.params.userId]
+            );
+
+            if (rows.length === 0) {
+                res.status(404).json({
+                    status: "error",
+                    message: "Basket not found",
+                });
+            } else {
+                const formattedRows = rows.map(row => ({
+                    ...row,
+                    created_at: row.created_at.toJSON() // Format created_at as JSON string
+                }));
+
+                res.status(200).json({
+                    status: "success",
+                    message: `${rows.length} basket found`,
+                    data: formattedRows,
+                });
+            }
+        }
+    });
+});
 
 const port = 5000;
 app.listen(port, () => {

@@ -23,34 +23,23 @@ function Orders() {
         setDarkMode(!darkMode);
     };
 
-    useEffect(() => {
-        async function fetchData() {
-            //get method and auth token
-            const response = await fetch('http://localhost:5000/api/basket', {
-                method: 'GET',
-                headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
-            });
-
-            const data = await response.json();
-            if(response.status===200){
-                let info = [];
-                let orders = data.data
-                for (let i = 0; i < orders.length; i++) {
-                    if (orders[i].user_id === localStorage.getItem('userId')) {
-                        info.push(orders[i])
-                    }
-
+   useEffect(() => {
+        fetch('http://localhost:5000/api/order_history', {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                    setBasket(data.data);
                 }
-                setBasket(info);
-            }
-            else{
-                setBasket([])
-            }
-        }
-
-
-        fetchData();
+            )
+            .catch((error) => {
+                    console.error('Error:', error);
+                }
+            );
     }, []);
+    console.log(basket)
+
     const handleDelete = (id) => {
         fetch(`http://localhost:5000/api/basket/${id}`, {
             method: 'DELETE',
