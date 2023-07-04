@@ -65,10 +65,15 @@ function Basket() {
 
 
     const handleCheckout = (id) => {
-        setBasket((prevBasket) => prevBasket.filter((item) => item.id !== id));
-        alert('Order Placed Successfully');
-        // Save the updated basket to localStorage
-        localStorage.setItem('basket', JSON.stringify(basket));
+        fetch(`http://localhost:5000/api/basket/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                alert('Order placed');
+                setOrderPlaced(!orderPlaced);
+            });
     };
     console.log(arr)
     return (

@@ -30,7 +30,14 @@ function Orders() {
         })
             .then((response) => response.json())
             .then((data) => {
-                    setBasket(data.data);
+                   if(
+                       data.message==="Basket not found"
+                   ) {
+                       setBasket([])
+                   }else{
+                       setBasket(data.data);
+                   }
+
                 }
             )
             .catch((error) => {
@@ -41,7 +48,7 @@ function Orders() {
     console.log(basket)
 
     const handleDelete = (id) => {
-        fetch(`http://localhost:5000/api/basket/${id}`, {
+        fetch(`http://localhost:5000/api/order_history/${id}`, {
             method: 'DELETE',
             headers: {'Content-Type': 'application/json', 'Authorization': localStorage.getItem('token')},
         })
@@ -108,13 +115,13 @@ function Orders() {
                                                         </Card.Text>
                                                     </Card.Body>
                                                     <Card.Footer className="text-muted">
-                                                        <Button
+                                                       {/* <Button
                                                             variant="outline-danger"
                                                             onClick={() => handleDelete(item.id)}
                                                             style={{color: darkMode ? 'white' : 'black'}}
                                                         >
                                                             <h3>🗑</h3>
-                                                        </Button>
+                                                        </Button>*/}
                                                     </Card.Footer>
                                                 </Card>
                                             </div>
