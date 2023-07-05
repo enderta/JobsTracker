@@ -97,8 +97,8 @@ function Jumbo() {
                         }}
                     ></div>
                     <Container>
-                        <h1 className="display-4">Jumbotron Heading</h1>
-                        <p className="lead">Jumbotron Subtitle</p>
+                        <h1 className="display-4">Job Tracker</h1>
+                        <p className="lead"></p>
                         <Carousel
                             infiniteLoop
                             showThumbs={false}
