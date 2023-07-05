@@ -51,10 +51,10 @@ function Filters(props) {
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Search" value={search} onChange={handleSearch}/>
 
-            <FormSelect onChange={handleCity}>
+            <FormSelect onChange={handleCity} data-testid={'city-select'}>
                 {props.jobs.map(job => (<option key={job.id} value={job.location}>{job.location}</option>))}
             </FormSelect>
-            <FormSelect onChange={handleJobTitle}>
+            <FormSelect onChange={handleJobTitle} data-testid="job-title-select">
                 {props.jobs.map(job => (<option key={job.id} value={job.title}>{job.title}</option>))}
             </FormSelect>
 

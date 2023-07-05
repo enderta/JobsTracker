@@ -83,6 +83,7 @@ function Cards(props) {
                 console.log(err);
             });
     };
+    console.log(data);
 
     return (<div>
             <motion.div
