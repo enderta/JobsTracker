@@ -26,7 +26,7 @@ describe('AddJobs', () => {
 
         // Submit the form
         fireEvent.click(screen.getByText('Save Changes'));
-
+        console.log('Intercepted requests:', scope.activeMocks());
         // Wait for the API request to complete
         await waitFor(() => expect(scope.isDone()).toBe(true));
 

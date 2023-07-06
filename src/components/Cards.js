@@ -75,6 +75,20 @@ function Cards(props) {
                 console.log(err);
             });
     };
+    const handleDelete = (id) => {
+
+        fetch(`http://localhost:5000/api/jobs/${id}`, {
+            method: 'DELETE',
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                window.location.reload();
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    };
 
 
 
@@ -108,12 +122,7 @@ function Cards(props) {
 
                                 >
                                     <Card.Body style={{height: '200px', width: '400px'}}>
-                                        <Card.Title
-                                            style={{
-
-                                                // Add more responsive styles here
-                                            }}
-                                        >
+                                        <Card.Title>
                                             {job.title}
                                         </Card.Title>
                                         <Card.Subtitle
@@ -150,7 +159,7 @@ function Cards(props) {
                                     </Card.Body>
                                     <br/>
                                     <Card.Footer>
-                                     <Delete  id={job.id} setData={setData} data={data}/>
+                                     <Delete  id={job.id} handleDelete={handleDelete}/>
                                     </Card.Footer>
                                 </Card>
                             </div>))}
