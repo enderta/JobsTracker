@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent,waitFor } from '@testing-library/react';
 import Cards from './Cards';
-import Filters from "./Filters";
+import nock from 'nock';
 
 test('renders Cards component', () => {
     render(<Cards dark={false} />);
@@ -25,6 +25,27 @@ test('updates city select value', () => {
     expect(citySelect).toBeInTheDocument();
 });
 
+describe("delete job", () => {
+    afterEach(() => {
+        nock.cleanAll();
+    });
+    it('deletes job', async () => {
+        // Mock the API request using nock
+        const scope = nock('http://localhost:5000')
+            .delete('/api/jobs/1')
+            .reply(200, { success: true });
+
+        // Render the component
+        render(<Cards show={true} handleClose={() => {}} />);
+
+        // Submit the form
+        fireEvent.click(screen.getByTestId('delete-button'));
+
+        // Wait for the API request to complete
+        await waitFor(() => expect(scope.isDone()).toBe(true));
+
+    });
+});
 
 
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, FormSelect} from 'react-bootstrap';
 import {motion} from 'framer-motion';
 import Filters from './Filters';
+import Delete from "./Delete";
 
 function Cards(props) {
     const [data, setData] = useState([]);
@@ -75,20 +76,6 @@ function Cards(props) {
             });
     };
 
-    const handleDelete = (id) => {
-        const updatedJobs = data.filter((job) => job.id !== id);
-
-        fetch(`http://localhost:5000/api/jobs/${id}`, {
-            method: 'DELETE',
-        })
-            .then((res) => res.json())
-            .then((data) => {
-                setData(updatedJobs);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
 
 
     return (<div>
@@ -163,12 +150,7 @@ function Cards(props) {
                                     </Card.Body>
                                     <br/>
                                     <Card.Footer>
-                                        <Button
-                                            variant={props.dark ? 'outline-danger' : 'outline-danger'}
-                                            onClick={() => handleDelete(job.id)}
-                                        >
-                                            Delete
-                                        </Button>
+                                     <Delete  id={job.id} setData={setData} data={data}/>
                                     </Card.Footer>
                                 </Card>
                             </div>))}
