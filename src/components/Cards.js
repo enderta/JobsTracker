@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, FormSelect} from 'react-bootstrap';
 import {motion} from 'framer-motion';
+import Filters from './Filters';
 
 function Cards(props) {
     const [data, setData] = useState([]);
@@ -20,6 +21,11 @@ function Cards(props) {
     const handleSearch = (e) => {
         setSearch(e.target.value);
     };
+
+    useEffect(() => {
+        fetchJobs();
+    }, [city, jobTitle, search]);
+
 
     useEffect(() => {
         fetchJobs();
@@ -83,7 +89,7 @@ function Cards(props) {
                 console.log(err);
             });
     };
-    console.log(data);
+
 
     return (<div>
             <motion.div
@@ -96,35 +102,23 @@ function Cards(props) {
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>
-                    <div className="row">
-                        <div className="col-md-3">
-                            <Form>
-                                <FormSelect onChange={handleCity} value={city} style={{margin: '5px'}}>
-                                    <option value="">Select City</option>
-                                    {[...new Set(data.map((job) => job.location))].map((location) => (
-                                        <option key={location} value={location}>
-                                            {location}
-                                        </option>))}
-                                </FormSelect>
-                                <FormSelect onChange={handleJobTitle} value={jobTitle} style={{margin: '5px'}}>
-                                    <option value="">Select Job Title</option>
-                                    {[...new Set(data.map((job) => job.title))].map((title) => (
-                                        <option key={title} value={title}>
-                                            {title}
-                                        </option>))}
-                                </FormSelect>
-                            </Form>
-                        </div>
-                    </div>
+                  <Filters data={data}
+                           city={city}
+                            jobTitle={jobTitle}
+                            search={search}
+                           handleCity={handleCity}
+                           handleJobTitle={handleJobTitle}
+                           handleSearch={handleSearch}/>
                 </div>
 
-                <div className="row">
+                <div className="row"  data-testid="cards-component">
                     {data
                         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
                         .map((job) => (<div key={job.id} className="col-md-3 mb-3">
                                 <Card
                                     className={props.dark ? '' : ''}
                                     style={{backgroundColor: props.dark ? '#070f23' : 'white'}}
+
                                 >
                                     <Card.Body style={{height: '200px', width: '400px'}}>
                                         <Card.Title
