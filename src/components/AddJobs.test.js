@@ -30,7 +30,5 @@ describe('AddJobs', () => {
         // Wait for the API request to complete
         await waitFor(() => expect(scope.isDone()).toBe(true));
 
-        // Assert that the API request was made
-        expect(scope.isDone()).toBe(true);
     });
 });
