@@ -6,20 +6,14 @@ import nock from "nock";
 
 describe("delete job", () => {
    it('deletes job', async () => {
-         // Mock the API request using nock
-         const scope = nock('http://localhost:5000')
-              .delete('/api/jobs/1')
-              .reply(200, { success: true });
-
-         // Render the component
 
 
-            render(<Delete  />);
+            render(<Delete id={1}  />);
+            const scope = nock('http://localhost:5000')
+            .delete(`/api/jobs/1`)
+            .reply(200, { success: true });
+            fireEvent.click(screen.getByTestId('delete-button'));
+            await waitFor(() => expect(scope.isDone()).toBe(true));
 
-         // Submit the form
-         fireEvent.click(screen.getByTestId('delete-button'));
-
-         // Wait for the API request to complete
-         await waitFor(() => expect(scope.isDone()).toBe(true));
 });
 });
