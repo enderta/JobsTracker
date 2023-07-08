@@ -1,20 +1,20 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import nock from 'nock';
+import fetchMock from 'fetch-mock';
 import AddJobs from './AddJobs';
 
 describe('AddJobs', () => {
     afterEach(() => {
-        nock.cleanAll();
+        fetchMock.restore(); // Restore fetch to its original implementation after each test
     });
 
     it('submits the form and makes an API request', async () => {
         // Mock the API request using nock
-        const scope = nock('http://localhost:5000')
-            .post('/api/jobs')
-            .reply(200, { success: true });
+const scope = fetchMock.post('http://localhost:5000/api/jobs', {
+            status: 200,
+            body: { success: true },
+        });
 
-        // Render the component
         render(<AddJobs show={true} handleClose={() => {}} />);
 
         // Fill in the form fields
@@ -26,9 +26,9 @@ describe('AddJobs', () => {
 
         // Submit the form
         fireEvent.click(screen.getByText('Save Changes'));
-        console.log('Intercepted requests:', scope.activeMocks());
+
         // Wait for the API request to complete
-        await waitFor(() => expect(scope.isDone()).toBe(true));
+        expect(fetchMock.called('http://localhost:5000/api/jobs', 'POST')).toBe(true);
 
     });
 });
