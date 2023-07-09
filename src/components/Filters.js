@@ -16,7 +16,9 @@ function Filters(props) {
                                 {location}
                             </option>))}
                     </FormSelect>
-                    <FormSelect onChange={props.handleJobTitle} value={props.jobTitle} style={{margin: '5px'}}>
+                    <FormSelect onChange={props.handleJobTitle} value={props.jobTitle} style={{margin: '5px'}}
+                                 data-testid="job-title-select"
+                    >
                         <option value="">Select Job Title</option>
                         {[...new Set(props.data.map((job) => job.title))].map((title) => (
                             <option key={title} value={title}>
