@@ -18,11 +18,11 @@ function AddJobs(props) {
             const response = await fetch("http://localhost:5000/api/jobs", {
                 method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)
             });
-            console.log(response);
-            window.location = "/";
+
         } catch (err) {
             console.error(err.message);
         }
+        window.location.reload();
     }
 
     const handleChanges = (e) => {
@@ -95,7 +95,8 @@ function AddJobs(props) {
                             Close
                         </Button>
                         <div>
-                            <Button variant="primary" onClick={onSubmitForm}>
+                            <Button variant="primary" onClick={onSubmitForm}
+                                    data-testid={"submit-button"}>
                                 Save Changes
                             </Button>
                         </div>
