@@ -22,7 +22,7 @@ function AddJobs(props) {
         } catch (err) {
             console.error(err.message);
         }
-        window.location.reload();
+        //window.location.reload();
     }
 
     const handleChanges = (e) => {
@@ -60,6 +60,7 @@ function AddJobs(props) {
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Title" name="title"
+                                              data-testid="Enter Title"
                                               value={title}
                                               onChange={handleChanges}/>
                             </Form.Group>
@@ -67,6 +68,7 @@ function AddJobs(props) {
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Company</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Company" name="company"
+                                              data-testid="Enter Company"
                                               value={company}
                                               onChange={handleChanges}/>
                             </Form.Group>
@@ -74,18 +76,21 @@ function AddJobs(props) {
                                 <Form.Label>Location</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Location" name="location"
                                               value={location}
+                                              data-testid="Enter Location"
                                               onChange={handleChanges}/>
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Description</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Description" name="description"
                                               value={description}
+                                                data-testid="Enter Description"
                                               onChange={handleChanges}/>
                             </Form.Group>
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Label>Requirements</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Requirements" name="requirements"
                                               value={requirements}
+                                                data-testid="Enter Requirements"
                                               onChange={handleChanges}/>
                             </Form.Group>
                         </Form>
