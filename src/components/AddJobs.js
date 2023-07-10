@@ -18,6 +18,7 @@ function AddJobs(props) {
             const response = await fetch("http://localhost:5000/api/jobs", {
                 method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)
             });
+            alert('Job added successfully');
 
         } catch (err) {
             console.error(err.message);
