@@ -8,9 +8,11 @@ const Delete = (props) => {
             method: 'DELETE',
         })
             .then((res) => res.json())
+
             .then((data) => {
                 console.log(data);
-                window.location.reload();
+                alert('Job deleted successfully');
+              //  window.location.reload();
             })
             .catch((err) => {
                 console.log(err);
@@ -24,6 +26,7 @@ const Delete = (props) => {
             <Button
                 data-testid="delete-button"
                 variant={ 'outline-danger'}
+                data-cy={'delete-button'}
                 onClick={() => handleDelete(props.id)}
             >
                 Delete
