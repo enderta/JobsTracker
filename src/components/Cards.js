@@ -5,7 +5,7 @@ import Filters from './Filters';
 import Delete from "./Delete";
 
 function Cards(props) {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(props.data || []);
     const [city, setCity] = useState('');
     const [search, setSearch] = useState('');
     const [jobTitle, setJobTitle] = useState('');
@@ -27,11 +27,6 @@ function Cards(props) {
         fetchJobs();
     }, [city, jobTitle, search]);
 
-
-    useEffect(() => {
-        fetchJobs();
-    }, [city, jobTitle, search]);
-
     const fetchJobs = () => {
         let apiUrl = 'http://localhost:5000/api/jobs';
 
@@ -46,7 +41,7 @@ function Cards(props) {
         fetch(apiUrl)
             .then((res) => res.json())
             .then((data) => {
-                setData(data.data);
+                data.status==='success' ? setData(data.data) : setData([]);
             })
             .catch((err) => {
                 console.log(err);
@@ -77,6 +72,8 @@ function Cards(props) {
     };
 
 
+
+
     return (<div>
             <motion.div
                 animate={{opacity: 1}}
@@ -98,10 +95,11 @@ function Cards(props) {
                 </div>
 
                 <div className="row"  data-testid="cards-component">
-                    {data
-                        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                        .map((job) => (<div key={job.id} className="col-md-3 mb-3">
+                    {data && data.length > 0
+                        ? data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                            .map((job) => (<div key={job.id} className="col-md-3 mb-3">
                                 <Card
+                                    data-testid="cards-component"
                                     className={props.dark ? '' : ''}
                                     style={{backgroundColor: props.dark ? '#070f23' : 'white'}}
 
@@ -126,7 +124,7 @@ function Cards(props) {
 
                                         <Card.Text>
                                             <h6
-
+                                                cy-data="applied-at"
                                                 onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
 
@@ -147,7 +145,8 @@ function Cards(props) {
                                      <Delete  id={job.id} />
                                     </Card.Footer>
                                 </Card>
-                            </div>))}
+
+                            </div>)):[]}
                 </div>
             </motion.div>
         </div>);
