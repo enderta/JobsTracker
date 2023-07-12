@@ -19,9 +19,17 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
+
+// React 18
 import { mount } from 'cypress/react18'
 
-Cypress.Commands.add('mount', mount)
+
+// eslint-disable-next-line no-undef
+Cypress.Commands.add('mount', (component, options) => {
+    // Wrap any parent components needed
+    // ie: return mount(<MyProvider>{component}</MyProvider>, options)
+    return mount(component, options)
+})
 
 // Example use:
 // cy.mount(<MyComponent />)

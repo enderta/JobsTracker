@@ -17,6 +17,7 @@ describe('add job end to end test', () => {
         );
 
         // Mount the component with the spy as the onClick prop
+        // eslint-disable-next-line no-undef
         cy.mount(<AddJobs show={true}  />);
 
         // Perform actions

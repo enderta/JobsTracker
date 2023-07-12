@@ -16,5 +16,13 @@ module.exports = defineConfig({
     chromeWebSecurity: false,
     experimentalModifyObstructiveThirdPartyCode: true,
     defaultCommandTimeout: 10000
-  }
+  },
+
+  component: {
+    devServer: {
+      framework: "create-react-app",
+      bundler: "webpack",
+    },
+  },
+
 });
