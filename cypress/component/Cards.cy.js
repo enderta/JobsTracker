@@ -31,4 +31,6 @@ describe('cards component test', () => {
         // verify changes, here assuming that applied job text color changes to 'forestgreen'
         cy.get('[cy-data="applied-at"]').first().should('contain.text', 'Applied At: ');
     });
-})
+});
+
+

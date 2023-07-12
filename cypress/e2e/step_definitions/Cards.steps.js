@@ -43,5 +43,43 @@ Then (`the number of jobs in the response should be the same as the number of jo
         })
 })
 
+/*When I make a POST request with the job
+    Then I should see the job in the response
+    And The same job should be in the app*/
+let bdy={}
+When(`I make a POST request with the job`,()=>{
+  cy.request({
+      method: 'POST',
+      url: 'http://localhost:5000/api/jobs',
+      body: {
+          "title": "Software Engineer",
+          "company": "Google",
+          "location": "London",
+          "description": "Software Engineer at Google",
+
+      }
+  })
+      .then(
+          (response) => {
+              expect(response.status).to.eq(200)
+              console.log(response.body.data)
+              bdy=response.body.data
+              console.log(bdy)
+          })
+  })
+
+
+Then(`I should see the job in the response`,()=>{
+    cy.reload()
+
+})
+
+Then(`The same job should be in the app`,()=>{
+    cy.get('.col-md-3 > [data-testid="cards-component"]')
+        .then((elements) => {
+            expect(elements.length).to.eq(body.length+1)
+        })
+})
+
 
 
