@@ -14,3 +14,4 @@ Feature: Testing the Jobs Tracker App
     When I make a POST request with the job
     Then I should see the job in the response
     Then The same job should be in the app
+

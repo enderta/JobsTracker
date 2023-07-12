@@ -1,11 +1,5 @@
 const {Given, When, Then,And } = require("@badeball/cypress-cucumber-preprocessor");
-//require("cypress-xpath");
-/*Feature: Testing the Jobs Tracker App
-  Background:
-    Given I am on the jobs tracker app
-    Scenario: I see the jobs tracker app
-      when I visit the jobs tracker app
-      then I should see "Jobs Tracker"*/
+require("cypress-xpath");
 
 Given('I am on the jobs tracker app', () => {
     cy.visit("http://localhost:3000");
@@ -82,4 +76,7 @@ Then(`The same job should be in the app`,()=>{
 })
 
 
+Given('I am on the homepage', () => {
+    cy.visit('http://localhost:3000')
+})
 

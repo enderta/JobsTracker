@@ -51,7 +51,7 @@ function Jumbo() {
     return (
         <div style={{margin: '10px'}}>
             <div className="d-flex justify-content-between" style={{margin: '10px'}}>
-                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleShow}>
+                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleShow} data-testid={"addJobs"}>
                     +
                 </Button>
 
