@@ -29,6 +29,13 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### `npx cypress open`
+The app has been tested by using Cypress End-to-End testing.
+I have used BBD to write the tests. The tests are located in the cypress/e2e folder. 
+I have written feature files for each of the tests.
+I have created step definitions for each of the feature files to run actual test codes.
+To run the tests, run the command above. This will open the Cypress Test Runner. Click on the test you want to run and it will open a new window. The test will run in the new window.
+
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
