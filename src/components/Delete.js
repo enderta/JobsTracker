@@ -12,7 +12,7 @@ const Delete = (props) => {
             .then((data) => {
                 console.log(data);
                 alert('Job deleted successfully');
-              //  window.location.reload();
+               window.location.reload();
             })
             .catch((err) => {
                 console.log(err);

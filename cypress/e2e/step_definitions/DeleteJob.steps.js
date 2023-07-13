@@ -55,7 +55,7 @@ Then('I should not see the job in the API', () => {
     }).then((response) => {
         expect(response.status).to.eq(200)
       let deletedJob= response.body.data.filter((job) => {
-            return job.title=="Job 1"
+            return job.title==="Job 1"
         })
         expect(deletedJob.length).to.eq(0)
        })

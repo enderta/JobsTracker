@@ -23,7 +23,7 @@ function AddJobs(props) {
         } catch (err) {
             console.error(err.message);
         }
-        //window.location.reload();
+        window.location.reload();
     }
 
     const handleChanges = (e) => {
