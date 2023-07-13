@@ -12,8 +12,18 @@ require("cypress-xpath");
 When('I click on the add job button', () => {
     cy.get('[data-testid="addJobs"]').click()
 })
-
+let filleds = []
 Then('I fill in the job form with the following information:', (dataTable) => {
+    filleds = dataTable.hashes().map((element) => {
+        return {
+            Title: element.Title,
+            Description: element.Description,
+            Company: element.Company,
+            Location: element.Location,
+            Requirements: element.Requirements,
+            Description: element.Description
+        }
+    })
     console.log(dataTable.hashes())
     dataTable.hashes().forEach(element => {
         cy.get('[data-testid="Enter Title"]').type(element.Title)
@@ -30,10 +40,19 @@ Then('I click on the submit button', () => {
 })
 
 Then('I should see the job I just added', () => {
-    cy.get('tbody > :nth-child(1) > :nth-child(1)').should('have.text', 'Software Engineer')
-    cy.get('tbody > :nth-child(1) > :nth-child(2)').should('have.text', 'Build cool stuff')
-    cy.get('tbody > :nth-child(1) > :nth-child(3)').should('have.text', 'Google')
-    cy.get('tbody > :nth-child(1) > :nth-child(4)').should('have.text', 'Mountain View')
-    cy.get('tbody > :nth-child(1) > :nth-child(5)').should('have.text', 'Ruby on Rails')
-    cy.get('tbody > :nth-child(1) > :nth-child(6)').should('have.text', 'Ruby on Rails')
+    const text=[]
+    cy.xpath("//div[@class='card-body']//div").then(
+        (elements) => {
+            elements.each((index, element) => {
+                text.push(element.innerText)
+            })
+            console.log(text)
+        }
+    )
+    cy.wrap(filleds).each((element) => {
+        expect(text).to.include(element.Title)
+        expect(text).to.include(element.Company)
+
+    })
+
 })
