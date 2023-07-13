@@ -1,13 +1,6 @@
 const {Given, When, Then,And } = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
-/* Scenario: I see the jobs tracker app
-    When I click on the add job button
-    Then I fill in the job form with the following information:
-    |Title|Description|Company|Location|Description|Requirements|
-    |Software Engineer|Build cool stuff|Google|Mountain View|Ruby on Rails|Ruby on Rails|
-    And I click on the submit button
-    Then I should see the job I just added*/
 
 When('I click on the add job button', () => {
     cy.get('[data-testid="addJobs"]').click()
@@ -49,6 +42,8 @@ Then('I should see the job I just added', () => {
             console.log(text)
         }
     )
+    console.log(filleds)
+    console.log(text)
     cy.wrap(filleds).each((element) => {
         expect(text).to.include(element.Title)
         expect(text).to.include(element.Company)
