@@ -57,9 +57,9 @@ function Jumbo() {
 
                 <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} id={"darkMode"} onClick={handleDarkMode}>
                     {darkMode ? (
-                        <span style={{color: 'goldenrod'}}>&#x2600; </span>
+                        <span className={"darkModeOn"} style={{color: 'goldenrod'}}>&#x2600; </span>
                     ) : (
-                        <span style={{color: 'darkgray'}}>&#127769;</span>
+                        <span className={"darkModeOff"} style={{color: 'darkgray'}}>&#127769;</span>
                     )}
                 </Button>
             </div>
@@ -118,7 +118,9 @@ function Jumbo() {
                                     <h4>{job.company}</h4>
                                     <p>{job.location}</p>
                                     <p>{job.description}</p>
-                                    <Button variant={darkMode ? 'outline-warning' : 'outline-dark'}
+                                    <Button
+
+                                        variant={darkMode ? 'outline-warning' : 'outline-dark'}
                                             onClick={() => handleJumboClick(job.id)}>View</Button>
                                     <Modal show={isOpen} onHide={handleJumboClose}>
                                         <Modal.Header closeButton>
