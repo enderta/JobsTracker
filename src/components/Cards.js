@@ -75,15 +75,7 @@ function Cards(props) {
 
 
     return (<div>
-            <motion.div
-                animate={{opacity: 1}}
-                exit={{opacity: 0}}
-                layout
-                data-isOpen={isOpen}
-                initial={{borderRadius: 50}}
-                className="parent"
-                onClick={() => setIsOpen(!isOpen)}
-            >
+
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>
                   <Filters data={data}
                            city={city}
@@ -148,7 +140,7 @@ function Cards(props) {
 
                             </div>)):[]}
                 </div>
-            </motion.div>
+
         </div>);
 }
 
