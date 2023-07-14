@@ -128,7 +128,7 @@ function Cards(props) {
                                                 onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
 
-                                                    color: job.is_applied ? 'forestgreen' : 'goldenrod', // Add more responsive styles here
+                                                    color: job.is_applied ? 'forestgreen' : 'goldenrod',
                                                 }}
                                             >
 
@@ -136,7 +136,7 @@ function Cards(props) {
                                                     .toString()
                                                     .split(' ')
                                                     .slice(0, 4)
-                                                    .join(' ') : "Not Applied"}
+                                                    .join(' ') : "Click to Apply"}
                                             </h6>
                                         </Card.Text>
                                     </Card.Body>
