@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Button, Card, Form, FormSelect} from 'react-bootstrap';
-import {motion} from 'framer-motion';
+import {Card} from 'react-bootstrap';
 import Filters from './Filters';
 import Delete from "./Delete";
 
@@ -70,9 +69,6 @@ function Cards(props) {
                 console.log(err);
             });
     };
-
-
-
 
     return (<div>
 
