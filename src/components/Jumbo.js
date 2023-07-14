@@ -55,7 +55,7 @@ function Jumbo() {
                     +
                 </Button>
 
-                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} onClick={handleDarkMode}>
+                <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} id={"darkMode"} onClick={handleDarkMode}>
                     {darkMode ? (
                         <span style={{color: 'goldenrod'}}>&#x2600; </span>
                     ) : (

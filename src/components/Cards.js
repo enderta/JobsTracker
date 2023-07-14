@@ -8,7 +8,7 @@ function Cards(props) {
     const [city, setCity] = useState('');
     const [search, setSearch] = useState('');
     const [jobTitle, setJobTitle] = useState('');
-    const [isOpen, setIsOpen] = useState(false);
+
 
     const handleCity = (e) => {
         setCity(e.target.value);
@@ -88,7 +88,6 @@ function Cards(props) {
                             .map((job) => (<div key={job.id} className="col-md-3 mb-3">
                                 <Card
                                     data-testid="cards-component"
-                                    className={props.dark ? '' : ''}
                                     style={{backgroundColor: props.dark ? '#070f23' : 'white'}}
 
                                 >
