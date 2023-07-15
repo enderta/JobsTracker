@@ -28,370 +28,189 @@ const pool = new Pool({
 });
 
 app.use(bodyParser.json());
+/*
+* CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    email VARCHAR(100) UNIQUE
+);*/
 
+app.post('/api/users/register', [
+    check("username").isLength({min: 3}),
+    check("password").isLength({min: 5}),
+    check("email").isEmail()
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        res.status(422).json({
+            status: "error",
+            message: "Invalid request",
+            data: errors.array()
+        });
+    } else {
+        const {username, password, email} = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const user = await pool.query("INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *", [username, hashedPassword, email]);
+        res.json({
+            status: "success",
+            message: `Inserted user with id ${user.rows[0].id}`,
+            data: user.rows[0]
+        });
+    }
+});
 
-app.post('/api/users/register'
-    , [
-        check('name', 'Name is required').not().isEmpty(),
-        check('email', 'Please include a valid email').isEmail(),
-        check('password', 'Password must be at least 6 characters long').isLength({min: 6})
-    ],
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.json({
-                status: "error",
-                message: errors.array()
-            });
-        }
-        const {name, email, password} = req.body;
+//login
 
-        const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        if (user.rows.length > 0) {
-            return res.json({
-                status: "error",
-                message: "User already exists"
-            });
-        }
-        try {
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
-            // eslint-disable-next-line no-undef
-            const newUser = await pool.query("INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *", [name, email, hashedPassword]);
-            const token = jwt.sign({id: newUser.rows[0].id}, secret);
-            res.json({
-                status: "success",
-                message: `User ${newUser.rows[0].name} registered successfully`,
-                data: newUser.rows[0],
-                token
-            });
-        } catch (e) {
-            console.log(e);
-            res.json({
-                status: "error",
-                message: "An error occurred"
-            });
-        }
-    });
-
-app.post('/api/users/login',
-    [check('email', 'Please include a valid email').isEmail(),
-        check('password', 'Password is required').exists()],
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.json({
-                status: "error",
-                message: errors.array()
-            });
-        }
-        const {email, password} = req.body;
-        const user = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
-        if (user.rows.length === 0) {
-            return res.json({
-                status: "error",
-                message: "User does not exist"
-            });
-        }
-        try {
-            const isMatch = await bcrypt.compare(password, user.rows[0].password);
-            if (!isMatch) {
-                return res.json({
-                    status: "error",
-                    message: "Invalid credentials"
-                });
-            }
+app.post('/api/users/login', async (req, res) => {
+    const {username, password} = req.body;
+    const user = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+    if (user.rows.length === 0) {
+        res.status(401).json({
+            status: "error",
+            message: "Invalid username/password",
+        });
+    } else {
+        const hashedPassword = user.rows[0].password;
+        const isMatch = await bcrypt.compare(password, hashedPassword);
+        if (isMatch) {
             const token = jwt.sign({id: user.rows[0].id}, secret);
             res.json({
                 status: "success",
-                message: `User ${user.rows[0].name} logged in successfully`,
-                userId: user.rows[0].id,
-                token
+                message: "Logged in",
+                token: token
             });
-        } catch (e) {
-            console.log(e);
-            res.json({
+        } else {
+            res.status(401).json({
                 status: "error",
-                message: "An error occurred"
+                message: "Invalid username/password",
             });
         }
-    });
-
-
-app.get('/api/users', async (req, res) => {
-    //search for users
-    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-
-                console.log(decoded.user)
-                const searchTerm = req.query.search;
-                let query = "SELECT * FROM users";
-
-                if (searchTerm) {
-                    const escapedSearchTerm = `%${searchTerm}%`;
-                    query += " WHERE name ILIKE $1 OR email ILIKE $1";
-                    const {rows} = await pool.query(query, [escapedSearchTerm]);
-                    if (rows.length === 0) {
-                        res.status(404).json({
-                            status: "fail",
-                            message: "No users found"
-                        })
-                    } else {
-                        res.status(200).json({
-                            status: "success",
-                            message: `Users matching search term: ${searchTerm}`,
-                            data: rows,
-                        });
-                    }
-                } else {
-                    query += " LIMIT 10 OFFSET $1";
-                    const {rows} = await pool.query(query);
-                    res.status(200).json({
-                        status: "success",
-                        message: "All users",
-                        data: rows,
-                        total: rows.length,
-                    });
-                }
-            }
-        }
-    )
+    }
 });
 
-app.get('/api/users/:id', async (req, res) => {
-    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-        if (error) {
+const verifyToken = (req, res, next) => {
+    jwt.verify(req.headers.authorization, secret, (error, decoded) => {
+        if(error) {
             res.status(401).json({error: "Unauthorized"});
         } else {
-            const {rows} = await pool.query(
-                "SELECT * FROM users WHERE id = $1",
-                [req.params.id]
-            );
-            if (rows.length === 0) {
-                res.status(404).json({
-                    status: "error",
-                    message: "User not found",
-                });
-            } else {
-                res.status(200).json({
-                    status: "success",
-                    message: "User found",
-                    data: rows[0],
-                });
-            }
+            req.decoded = decoded;
+            next();
         }
+    });
+};
+
+app.get('/api/users',verifyToken, async (req, res) => {
+    const users = await pool.query("SELECT * FROM users");
+    res.json({
+        status: "success",
+        message: `Retrieved ${users.rows.length} users`,
+        data: users.rows
     });
 });
 
-app.put('/api/users/:id', async (req, res) => {
-    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-            if (error) {
-                res.status(401).json({error: "Unauthorized"});
-            } else {
-                const {email, password, name, address, phone, is_admin} = req.body;
-                const {rows} = await pool.query(
-                    "SELECT * FROM users WHERE id = $1",
-                    [req.params.id]
-                );
-                if (rows.length === 0) {
-                    res.status(404).json({
-                        status: "error",
-                        message: "User not found",
-                    });
-                }
-                if (email) {
-                    const {rows} = await pool.query(
-                        "SELECT * FROM users WHERE email = $1",
-                        [email]
-                    );
-                    if (rows.length > 0) {
-                        res.status(400).json({
-                            status: "error",
-                            message: "Email already exists",
-                        });
-                        return;
-                    }
-                }
-                if (password) {
-                    const salt = await bcrypt.genSalt(10);
-                    const hashedPassword = await bcrypt.hash(password, salt);
-                    await pool.query(
-                        "UPDATE users SET password = $1 WHERE id = $2",
-                        [hashedPassword, req.params.id]
-                    );
-                }
-                if (name) {
-                    await pool.query(
-                        "UPDATE users SET name = $1 WHERE id = $2",
-                        [name, req.params.id]
-                    );
-                }
-                res.status(200).json({
-                    status: "success",
-                    message: "User updated",
-                });
-
-            }
-        }
-    );
-});
-
-app.delete('/api/users/:id', async (req, res) => {
-    jwt.verify(req.headers.authorization, secret, async (error, decoded) => {
-        if (error) {
-            res.status(401).json({error: "Unauthorized"});
-        } else {
-            const {rows} = await pool.query(
-                "SELECT * FROM users WHERE id = $1",
-                [req.params.id]
-            );
-            if (rows.length === 0) {
-                res.status(404).json({
-                    status: "error",
-                    message: "User not found",
-                });
-            } else {
-                await pool.query(
-                    "DELETE FROM users WHERE id = $1",
-                    [req.params.id]
-                );
-                res.status(200).json({
-                    status: "success",
-                    message: "User deleted",
-                });
-            }
-        }
-    });
-});
-
-
-app.get('/api/jobs', async (req, res) => {
-    jwt.verify(req.headers.authorization,secret,async (error)=>{
-        if(error){
-            res.status(401).json({error:"Unauthorized"})
-        }
-        else{
-            const searchTerm = req.query.search;
-            if(!searchTerm){
-                const jobs = await pool.query("SELECT * FROM jobs");
-                res.json({
-                    status: "success",
-                    message: `Retrieved ${jobs.rows.length} jobs`,
-                    data: jobs.rows
-                });
-            }
-            else{
-
-                const jobs=await pool.query(`select * from jobs where title ilike '%${searchTerm}%' or company ilike '%${searchTerm}%' or location ilike '%${searchTerm}%' or description ilike '%${searchTerm}%' or requirements ilike '%${searchTerm}%'`)
-                res.json({
-                    status: "success",
-                    message: `Retrieved ${jobs.rows.length} jobs`,
-                    data: jobs.rows
-                });
-            }
-        }
-    })
-});
-
-app.get('/api/jobs/:id', async (req, res) => {
+app.delete('/api/users/:id',verifyToken,async (req,res)=>{
     const id = req.params.id;
-    jwt.verify(req.headers.authorization,
-        secret, async (error, decoded) => {
-        if (error) {
-            res.status(401).json({error: "Unauthorized"});
-        }
-        else{
-            const job = await pool.query("SELECT * FROM jobs WHERE id = $1", [id]);
-            if (job.rows.length === 0) {
-                res.status(404).json({
-                    status: "error",
-                    message: "Job not found",
-                });
-            } else {
-                res.status(200).json({
-                    status: "success",
-                    message: "Job found",
-                    data: job.rows[0],
-                });
-            }
-        }
+    const user = await pool.query("DELETE FROM users WHERE id = $1 RETURNING *", [id]);
+    if (user.rows.length === 0) {
+        res.status(404).json({
+            status: "error",
+            message: "User not found",
+        });
+    } else {
+        res.status(200).json({
+            status: "success",
+            message: "User deleted",
+            data: user.rows[0],
+        });
+    }
+});
 
+app.get('/api/jobs', verifyToken, async (req, res) => {
+    const searchTerm = req.query.search;
+    if(!searchTerm){
+        const jobs = await pool.query("SELECT * FROM jobs");
+        res.json({
+            status: "success",
+            message: `Retrieved ${jobs.rows.length} jobs`,
+            data: jobs.rows
+        });
+    } else {
+        const jobs = await pool.query(
+            `SELECT * FROM jobs WHERE title ILIKE $1 
+            OR company ILIKE $1 
+            OR location ILIKE $1 
+            OR description ILIKE $1 
+            OR requirements ILIKE $1`,
+            [`%${searchTerm}%`],   // Preventing query from SQL Injection by passing parameters
+        );
+        res.json({
+            status: "success",
+            message: `Retrieved ${jobs.rows.length} jobs`,
+            data: jobs.rows
+        });
+    }
+});
+
+app.get('/api/jobs/:id',verifyToken, async (req, res) => {
+    const id = req.params.id;
+    const job = await pool.query("SELECT * FROM jobs WHERE id = $1", [id]);
+    if (job.rows.length === 0) {
+        res.status(404).json({
+            status: "error",
+            message: "Job not found",
+        });
+    } else {
+        res.json({
+            status: "success",
+            message: `Retrieved job with id ${id}`,
+            data: job.rows[0]
+        });
+    }
+});
+
+app.post('/api/jobs',verifyToken ,async (req, res) => {
+    const { title, company, location, description, requirements } = req.body;
+    const job = await pool.query("INSERT INTO jobs (title, company, location, description, requirements) VALUES ($1, $2, $3, $4, $5) RETURNING *", [title, company, location, description, requirements]);
+    res.json({
+        status: "success",
+        message: `Inserted job with id ${job.rows[0].id}`,
+        data: job.rows[0]
+});
+
+app.put('/api/jobs/:id',verifyToken ,async (req, res) => {
+    const id = req.params.id;
+    const { title, company, location, description,is_applied, requirements } = req.body;
+    const job = await pool.query("UPDATE jobs SET title = $1, company = $2, location = $3, description = $4, is_applied = $5, requirements = $6 WHERE id = $7 RETURNING *", [title, company, location, description, is_applied, requirements, id]);
+    res.json({
+        status: "success",
+        message: `Updated job with id ${id}`,
+        data: job.rows[0]
     });
-});
-
-app.post('/api/jobs', async (req, res) => {
-   jwt.verify(req.headers.authorization,secret,async (error)=>{
-       if(error){
-              res.status(401).json({error:"Unauthorized"})
-       }
-       else{
-           const { title, company, location, description, requirements } = req.body;
-           const job = await pool.query("INSERT INTO jobs (title, company, location, description, requirements) VALUES ($1, $2, $3, $4, $5) RETURNING *", [title, company, location, description, requirements]);
-           res.json({
-               status: "success",
-               message: `Inserted job with id ${job.rows[0].id}`,
-               data: job.rows[0]
-           });
-       }
-   })
-});
-
-app.put('/api/jobs/:id', async (req, res) => {
- jwt.verify(req.headers.authorization,secret,async (error)=>{
-     if(error){
-            res.status(401).json({error:"Unauthorized"})
-     }
-     else {
-         const id = req.params.id;
-         const { title, company, location, description,is_applied, requirements } = req.body;
-         const job = await pool.query("UPDATE jobs SET title = $1, company = $2, location = $3, description = $4, is_applied = $5, requirements = $6 WHERE id = $7 RETURNING *", [title, company, location, description, is_applied, requirements, id]);
-         res.json({
-             status: "success",
-             message: `Updated job with id ${id}`,
-             data: job.rows[0]
-         });
-     }
  })
 
 });
 //patch only is_applied
-app.patch('/api/jobs/:id', async (req, res) => {
-   jwt.verify(req.headers.authorization,secret,async (error)=>{
-       if(error){
-              res.status(401).json({error:"Unauthorized"})
-       }
-       else{
-           const id = req.params.id;
-           const { is_applied, updated_at } = req.body;
-           const job = await pool.query("UPDATE jobs SET is_applied = $1, updated_at = $2 WHERE id = $3 RETURNING *", [is_applied, updated_at, id]);
-           res.json({
-               status: "success",
-               message: `Updated job with id ${id}`,
-               data: job.rows[0]
-           });
-
-       }
-   })
+app.patch('/api/jobs/:id',verifyToken ,async (req, res) => {
+    const id = req.params.id;
+    const { is_applied, updated_at } = req.body;
+    const job = await pool.query("UPDATE jobs SET is_applied = $1, updated_at = $2 WHERE id = $3 RETURNING *", [is_applied, updated_at, id]);
+    res.json({
+        status: "success",
+        message: `Updated job with id ${id}`,
+        data: job.rows[0]
+    });
 
 });
 
 
-app.delete('/api/jobs/:id', async (req, res) => {
-    jwt.verify(req.headers.authorization,secret,async (error)=>{
-        if(error){
-               res.status(401).json({error:"Unauthorized"})
-        }
-        else{
-            const id = req.params.id;
-            const job = await pool.query("DELETE FROM jobs WHERE id = $1", [id]);
-            res.json({
-                status: "success",
-                message: `Deleted job with id ${id}`,
-            });
-        }
-    })
+app.delete('/api/jobs/:id',verifyToken, async (req, res) => {
+    const id = req.params.id;
+    const job = await pool.query("DELETE FROM jobs WHERE id = $1", [id]);
+    res.json({
+        status: "success",
+        message: `Deleted job with id ${id}`,
+    });
 });
 
 const port = process.env.PORT || 5000;

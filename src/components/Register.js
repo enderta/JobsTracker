@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import { Button, Card, Form } from 'react-bootstrap';
+import {Button, Card, Form, Image} from 'react-bootstrap';
 
 
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [passwordConfirmation, setPasswordConfirmation] = useState('');
     const [userName, setUserName] = useState('');
 
     const handleChanges = (e) => {
@@ -13,9 +12,7 @@ function Register() {
             setEmail(e.target.value);
         } else if (e.target.name === 'password') {
             setPassword(e.target.value);
-        } else if (e.target.name === 'passwordConfirmation') {
-            setPasswordConfirmation(e.target.value);
-        } else if (e.target.name === 'firstName') {
+        } else if (e.target.name === 'userName') {
             setUserName(e.target.value);
         }
     };
@@ -23,7 +20,7 @@ function Register() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password === passwordConfirmation) {
+
             const body = { email, password, userName };
             fetch('http://localhost:5000/api/users/register', {
                 method: 'POST',
@@ -36,19 +33,13 @@ function Register() {
                     window.location = '/login';
                 })
                 .catch((err) => console.error(err.message));
-        } else {
-            alert('Passwords do not match');
         }
-    };
 
     return (
         <div>
-            <div style={{ margin: '10px' }}>
-                <div className="d-flex justify-content-between" style={{ margin: '10px' }}>
-                    <Button variant={'outline-dark'}>
-                         <span style={{ color: 'goldenrod' }}>&#x2600; </span>
-                    </Button>
-                </div>
+            <div>
+                <Image src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
+                       style={{position:"absolute", opacity: '0.3', height: "100%", width: "100%"}}/>
             </div>
             <div className="container">
                 <div className="row">
@@ -97,7 +88,7 @@ function Register() {
                             </Form>
                             <br/>
                             <div className="d-flex justify-content-between">
-                                <Button variant={'outline-warning'} type="submit">
+                                <Button variant={'outline-warning'} type="submit" onSubmit={handleSubmit}>
                                     Register
                                 </Button>
                                 <Button
