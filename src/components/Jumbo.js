@@ -4,10 +4,10 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import {Button, Container, Modal} from 'react-bootstrap';
 import Cards from './Cards';
 import AddJobs from './AddJobs';
-import {motion, useViewportScroll} from 'framer-motion';
+import {motion} from 'framer-motion';
 
 function Jumbo() {
-    const {scrollYProgress} = useViewportScroll();
+
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [darkMode, setDarkMode] = useState(true);
