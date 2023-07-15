@@ -34,8 +34,9 @@ function Login() {
     return (
         <div>
             <div>
-                <Image src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
-                       style={{position:"absolute", opacity: '0.8', height: "100%", width: "100%"}}/>
+                <Image
+                    src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
+                    style={{position: "absolute", opacity: '0.8', height: "100%", width: "100%"}}/>
             </div>
             <div className="container">
                 <div className="row">
@@ -43,11 +44,11 @@ function Login() {
 
                         <Card
                             className={'bg-dark text-light'}
-                            style={{ margin: '10px', padding: '10px', opacity: '0.9' }}
+                            style={{margin: '10px', padding: '10px', opacity: '0.9'}}
                         >
                             <h1
                                 className="text-center"
-                                style={{ color: 'goldenrod'}}
+                                style={{color: 'goldenrod'}}
                             >
                                 Login
                             </h1>

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image} from "react-bootstrap";
 import Login from "./Login";
+
 function HomePage() {
 
     return (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {Button, Card, Form, Image} from 'react-bootstrap';
 
 
