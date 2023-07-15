@@ -17,8 +17,9 @@ function AddJobs(props) {
             const body = {title, company, location, description, requirements, is_applied, posted_at, updated_at};
             const response = await fetch("http://localhost:5000/api/jobs", {
                 method: "POST",
-                headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token'), body: JSON.stringify(body)}
-            });
+                headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
+                body: JSON.stringify(body)});
+            console.log(response);
             alert('Job added successfully');
 
         } catch (err) {
@@ -58,7 +59,7 @@ function AddJobs(props) {
                         </Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Form onSubmit={onSubmitForm}>
+                        <Form >
                             <Form.Group controlId="formBasicEmail">
                                 <Form.Label>Title</Form.Label>
                                 <Form.Control type="text" placeholder="Enter Title" name="title"
