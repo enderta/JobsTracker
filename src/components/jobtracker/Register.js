@@ -46,7 +46,7 @@ function Register() {
 
                         <Card
                             className={'bg-dark text-light'}
-                            style={{ margin: '10px', padding: '10px' }}
+                            style={{ margin: '10px', padding: '10px', opacity: '0.9' }}
                         >
                             <h1
                                 className="text-center"
