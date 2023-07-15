@@ -11,8 +11,8 @@ function Pages() {
         <div>
 
             <Routes>
-                <Route path={"/home"} element={<HomePage/>}/>
-                <Route path="/jobs" element={<Jumbo/>}/>
+                <Route path={"/*"} element={<HomePage/>}/>
+                {localStorage.getItem("token") ? <Route path="/jobs" element={<Jumbo/> }/> : <Route path="/jobs" element={<Login/>}/> }
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>
             </Routes>
