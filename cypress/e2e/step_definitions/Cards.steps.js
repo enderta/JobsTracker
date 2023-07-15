@@ -18,6 +18,10 @@ let body=[]
 When(`I make a GET request`,()=>{
     cy.request('http://localhost:5000/api/jobs',{
         method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+
+        }
     })
         .then(
             (response) => {

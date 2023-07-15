@@ -28,13 +28,7 @@ const pool = new Pool({
 });
 
 app.use(bodyParser.json());
-/*
-* CREATE TABLE users (
-    id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    email VARCHAR(100) UNIQUE
-);*/
+
 
 app.post('/api/users/register', [
     check("username").isLength({min: 3}),
@@ -59,8 +53,6 @@ app.post('/api/users/register', [
         });
     }
 });
-
-//login
 
 app.post('/api/users/login', async (req, res) => {
     const {username, password} = req.body;

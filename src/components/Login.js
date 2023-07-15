@@ -13,21 +13,23 @@ function Login() {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const body = {username, password};
-        fetch('http://localhost:5000/api/users/login', {
-            method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                localStorage.setItem('token', data.token);
-                window.location = '/jobs';
-            })
-            .catch(err => console.error(err.message));
+        const response = await fetch('http://localhost:5000/api/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({username, password}),
+        });
+        const data = await response.json();
+        if (data.status === 'success') {
+            localStorage.setItem('token', data.token);
+            window.location = '/jobs';
+        } else {
+            alert(data.message);
+        }
     }
-
 
     return (
         <div>

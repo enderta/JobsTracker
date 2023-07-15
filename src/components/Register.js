@@ -16,31 +16,6 @@ function Register() {
             setUserName(e.target.value);
         }
     };
-/*
-* app.post('/api/users/register', [
-    check("username").isLength({min: 3}),
-    check("password").isLength({min: 5}),
-    check("email").isEmail()
-], async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        res.status(422).json({
-            status: "error",
-            message: "Invalid request",
-            data: errors.array()
-        });
-    } else {
-        const {username, password, email} = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await pool.query("INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING *", [username, hashedPassword, email]);
-        res.json({
-            status: "success",
-            message: `Inserted user with id ${user.rows[0].id}`,
-            data: user.rows[0]
-        });
-    }
-});
-* */
 
     const handleSubmit = async (e) => {
         e.preventDefault();
