@@ -97,7 +97,7 @@ function Register() {
                                         window.location = '/login';
                                     }}
                                 >
-                                    Already have an account? Login!
+                                    Have an account? Login!
                                 </Button>
                             </div>
                         </Card>

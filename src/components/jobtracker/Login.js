@@ -84,7 +84,7 @@ function Login() {
                                             window.location = '/register';
                                         }}
                                     >
-                                        Not a member? Register!
+                                        No account? Register!
                                     </Button>
                                 </div>
                             </Form>
