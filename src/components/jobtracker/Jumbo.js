@@ -72,7 +72,7 @@ function Jumbo() {
             <AddJobs show={show} handleClose={handleClose}/>
 
             {loading ? (
-                <h1>Loading...</h1>
+                <h1 >Loading...</h1>
             ) : (
                 <motion.div
                     className="jumbotron jumbotron-fluid"
@@ -102,7 +102,7 @@ function Jumbo() {
                         }}
                     ></div>
                     <Container>
-                        <h1 className="display-4">Job Tracker</h1>
+                        <h1 className="display-4 text-center">Jobs</h1>
                         <p className="lead"></p>
                         <Carousel
                             infiniteLoop
@@ -121,8 +121,6 @@ function Jumbo() {
                                 <div key={job.id}>
                                     <h3>{job.title}</h3>
                                     <h4>{job.company}</h4>
-                                    <p>{job.location}</p>
-                                    <p>{job.description}</p>
                                     <Button
 
                                         variant={darkMode ? 'outline-warning' : 'outline-dark'}
