@@ -5,6 +5,7 @@ import {Button, Container, Modal} from 'react-bootstrap';
 import Cards from './Cards';
 import AddJobs from './AddJobs';
 import {motion} from 'framer-motion';
+import LogOut from "./LogOut";
 
 function Jumbo() {
 
@@ -40,7 +41,11 @@ function Jumbo() {
     }, [darkMode]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/jobs')
+        fetch('http://localhost:5000/api/jobs',
+            {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
+            })
             .then((res) => res.json())
             .then((data) => {
                 setJobs(data.data);
@@ -152,6 +157,8 @@ function Jumbo() {
                     <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                 </Container>
             </div>
+            <br/>
+            <LogOut/>
         </div>
     );
 }

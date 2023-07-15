@@ -7,7 +7,7 @@ function HomePage() {
         <>
             <div>
             <Image src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
-                   style={{position:"absolute", opacity: '0.3', height: "100%", width: "100%"}}/>
+                   style={{position:"absolute", opacity: '0.5', height: "100%", width: "100%"}}/>
         </div>
             <Login/>
         </>

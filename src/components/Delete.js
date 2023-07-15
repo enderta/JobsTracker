@@ -6,6 +6,7 @@ const Delete = (props) => {
 
         fetch(`http://localhost:5000/api/jobs/${id}`, {
             method: 'DELETE',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
         })
             .then((res) => res.json())
 

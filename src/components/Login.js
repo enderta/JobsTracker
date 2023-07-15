@@ -2,12 +2,12 @@ import React, {useEffect, useState} from 'react'
 import {Button, Card, Form, Image} from "react-bootstrap";
 
 function Login() {
-    const [email, setEmail] = useState('');
+    const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
 
     const handleChanges = (e) => {
-        if (e.target.name === 'email') {
-            setEmail(e.target.value);
+        if (e.target.name === 'username') {
+            setUserName(e.target.value);
         } else if (e.target.name === 'password') {
             setPassword(e.target.value);
         }
@@ -15,7 +15,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const body = {email, password};
+        const body = {username, password};
         fetch('http://localhost:5000/api/users/login', {
             method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(body)
         })
@@ -23,8 +23,7 @@ function Login() {
             .then(data => {
                 console.log(data);
                 localStorage.setItem('token', data.token);
-                localStorage.setItem('userId', data.userId.toString());
-                window.location = '/home';
+                window.location = '/jobs';
             })
             .catch(err => console.error(err.message));
     }
@@ -34,7 +33,7 @@ function Login() {
         <div>
             <div>
                 <Image src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
-                       style={{position:"absolute", opacity: '0.3', height: "100%", width: "100%"}}/>
+                       style={{position:"absolute", opacity: '0.5', height: "100%", width: "100%"}}/>
             </div>
             <div className="container">
                 <div className="row">
@@ -51,12 +50,12 @@ function Login() {
                         >
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicEmail">
-                                    <Form.Label>Email address</Form.Label>
+                                    <Form.Label>User Name</Form.Label>
                                     <Form.Control
-                                        type="email"
-                                        placeholder="Enter email"
-                                        name="email"
-                                        value={email}
+                                        type="text"
+                                        placeholder="Enter user name"
+                                        name="username"
+                                        value={username}
                                         onChange={handleChanges}
                                     />
                                 </Form.Group>

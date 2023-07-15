@@ -37,7 +37,10 @@ function Cards(props) {
             apiUrl += `?search=${encodeURIComponent(search)}`;
         }
 
-        fetch(apiUrl)
+        fetch(apiUrl,{
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
+        })
             .then((res) => res.json())
             .then((data) => {
                 data.status==='success' ? setData(data.data) : setData([]);
@@ -55,8 +58,8 @@ function Cards(props) {
         } : job);
 
         fetch(`http://localhost:5000/api/jobs/${id}`, {
-            method: 'PATCH', headers: {
-                'Content-Type': 'application/json',
+            method: 'PATCH',
+            headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token')
             }, body: JSON.stringify({
                 is_applied: !isApplied, updated_at: new Date().toISOString(),
             }),
