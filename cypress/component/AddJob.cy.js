@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AddJobs from "../../src/components/AddJobs";
+import AddJobs from "../../src/components/jobtracker/AddJobs";
 
 describe('add job end to end test', () => {
     it('should call the onClick event handler on submit', () => {

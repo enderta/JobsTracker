@@ -1,5 +1,5 @@
 import React from 'react';
-import Cards from "../../src/components/Cards";
+import Cards from "../../src/components/jobtracker/Cards";
 
 describe('cards component test', () => {
     it('should test handleCheck function', () => {

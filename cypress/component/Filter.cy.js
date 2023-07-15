@@ -1,6 +1,6 @@
 ///<reference types="cypress"/>
 import React from 'react';
-import Filters from "../../src/components/Filters";
+import Filters from "../../src/components/jobtracker/Filters";
 
 describe('filter component test', () => {
     it('should render the filter component', () => {

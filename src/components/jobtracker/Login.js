@@ -40,16 +40,18 @@ function Login() {
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
-                        <h1
-                            className="text-center"
-                            style={{margin: '10px', color: 'black'}}
-                        >
-                            Login
-                        </h1>
+
                         <Card
+
                             className={'bg-dark text-light'}
                             style={{margin: '10px', padding: '10px'}}
                         >
+                            <h1
+                                className="text-center"
+                                style={{ color: 'goldenrod'}}
+                            >
+                                Login
+                            </h1>
                             <Form onSubmit={handleSubmit}>
                                 <Form.Group controlId="formBasicEmail">
                                     <Form.Label>User Name</Form.Label>

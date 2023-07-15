@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
-import Delete from './Delete';
+import Delete from '../src/components/jobtracker/Delete';
 
 describe('Delete component', () => {
     afterEach(() => {

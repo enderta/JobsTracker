@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import Filters from './Filters';
+import Filters from '../src/components/jobtracker/Filters';
 
 test('updates search input value', () => {
     render(<Filters jobs={[]} />);

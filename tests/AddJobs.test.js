@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import fetchMock from 'fetch-mock';
-import AddJobs from './AddJobs';
+import AddJobs from '../src/components/jobtracker/AddJobs';
 
 describe('AddJobs', () => {
     afterEach(() => {

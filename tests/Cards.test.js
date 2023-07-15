@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent,waitFor } from '@testing-library/react';
-import Cards from './Cards';
+import Cards from '../src/components/jobtracker/Cards';
 import nock from 'nock';
 
 test('renders Cards component', () => {

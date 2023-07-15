@@ -1,5 +1,5 @@
 import React from 'react';
-import Delete from "../../src/components/Delete";
+import Delete from "../../src/components/jobtracker/Delete";
 
 describe ('delete job end to end test', () => {
     it('should call the onClick event handler on submit', () => {
