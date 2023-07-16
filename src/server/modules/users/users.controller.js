@@ -1,36 +1,20 @@
 const { validationResult } = require("express-validator");
 const userService = require('./users.service');
+const {query} = require("../../config/db.config");
 
 exports.registerUser = [
-    async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(422).json({
-                status: "error",
-                message: "Invalid request",
-                data: errors.array()
-            });
-        }
-
-        try {
-            const data = await userService.registerUser(req.body);
-            res.json(data);
-        } catch (err) {
-            res.status(500).json({error: "Error registering user"});
-        }
+    async (req,res)=>{
+    try{
+        const data = await userService.registerUser(req.body);
+        res.json(data);
+    }catch(err){
+        res.status(500).json({error: "Error registering user"});
+    }
     }
 ];
 
 exports.loginUser = [
     async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(422).json({
-                status: "error",
-                message: "Invalid request",
-                data: errors.array()
-            });
-        }
 
         try {
             const data = await userService.loginUser(req.body);
@@ -41,16 +25,15 @@ exports.loginUser = [
     }
 ];
 
-exports.getUsers = [
-    async (req, res) => {
-        try {
-            const data = await userService.getUsers();
-            res.json(data);
-        } catch (err) {
-            res.status(500).json({error: "Error getting users"});
-        }
+exports.getUsers = async (req, res) => {
+    try {
+        const data = await userService.getUsers();
+        res.json(data);
+    } catch(err) {
+        console.error(err);
+        res.status(500).json({error: "Error getting users"});
     }
-];
+};
 
 exports.getUserById = [
     async (req, res) => {
