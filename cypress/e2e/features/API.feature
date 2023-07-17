@@ -1,13 +1,14 @@
 Feature: API testing
+
   Scenario: Full circle CRUD test
-    Given I login to the API by providing the username "et1" and password "123456"
-   Then I get the token
+    When I register a new user with following details:
+      | username | email         | password |
+      | testuser | tes@gmail.com | 123456   |
+    Then I get the message "User testuser registered successfully"
+    When I login to the API by providing the username "testuser" and password "123456"
+    Then I get the message "User logged in successfully"
     When I get the list of users
-    Then The length of the list is 1 should equal in the message
-    When I create a new user with the following details:
-      | username | password | email |
-      | et2      | 123456   |et2@gmai.com|
-    Then I get the message "User created successfully"
+    Then The length of the list should equal in the message
     When I update the user with the following details:
       | username | password | email |
       | et2      | 123456   | et3@gmail.com|
