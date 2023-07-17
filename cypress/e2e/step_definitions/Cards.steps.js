@@ -16,7 +16,7 @@ Then('I should see {string}', (content) => {
         */
 let body=[]
 When(`I make a GET request`,()=>{
-    cy.request('http://localhost:5000/api/jobs',{
+   /* cy.request('http://localhost:5000/api/jobs',{
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -31,7 +31,15 @@ When(`I make a GET request`,()=>{
                 console.log(body)
             }
         )
-
+*/
+    cy.intercept('GET', 'http://localhost:5000/api/jobs', (req) => {
+        req.reply((res) => {
+            res.send({
+                statusCode: 200,
+                body: body
+            })
+        })
+    })
 })
 
 Then (`the number of jobs in the response should be the same as the number of jobs in the app`,()=>{
@@ -46,7 +54,7 @@ Then (`the number of jobs in the response should be the same as the number of jo
     And The same job should be in the app*/
 let bdy={}
 When(`I make a POST request with the job`,()=>{
-  cy.request({
+  /*cy.request({
       method: 'POST',
       url: 'http://localhost:5000/api/jobs',
       body: {
@@ -63,7 +71,15 @@ When(`I make a POST request with the job`,()=>{
               console.log(response.body.data)
               bdy=response.body.data
               console.log(bdy)
-          })
+          })*/
+    cy.intercept('POST', 'http://localhost:5000/api/jobs', (req) => {
+        req.reply((res) => {
+            res.send({
+                statusCode: 200,
+                body: bdy
+            })
+        })
+    })
   })
 
 
