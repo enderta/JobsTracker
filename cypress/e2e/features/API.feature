@@ -9,6 +9,8 @@ Feature: API testing
     Then I get the message "User logged in successfully"
     When I get the list of users
     Then The length of the list should equal in the message
+    When I get the user by id 1
+    Then I get the message "User retrieved successfully"
     When I update the user with the following details:
       | username | password | email |
       | et2      | 123456   | et3@gmail.com|
