@@ -2,6 +2,8 @@ Feature: API testing
   Scenario: Full circle CRUD test
     Given I login to the API by providing the username "et1" and password "123456"
    Then I get the token
+    When I get the list of users
+    Then The length of the list is 1 should equal in the message
     When I create a new user with the following details:
       | username | password | email |
       | et2      | 123456   |et2@gmai.com|
