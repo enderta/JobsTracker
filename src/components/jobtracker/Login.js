@@ -60,6 +60,7 @@ function Login() {
                                         placeholder="Enter user name"
                                         name="username"
                                         value={username}
+                                        data-testid="username"
                                         onChange={handleChanges}
                                     />
                                 </Form.Group>
@@ -70,12 +71,13 @@ function Login() {
                                         placeholder="Password"
                                         name="password"
                                         value={password}
+                                        data-testid="password"
                                         onChange={handleChanges}
                                     />
                                 </Form.Group>
                                 <br/>
                                 <div className="d-flex justify-content-between">
-                                    <Button variant={'outline-warning'} type="submit">
+                                    <Button variant={'outline-warning'} data-testid={"login"} type="submit">
                                         Login
                                     </Button>
                                     <Button

@@ -1,6 +1,4 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -36,6 +34,10 @@ I have written feature files for each of the tests.
 I have created step definitions for each of the feature files to run actual test codes.
 To run the tests, run the command above. This will open the Cypress Test Runner. Click on the test you want to run and it will open a new window. The test will run in the new window.
 
+### `npm index.js`
+To run server side of the app which is written by using Node.js and Express.js, run the command above. 
+This will run the server side of the app on port 5000.
+The server side of the app is used to connect to the database and to get the data from the database.
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**

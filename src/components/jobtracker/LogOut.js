@@ -8,7 +8,7 @@ const MyComponent = () => {
     }
     return (
         <div style={{margin:"10px"}}>
-            <Button variant={'outline-info'} onClick={handleLogout}>Logout</Button>
+            <Button variant={'outline-info'} onClick={handleLogout} data-tesid={"logout"}>Logout</Button>
         </div>
     );
 };
