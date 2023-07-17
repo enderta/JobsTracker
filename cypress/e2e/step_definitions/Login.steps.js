@@ -22,4 +22,9 @@ Then('I should see title alert {string}', (title) => {
     cy.on('window:alert', (str) => {
         expect(str).to.equal(title);
     })
+
+})
+
+Then('I should see {string} headline',(headline)=>{
+    cy.get('.display-4').should('contain', headline);
 })
