@@ -1,7 +1,11 @@
 Feature: Deleting Job from the UI and the API
-
   Background:
-    Given I am on the jobs tracker app
+    Given I am on the login page
+    When I enter username "et1" into the "username" field
+    Then I enter password "123456" into the "password" field
+    Then I press "Login"
+    Then I should see "Jobs" headline
+
   Scenario: Delete a job from the UI
     Given I have a job
     When I click on the delete button

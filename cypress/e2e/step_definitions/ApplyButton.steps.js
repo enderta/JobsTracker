@@ -8,7 +8,7 @@ require("cypress-xpath");
 * */
 
 When('I click on the apply button', () => {
-    cy.get('h6').click({force: true})
+    cy.get('h6').click({force: true, multiple: true})
     cy.wait(2000)
 })
 
@@ -17,5 +17,5 @@ Then('I should see the applied at today\'s date', () => {
     let currentDate = today.toString().split(' ').slice(0,4).join(' ')
     console.log(currentDate)
     cy.xpath("//*[contains(text(),'"+currentDate+"')]").should('be.visible')
-    cy.get('h6').click({force: true})
+    cy.get('h6').click({force: true, multiple: true})
 })

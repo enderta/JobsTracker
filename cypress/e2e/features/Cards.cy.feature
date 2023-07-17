@@ -1,7 +1,12 @@
 Feature: Testing the Jobs Tracker App
 
   Background:
-    Given I am on the jobs tracker app
+    Given I am on the login page
+    When I enter username "et1" into the "username" field
+    Then I enter password "123456" into the "password" field
+    Then I press "Login"
+    Then I should see "Jobs" headline
+
 
   Scenario: I see the jobs tracker app
     Then I should see "React App"
