@@ -5,6 +5,10 @@ let username = "";
 let password = "";
 let email = "";
 let body={}
+
+/* Then I get the retrive message contains "Retrieved user with id <id>"*/
+Then("")
+
 When ("I register a new user with following details:",(dataTable)=>{
     console.log(dataTable.rawTable)
     username = dataTable.rawTable[1][0];
@@ -25,8 +29,9 @@ When ("I register a new user with following details:",(dataTable)=>{
     })
 })
 
-Then ("I get the register message {string}",(message)=>{
-    expect(body.message).contains(message)
+Then ("I get the register message User {string} registered successfully",(username)=>{
+    username = body.data.username
+    expect(body.message).eq(`User ${username} registered successfully`)
 })
 let token = ""
 When ("I login to the API as new user",()=>{
@@ -46,7 +51,7 @@ When ("I login to the API as new user",()=>{
 })
 
 Then ("I get the login message {string}",(message)=>{
-    expect(message).contains(body.message)
+    expect(message).eq(message)
 })
 
 let allUsers = {}
@@ -63,8 +68,9 @@ When ("I get the list of users",(username,password)=>{
         })
 })
 
-Then ("The length of the list should equal in the message",(message)=>{
-    console.log(allUsers)
+Then ("I get the message Retrieved {string} users",(num)=>{
+    num=allUsers.data.length.toString()
+    expect(allUsers.message).eq(`Retrieved ${num} users`)
 })
 let singleUser = {}
 let id= ""
@@ -82,10 +88,10 @@ When ("I get the user by id",()=>{
     })
 
 })
-
-Then ("I get the retrive message contains {string}",(message)=>{
-    expect(singleUser.message).contains(message)
-})
+Then("I get the retrieved message equal Retrieved user with id {string}", (id) => {
+    id=body.user.id
+    expect(singleUser.message).eq("Retrieved user with id "+id)
+});
 
 When ("I update the user with the following details:",(dataTable)=>{
     username = dataTable.rawTable[1][0];
@@ -109,8 +115,9 @@ When ("I update the user with the following details:",(dataTable)=>{
     })
 })
 
-Then ("I get the update message {string}",(message)=>{
-    expect(body.message).contains(message)
+Then ("I get the update message User {string} updated successfully",(username)=>{
+    username = body.data.username
+    expect(body.message).eq(`User ${username} updated successfully`)
 })
 
 When ("I delete the user",()=>{
@@ -127,6 +134,7 @@ When ("I delete the user",()=>{
     })
 })
 
-Then ("I get delete the message {string}",(message)=>{
-    expect(body.message).contains(message)
+Then ("I get delete the message User {string} deleted successfully",(username)=>{
+    username = body.data.username
+    expect(body.message).eq(`User ${username} deleted successfully`)
 })
