@@ -1,7 +1,7 @@
 Feature: Jobs API testing
 
   Background:
-    Given I login to the system with username "admin" and password "admin"
+    Given I login to the system with username "et1" and password "123456"
     Then I get the token
 
   Scenario: Create a new job
