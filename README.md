@@ -25,7 +25,7 @@ These instructions will help you set up a copy of the project up and running on 
 ### Installation
 
 1. Clone the repository:
-   'git clone <repo_url>'
+   'git clone https://github.com/enderta/JobsTracker.git'
 2. Install NPM packages:
    'npm install'
 3. Set up the PostgreSQL database:
