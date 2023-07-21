@@ -9,7 +9,6 @@ function Cards(props) {
     const [search, setSearch] = useState('');
     const [jobTitle, setJobTitle] = useState('');
 
-
     const handleCity = (e) => {
         setCity(e.target.value);
     };
