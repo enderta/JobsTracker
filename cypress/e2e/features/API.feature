@@ -3,7 +3,7 @@ Feature: API testing
   Scenario: Full circle CRUD test
     When I register a new user with following details:
       | username | email         | password |
-      | testuser1 | test@gmail.com | 123456   |
+      | testuser11 | test11@gmail1.com | 123456   |
     Then I get the register message User "username" registered successfully
     When I login to the API as new user
     Then I get the login message "User logged in successfully"

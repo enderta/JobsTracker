@@ -1,15 +1,13 @@
-const { validationResult } = require("express-validator");
 const userService = require('./users.service');
-const {query} = require("../../config/db.config");
 
 exports.registerUser = [
-    async (req,res)=>{
-    try{
-        const data = await userService.registerUser(req.body);
-        res.json(data);
-    }catch(err){
-        res.status(500).json({error: "Error registering user"});
-    }
+    async (req, res) => {
+        try {
+            const data = await userService.registerUser(req.body);
+            res.json(data);
+        } catch (err) {
+            res.status(500).json({error: "Error registering user"});
+        }
     }
 ];
 
@@ -29,7 +27,7 @@ exports.getUsers = async (req, res) => {
     try {
         const data = await userService.getUsers();
         res.json(data);
-    } catch(err) {
+    } catch (err) {
         console.error(err);
         res.status(500).json({error: "Error getting users"});
     }
