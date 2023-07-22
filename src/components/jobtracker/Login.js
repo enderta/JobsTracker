@@ -25,6 +25,7 @@ function Login() {
         const data = await response.json();
         if (data.status === 'success') {
             localStorage.setItem('token', data.token);
+            localStorage.setItem('user_id', data.user.id);
             window.location = '/jobs';
         } else {
             alert(data.message);

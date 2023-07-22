@@ -1,16 +1,41 @@
 const pool = require("../../config/db.config");
 
-const getJobs = async (user_id) => {
+const getJobs = async (req, res) => {
     try {
-        const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1", [
-            user_id,
-        ]);
-        return jobs.rows;
+        const searchTerm = req.query?.search || '';
+        const user_id = req.params?.user_id;
+
+        if (!searchTerm && user_id) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1", [
+                user_id,
+            ]);
+            res.json({
+                status: "success",
+                message: `Retrieved ${jobs.rows.length} jobs`,
+                data: jobs.rows
+            });
+        } else if (searchTerm && user_id) {
+            const jobs = await pool.query(
+                `SELECT *
+                 FROM jobs
+                 WHERE title ILIKE $1
+                    OR company ILIKE $1
+                    OR location ILIKE $1
+                    OR description ILIKE $1
+                    OR requirements ILIKE $1
+                   AND user_id = $2`,
+                [`%${searchTerm}%`, user_id],
+            );
+            res.json({
+                status: "success",
+                message: `Retrieved ${jobs.rows.length} jobs`,
+                data: jobs.rows
+            });
+        }
     } catch (err) {
-        throw err;
+        res.status(500).json({message: err.message});
     }
 };
-
 const getJob = async (user_id, id) => {
     try {
         const job = await pool.query(

@@ -26,14 +26,15 @@ function Cards(props) {
     }, [city, jobTitle, search]);
 
     const fetchJobs = () => {
-        let apiUrl = 'http://localhost:5000/api/jobs';
-
+        let apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}`;
         if (city) {
-            apiUrl += `?search=${encodeURIComponent(city)}`;
-        } else if (jobTitle) {
-            apiUrl += `?search=${encodeURIComponent(jobTitle)}`;
-        } else if (search) {
-            apiUrl += `?search=${encodeURIComponent(search)}`;
+            apiUrl += `?city=${city}`;
+        }
+        if (jobTitle) {
+            apiUrl += `?title=${jobTitle}`;
+        }
+        if (search) {
+            apiUrl += `?search=${search}`;
         }
 
         fetch(apiUrl,{
