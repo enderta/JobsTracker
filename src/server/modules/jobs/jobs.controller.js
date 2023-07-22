@@ -3,20 +3,21 @@ const jobService = require("./jobs.service");
 
 exports.getJobs = async (req, res) => {
     try {
-        const searchTerm = req.query.search;
-        const jobs = await jobService.getJobs(searchTerm);
-        res.status(200).json(jobs);
-    } catch (error) {
-        res.status(500).json({message: error.message});
+        const {user_id} = req.params;
+        const jobs = await jobService.getJobs(user_id);
+        res.json(jobs);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
 
 exports.getJob = async (req, res) => {
     try {
-        const job = await jobService.getJob(req.params.id);
-        res.status(200).json(job);
-    } catch (error) {
-        res.status(500).json({message: error.message});
+        const {user_id, id} = req.params;
+        const job = await jobService.getJob(user_id, id);
+        res.json(job);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
 
@@ -26,36 +27,31 @@ exports.createJob = async (req, res) => {
         return res.status(400).json({message: errors.array()});
     }
     try {
-        const job = await jobService.createJob(req.body);
-        res.status(201).json(job);
-    } catch (error) {
-        res.status(500).json({message: error.message});
+        const {title, company, location, description, requirements, user_id} = req.body;
+        const newJob = await jobService.createJob(title, company, location, description, requirements, user_id);
+        res.status(201).json(newJob);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
 
 exports.updateJob = async (req, res) => {
     try {
-        const job = await jobService.updateJob(req.params.id, req.body);
-        res.status(200).json(job);
-    } catch (error) {
-        res.status(500).json({message: error.message});
-    }
-};
-
-exports.patchJob = async (req, res) => {
-    try {
-        const job = await jobService.patchJob(req.params.id, req.body);
-        res.status(200).json(job);
-    } catch (error) {
-        res.status(500).json({message: error.message});
+        const {user_id, id} = req.params;
+        const {title, company, location, description, requirements} = req.body;
+        const updateJob = await jobService.updateJob(title, company, location, description, requirements, user_id, id);
+        res.json(updateJob);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
 
 exports.deleteJob = async (req, res) => {
     try {
-        const job = await jobService.deleteJob(req.params.id);
-        res.status(200).json(job);
-    } catch (error) {
-        res.status(500).json({message: error.message});
+        const {user_id, id} = req.params;
+        const deleteJob = await jobService.deleteJob(user_id, id);
+        res.json(deleteJob);
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
