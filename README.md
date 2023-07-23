@@ -30,6 +30,25 @@ These instructions will help you set up a copy of the project up and running on 
    'npm install'
 3. Set up the PostgreSQL database:
     - Create a PostgreSQL database.
+    - CREATE TABLE users (
+      id SERIAL PRIMARY KEY,
+      username VARCHAR(50) NOT NULL UNIQUE,
+      password VARCHAR(255) NOT NULL,
+      email VARCHAR(100) UNIQUE
+      );
+    - CREATE TABLE Jobs (
+      id SERIAL PRIMARY KEY,
+      title VARCHAR(100),
+      company VARCHAR(100),
+      location VARCHAR(100),
+      description TEXT,
+      requirements TEXT,
+      is_applied BOOLEAN DEFAULT FALSE,
+      posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      user_id int REFERENCES users(id)
+      );
+
 4. Create a `.env` file in your root directory and fill it with necessary environment variables.
 
 ## Running Locally
