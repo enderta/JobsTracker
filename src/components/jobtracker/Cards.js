@@ -106,7 +106,7 @@ function Cards(props) {
                                                 e.target.title = job.description;
                                             }}
                                         >
-                                            {job.description.length > 10 ? job.description.slice(0, 20) + '...' : job.description}
+                                            {job.description.length > 10 ? job.description.slice(0, 10) + '...' : job.description}
                                         </Card.Text>
 
 
