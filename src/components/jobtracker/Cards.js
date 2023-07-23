@@ -28,13 +28,10 @@ function Cards(props) {
     const fetchJobs = () => {
         let apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}`;
         if (city) {
-            apiUrl += `?city=${city}`;
+            apiUrl += `?search=${city}`;
         }
         if (jobTitle) {
-            apiUrl += `?title=${jobTitle}`;
-        }
-        if (search) {
-            apiUrl += `?search=${search}`;
+            apiUrl += `?search=${jobTitle}`;
         }
 
         fetch(apiUrl,{
