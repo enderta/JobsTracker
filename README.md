@@ -30,7 +30,8 @@ These instructions will help you set up a copy of the project up and running on 
 2. Install NPM packages:
    'npm install'
 3. Set up the PostgreSQL database:
-    - Create a PostgreSQL database.
+
+   - create database jobs;
     - CREATE TABLE users (
       id SERIAL PRIMARY KEY,
       username VARCHAR(50) NOT NULL UNIQUE,
