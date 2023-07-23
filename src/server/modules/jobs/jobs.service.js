@@ -36,39 +36,96 @@ const getJobs = async (req, res) => {
         res.status(500).json({message: err.message});
     }
 };
-const getJob = async (user_id, id) => {
+const getJob = async (req, res) => {
     try {
+        const user_id = req.params?.user_id;
+        const id = req.params?.id;
         const job = await pool.query(
             "SELECT * FROM jobs WHERE user_id = $1 AND id = $2",
             [user_id, id]
         );
-        return job.rows[0];
+        if (job.rows.length === 0) {
+            res.status(404).json({
+                status: "error",
+                message: "Job not found",
+            });
+        } else {
+            res.json({
+                status: "success",
+                message: `Retrieved job with id ${id}`,
+                data: job.rows[0]
+            });
+        }
     } catch (err) {
-        throw err;
+        res.status(500).json({message: err.message});
     }
 };
 
-const createJob = async (title, company, location, description, requirements, user_id) => {
+const createJob = async (req, res) => {
     try {
-        const newJob = await pool.query(
+        const user_id = req.params?.user_id;
+        const {title, company, location, description, requirements} = req.body;
+        const job = await pool.query(
             "INSERT INTO jobs (title, company, location, description, requirements, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
             [title, company, location, description, requirements, user_id]
         );
-        return newJob.rows[0];
+        res.status(201).json({
+            status: "success",
+            message: `Inserted job with id ${job.rows[0].id}`,
+            data: job.rows[0]
+        });
     } catch (err) {
-        throw err;
+        res.status(500).json({message: err.message});
     }
 };
 
-const updateJob = async (title, company, location, description, requirements, user_id, id) => {
+const updateJob = async (res, req) => {
     try {
-        const updateJob = await pool.query(
+        const user_id = req.params?.user_id;
+        const id = req.params?.id;
+        const {title, company, location, description, requirements} = req.body;
+        const job = await pool.query(
             "UPDATE jobs SET title = $1, company = $2, location = $3, description = $4, requirements = $5 WHERE user_id = $6 AND id = $7 RETURNING *",
             [title, company, location, description, requirements, user_id, id]
         );
-        return updateJob.rows[0];
+        if (job.rows.length === 0) {
+            res.status(404).json({
+                status: "error",
+                message: "Job not found",
+            });
+        } else {
+            res.json({
+                status: "success",
+                message: `Updated job with id ${id}`,
+                data: job.rows[0]
+            });
+        }
     } catch (err) {
-        throw err;
+        res.status(500).json({message: err.message});
+    }
+};
+
+//patch only is_applied
+const updateJobStatus = async (res, req) => {
+    try {
+        const user_id = req.params?.user_id;
+        const id = req.params?.id;
+        const {is_applied, updated_at} = req.body;
+        const job = await pool.query("UPDATE jobs SET is_applied = $1, updated_at = $2 WHERE user_id = $3 AND id = $4 RETURNING *", [is_applied, updated_at, user_id, id]);
+        if (job.rows.length === 0) {
+            res.status(404).json({
+                status: "error",
+                message: "Job not found",
+            });
+        } else {
+            res.json({
+                status: "success",
+                message: `Updated job with id ${id}`,
+                data: job.rows[0]
+            });
+        }
+    } catch (err) {
+        res.status(500).json({message: err.message});
     }
 };
 
@@ -87,4 +144,5 @@ module.exports = {
     createJob,
     updateJob,
     deleteJob,
+    updateJobStatus
 };

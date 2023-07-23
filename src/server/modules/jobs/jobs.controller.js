@@ -44,6 +44,17 @@ exports.updateJob = async (req, res) => {
     }
 };
 
+exports.updateJobStatus = async (req, res) => {
+    try {
+        const {user_id, id} = req.params;
+        const {status} = req.body;
+        const updateJobStatus = await jobService.updateJobStatus(status, user_id, id);
+        res.json(updateJobStatus);
+    } catch (err) {
+        res.status(500).json({message: err.message});
+    }
+};
+
 exports.deleteJob = async (req, res) => {
     try {
         const {user_id, id} = req.params;
