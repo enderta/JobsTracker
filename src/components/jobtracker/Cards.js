@@ -57,7 +57,7 @@ function Cards(props) {
             updated_at: new Date().toISOString()
         } : job);
 
-        fetch(`http://localhost:5000/api/jobs/${id}`, {
+        fetch(`http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}/${id}`, {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token')
             }, body: JSON.stringify({
