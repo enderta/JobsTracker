@@ -105,7 +105,7 @@ function Cards(props) {
                                         </Card.Subtitle>
                                         <Card.Text
                                         >
-                                            {job.description}
+                                            {job.description.length > 10 ? job.description.slice(0, 10) + '...' : job.description}
                                         </Card.Text>
                                         <Card.Text
                                         >
