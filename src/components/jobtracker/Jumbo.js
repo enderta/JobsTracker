@@ -134,9 +134,10 @@ function Jumbo() {
                                             </Modal.Title>
                                         </Modal.Header>
                                         <Modal.Body>
-                                            <h4 style={{color: 'darkgreen'}}>Company:{' '} {jumboData.company}</h4>
+                                            <h5 style={{color: 'darkgreen'}}>Company:{' '} {jumboData.company}</h5>
                                             <h5 style={{color: 'darkgreen'}}>Location:{' '} {jumboData.location}</h5>
                                             <h5 style={{color: 'darkgreen'}}>Description:{' '}{jumboData.description}</h5>
+                                            <h5 style={{color: 'darkgreen'}}>Requirements:{' '}{jumboData.requirements}</h5>
                                         </Modal.Body>
                                         <Modal.Footer>
                                             <Button variant="secondary" onClick={handleJumboClose}>

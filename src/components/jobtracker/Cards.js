@@ -106,8 +106,19 @@ function Cards(props) {
                                                 e.target.title = job.description;
                                             }}
                                         >
-                                            {`${job.description.split(' ').slice(0, 4).join(' ')} ...`}
+                                            {job.description.split(' ').length > 3 ? `${job.description.split(' ').slice(0, 4).join(' ')} ...` : job.description}
 
+                                        </Card.Text>
+                                        <Card.Text>
+                                            {job.location}
+                                        </Card.Text>
+                                        <Card.Text
+                                            onMouseOver={(e) => {
+                                                e.target.style.cursor = 'pointer';
+                                                e.target.title = job.requirements;
+                                            }}
+                                        >
+                                            {job.requirements.split(' ').length > 3 ? `${job.requirements.split(' ').slice(0, 4).join(' ')} ...` : job.requirements}
                                         </Card.Text>
 
 
