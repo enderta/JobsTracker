@@ -1,6 +1,7 @@
 
 # Job Tracker
 # Description
+
 Job Tracker is a web application aiming to help job-seekers efficiently track their applications.
 It provides an intuitive user interface for users to log jobs they've applied for and track their progress.
 
@@ -70,6 +71,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 ### `npx cypress open`
+
 The app has been tested by using Cypress End-to-End testing.
 I have used BBD to write the tests. The tests are located in the cypress/e2e folder. 
 I have written feature files for each of the tests.
@@ -77,6 +79,7 @@ I have created step definitions for each of the feature files to run actual test
 To run the tests, run the command above. This will open the Cypress Test Runner. Click on the test you want to run and it will open a new window. The test will run in the new window.
 
 ### `node index.js`
+
 To run server side of the app which is written by using Node.js and Express.js, run the command above. 
 This will run the server side of the app on port 5000.
 The server side of the app is used to connect to the database and to get the data from the database.
