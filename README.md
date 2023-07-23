@@ -52,6 +52,7 @@ These instructions will help you set up a copy of the project up and running on 
 4. Create a `.env` file in your root directory and fill it with necessary environment variables.
 
 ## Running Locally
+
 After installing all prerequisites and setting up, start the application with npm start.
 Navigate to http://localhost:3000 in your web browser to view the application.
 
