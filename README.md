@@ -55,6 +55,7 @@ These instructions will help you set up a copy of the project up and running on 
 
 After installing all prerequisites and setting up, start the application with npm start.
 Navigate to http://localhost:3000 in your web browser to view the application.
+The API server will be running on http://localhost:5000.
 
 ## Available Scripts
 
