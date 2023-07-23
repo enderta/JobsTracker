@@ -104,6 +104,7 @@ function Cards(props) {
                                             {job.company}
                                         </Card.Subtitle>
                                         <Card.Text
+                                            onMouseOver={(e) => e.target.style.cursor = 'pointer'}
                                         >
                                             {job.description.length > 10 ? job.description.slice(0, 10) + '...' : job.description}
                                         </Card.Text>
