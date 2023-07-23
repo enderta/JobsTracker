@@ -103,7 +103,7 @@ function Jumbo() {
                     ></div>
                     <Container>
                         <h1 className="display-4 text-center">
-                            {jobs.length === 1 ? 'Job' : 'Jobs'}
+                            {jobs.length <= 1 ? 'Job' : 'Jobs'}
                         </h1>
                         <p className="lead"></p>
                         <Carousel
