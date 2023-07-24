@@ -127,7 +127,6 @@ function Cards(props) {
                                                 cy-data="applied-at"
                                                 onClick={() => handleCheck(job.id, job.is_applied)}
                                                 style={{
-
                                                     color: job.is_applied ? 'forestgreen' : 'goldenrod',
                                                 }}
                                             >
