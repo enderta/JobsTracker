@@ -5,34 +5,19 @@ import Delete from "./Delete";
 
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
-    const [city, setCity] = useState('');
     const [search, setSearch] = useState('');
-    const [jobTitle, setJobTitle] = useState('');
-
-    const handleCity = (e) => {
-        setCity(e.target.value);
-    };
-
-    const handleJobTitle = (e) => {
-        setJobTitle(e.target.value);
-    };
 
     const handleSearch = (e) => {
+        e.preventDefault();
         setSearch(e.target.value);
     };
 
     useEffect(() => {
         fetchJobs();
-    }, [city, jobTitle, search]);
+    }, [search]);
 
     const fetchJobs = () => {
-        let apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}`;
-        if (city) {
-            apiUrl += `?search=${city}`;
-        }
-        if (jobTitle) {
-            apiUrl += `?search=${jobTitle}`;
-        }
+        let apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}?search=${search}`;
 
         fetch(apiUrl,{
             method: 'GET',
@@ -74,11 +59,8 @@ function Cards(props) {
 
                 <div style={{marginTop: '10px', marginBottom: '10px'}}>
                   <Filters data={data}
-                           city={city}
-                            jobTitle={jobTitle}
+                           value={search}
                             search={search}
-                           handleCity={handleCity}
-                           handleJobTitle={handleJobTitle}
                            handleSearch={handleSearch}/>
                 </div>
 

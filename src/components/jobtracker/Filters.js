@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, FormSelect} from "react-bootstrap";
+import {Form} from "react-bootstrap";
 
 function Filters(props) {
 
@@ -7,24 +7,11 @@ function Filters(props) {
         <div className="row">
             <div className="col-md-3">
                 <Form>
-                    <FormSelect
-                        data-testid="city-select"
-                        onChange={props.handleCity} value={props.city} style={{margin: '5px'}}>
-                        <option   value="">Select City</option>
-                        {[...new Set(props.data.map((job) => job.location))].map((location) => (
-                            <option key={location} value={location}>
-                                {location}
-                            </option>))}
-                    </FormSelect>
-                    <FormSelect onChange={props.handleJobTitle} value={props.jobTitle} style={{margin: '5px'}}
-                                 data-testid="job-title-select"
-                    >
-                        <option value="">Select Job Title</option>
-                        {[...new Set(props.data.map((job) => job.title))].map((title) => (
-                            <option key={title} value={title}>
-                                {title}
-                            </option>))}
-                    </FormSelect>
+
+                    <Form.Group controlId="formBasicEmail">
+                        <Form.Control type="text" placeholder="Search" value={props.value}
+                                      onChange={props.handleSearch}/>
+                    </Form.Group>
                 </Form>
             </div>
         </div>
