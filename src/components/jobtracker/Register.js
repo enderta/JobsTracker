@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Image} from 'react-bootstrap';
 
 
@@ -6,6 +6,16 @@ function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [username, setUserName] = useState('');
+    const [darkMode, setDarkMode] = useState(true);
+    useEffect(() => {
+        if (darkMode) {
+            document.body.classList.add('bg-dark', 'text-white');
+        } else {
+            document.body.classList.remove('bg-dark', 'text-white');
+        }
+    }, [darkMode]);
+
+
 
     const handleChanges = (e) => {
         if (e.target.name === 'email') {
@@ -39,15 +49,15 @@ function Register() {
             <div>
                 <Image
                     src="https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2016/10/camera-photo-lens-stock-images.jpg"
-                       style={{position:"absolute", opacity: '0.8', height: "100%", width: "100%"}}/>
+                    style={{position: "absolute", opacity: '0.5', height: "100%", width: "100%"}}/>
             </div>
-            <div className="container">
+            <div className="bg-dark container">
                 <div className="row">
                     <div className="col-md-6 offset-md-3">
 
                         <Card
                             className={'bg-dark text-light'}
-                            style={{ margin: '10px', padding: '10px', opacity: '0.9' }}
+                            style={{margin: '10px', padding: '10px', opacity: '0.9'}}
                         >
                             <h1
                                 className="text-center"
