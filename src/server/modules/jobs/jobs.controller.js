@@ -1,5 +1,6 @@
 const {validationResult} = require("express-validator");
 const jobService = require("./jobs.service");
+const pool = require("../../config/db.config");
 
 exports.getJobs = async (req, res) => {
     try {
@@ -20,18 +21,16 @@ exports.getJob = async (req, res) => {
 };
 
 exports.createJob = async (req, res) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(400).json({message: errors.array()});
-    }
     try {
-        const {title, company, location, description, requirements, user_id} = req.body;
+        const {title, company, location, description, requirements} = req.body;
+        const {user_id} = req.params;
         const newJob = await jobService.createJob(title, company, location, description, requirements, user_id);
-        res.status(201).json(newJob);
+        res.json(newJob);
     } catch (err) {
         res.status(500).json({message: err.message});
     }
 };
+
 
 exports.updateJob = async (req, res) => {
     try {

@@ -1,5 +1,6 @@
 const pool = require("../../config/db.config");
 
+
 const getJobs = async (req, res) => {
     try {
         const searchTerm = req.query?.search || '';
@@ -61,21 +62,14 @@ const getJob = async (req, res) => {
     }
 };
 
-const createJob = async (req, res) => {
-    try {
-        const user_id = req.params?.user_id;
-        const {title, company, location, description, requirements} = req.body;
-        const job = await pool.query(
-            "INSERT INTO jobs (title, company, location, description, requirements, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-            [title, company, location, description, requirements, user_id]
-        );
-        res.status(201).json({
-            status: "success",
-            message: `Inserted job with id ${job.rows[0].id}`,
-            data: job.rows[0]
-        });
-    } catch (err) {
-        res.status(500).json({message: err.message});
+const createJob = async (jobData, userId) => {
+    // insert into DB and return job
+    const job = await pool.query("INSERT INTO jobs (title, company, location, description, requirements, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+        [jobData.title, jobData.company, jobData.location, jobData.description, jobData.requirements, userId]);
+    return {
+        status: "success",
+        message: `Inserted job with id ${job.rows[0].id}`,
+        data: job.rows[0]
     }
 };
 

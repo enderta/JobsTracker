@@ -10,12 +10,24 @@ function AddJobs(props) {
     const [is_applied, setIs_applied] = useState(false);
     const [posted_at, setPosted_at] = useState("");
     const [updated_at, setUpdated_at] = useState("");
+    const [user_id, setUser_id] = useState(localStorage.getItem('user_id'));
 
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const body = {title, company, location, description, requirements, is_applied, posted_at, updated_at};
-            const response = await fetch("http://localhost:5000/api/jobs", {
+
+            const body = {
+                title,
+                company,
+                location,
+                description,
+                requirements,
+                is_applied,
+                posted_at,
+                updated_at,
+                user_id
+            };
+            const response = await fetch("http://localhost:5000/api/jobs/createJob/" + user_id, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
                 body: JSON.stringify(body)});
@@ -45,6 +57,8 @@ function AddJobs(props) {
             setPosted_at(e.target.value)
         } else if (e.target.name === "updated_at") {
             setUpdated_at(e.target.value)
+        } else if (e.target.name === "user_id") {
+            setUser_id(e.target.value)
         }
     }
 
