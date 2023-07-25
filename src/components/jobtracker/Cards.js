@@ -3,7 +3,7 @@ import {Card} from 'react-bootstrap';
 import Filters from './Filters';
 import Delete from "./Delete";
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'https://jobapi-5ktz.onrender.com/api';
 
 function Cards(props) {
     const [data, setData] = useState(props.data || []);

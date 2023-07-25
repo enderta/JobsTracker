@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 
 const Delete = (props) => {
     const handleDelete = (id) => {
-        const apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}/${id}`;
+        const apiUrl = `https://jobapi-5ktz.onrender.com/api/jobs/${localStorage.getItem('user_id')}/${id}`;
         const headers = {
             'Content-Type': 'application/json',
             Authorization: localStorage.getItem('token')
