@@ -1,23 +1,27 @@
 import React from 'react'
 import {Form} from "react-bootstrap";
 
-function Filters(props) {
+const FiltersForm = ({value, handleSearch}) => (
+    <Form>
+        <Form.Group controlId="formBasicEmail">
+            <Form.Control
+                type="text"
+                placeholder="Search"
+                value={value}
+                onChange={handleSearch}
+            />
+        </Form.Group>
+    </Form>
+);
 
-    return (<div>
+const Filters = ({value, handleSearch}) => (
+    <div>
         <div className="row">
             <div className="col-md-3">
-                <Form>
-
-                    <Form.Group controlId="formBasicEmail">
-                        <Form.Control type="text" placeholder="Search" value={props.value}
-                                      onChange={props.handleSearch}/>
-                    </Form.Group>
-                </Form>
+                <FiltersForm value={value} handleSearch={handleSearch}/>
             </div>
         </div>
-
-
-    </div>)
-}
+    </div>
+);
 
 export default Filters
