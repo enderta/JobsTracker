@@ -1,6 +1,16 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
+const BASE_URL = 'http://localhost:5000/api/jobs/createJob/';
+
+async function addJob(job) {
+    return await fetch(BASE_URL + job.user_id, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
+        body: JSON.stringify(job),
+    });
+}
+
 function AddJobs(props) {
     const [job, setJob] = useState({
         title: '',
@@ -17,12 +27,7 @@ function AddJobs(props) {
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:5000/api/jobs/createJob/' + job.user_id, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', Authorization: localStorage.getItem('token') },
-                body: JSON.stringify(job),
-            });
-            console.log(response);
+            await addJob(job);
             alert('Job added successfully');
         } catch (err) {
             console.error(err.message);
