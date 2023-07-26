@@ -29,7 +29,7 @@ const Jumbo = () => {
     }, []);
 
     const fetchJobs = async () => {
-        const response = await fetch(`https://jobapi-5ktz.onrender.com/api/jobs/${localStorage.getItem('user_id')}`, {
+        const response = await fetch(`http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}`, {
             method: 'GET', headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
         });
         const data = await response.json();

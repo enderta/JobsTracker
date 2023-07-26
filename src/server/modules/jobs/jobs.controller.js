@@ -1,65 +1,79 @@
-const {validationResult} = require("express-validator");
-const jobService = require("./jobs.service");
-const pool = require("../../config/db.config");
-
-exports.getJobs = async (req, res) => {
-    try {
-        await jobService.getJobs(req, res);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-};
-
-exports.getJob = async (req, res) => {
-    try {
-        const {user_id, id} = req.params;
-        const job = await jobService.getJob(user_id, id);
-        res.json(job);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-};
-
-exports.createJob = async (req, res) => {
-    try {
-        const {title, company, location, description, requirements} = req.body;
-        const {user_id} = req.params;
-        const newJob = await jobService.createJob(title, company, location, description, requirements, user_id);
-        res.json(newJob);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-};
+const jobService = require("./jobs.service")
 
 
-exports.updateJob = async (req, res) => {
-    try {
-        const {user_id, id} = req.params;
-        const {title, company, location, description, requirements} = req.body;
-        const updateJob = await jobService.updateJob(title, company, location, description, requirements, user_id, id);
-        res.json(updateJob);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-};
+// higher order function for error handling
+const asyncHandler = fn => (req, res, next) =>
+    Promise
+        .resolve(fn(req, res, next))
+        .catch(next);
 
-exports.updateJobStatus = async (req, res) => {
-    try {
-        const {user_id, id} = req.params;
-        const {status} = req.body;
-        const updateJobStatus = await jobService.updateJobStatus(status, user_id, id);
-        res.json(updateJobStatus);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
-};
+const getJobs = asyncHandler(async (req, res) => {
+    const searchTerm = req.query?.search;
+    const user_id = req.params?.user_id;
+    const jobs = await jobService.getJobs(user_id, searchTerm);
+    res.json({
+        status: "success",
+        message: `Retrieved ${jobs.length} jobs`,
+        data: jobs
+    });
+});
 
-exports.deleteJob = async (req, res) => {
-    try {
-        const {user_id, id} = req.params;
-        const deleteJob = await jobService.deleteJob(user_id, id);
-        res.json(deleteJob);
-    } catch (err) {
-        res.status(500).json({message: err.message});
-    }
+const getJob = asyncHandler(async (req, res) => {
+    const user_id = req.params?.user_id;
+    const id = req.params?.id;
+    const job = await jobService.getJob(user_id, id);
+    res.json({
+        status: "success",
+        message: `Retrieved job with id ${id}`,
+        data: job
+    });
+});
+
+const createJob = asyncHandler(async (req, res) => {
+    const {title, company, location, description, requirements} = req.body;
+    const user_id = req.params?.user_id;
+    const newJob = await jobService.createJob({title, company, location, description, requirements}, user_id);
+    res.json({
+        status: "success",
+        message: `Inserted job with id ${newJob.id}`,
+        data: newJob
+    });
+});
+
+const updateJob = asyncHandler(async (req, res) => {
+    const user_id = req.params?.user_id;
+    const id = req.params?.id;
+    const {title, company, location, description, requirements, is_applied, updated_at} = req.body;
+    const updatedJob = await jobService.updateJob({
+        title,
+        company,
+        location,
+        description,
+        requirements,
+        is_applied,
+        updated_at
+    }, user_id, id);
+    res.json({
+        status: "success",
+        message: `Updated job with id ${updatedJob.id}`,
+        data: updatedJob
+    });
+});
+
+const deleteJob = asyncHandler(async (req, res) => {
+    const user_id = req.params?.user_id;
+    const id = req.params?.id;
+    await jobService.deleteJob(user_id, id);
+    res.json({
+        status: "success",
+        message: `Job with id ${id} deleted successfully`
+    });
+});
+
+module.exports = {
+    getJobs,
+    getJob,
+    createJob,
+    updateJob,
+    deleteJob
 };

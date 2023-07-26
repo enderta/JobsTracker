@@ -32,7 +32,6 @@ router.put(
     jobController.updateJob
 );
 
-router.patch("/:user_id/:id", verifyToken, jobController.updateJobStatus);
 
 router.delete("/:user_id/:id", verifyToken, jobController.deleteJob);
 
