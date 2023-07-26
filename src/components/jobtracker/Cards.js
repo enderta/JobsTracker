@@ -91,7 +91,7 @@ function JobCard({job, handleCheck, dark}) {
                         >
                             {job.is_applied
                                 ? `Applied At: ${new Date(job.updated_at).toString().split(' ').slice(0, 4).join(' ')}`
-                                : 'Click to Apply'}
+                                : 'If Applied Click Here'}
                         </h6>
                     </Card.Text>
                 </Card.Body>
