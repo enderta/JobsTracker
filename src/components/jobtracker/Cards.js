@@ -1,16 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {Card} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import Filters from './Filters';
 import Delete from "./Delete";
+import EditJob from "./EditJob";
 
 const API_URL = 'https://jobapi-5ktz.onrender.com/api';
 
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
+    const [isApplied, setIsApplied] = useState(false);
     const [search, setSearch] = useState('');
     const userId = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
     const headers = {'Content-Type': 'application/json', Authorization: token};
+
 
     function fetchJobs() {
         const url = `${API_URL}/jobs/${userId}?search=${search}`;
@@ -28,23 +31,39 @@ function Cards(props) {
         setSearch(e.target.value);
     }
 
-    function handleCheck(id, isApplied) {
-        const updatedJobs = data.map((job) => job.id === id ? {
-            ...job,
-            is_applied: !isApplied,
-            updated_at: new Date().toISOString()
-        } : job);
-
+    const handleCheck = async (id, isApplied) => {
+        console.log(data);
+        let body;
         const url = `${API_URL}/jobs/${userId}/${id}`;
-        const body = JSON.stringify({
-            is_applied: !isApplied,
-            updated_at: new Date().toISOString(),
-        });
+        if (!isApplied) {
 
-        fetch(url, {method: 'PATCH', headers, body})
-            .then(() => setData(updatedJobs))
-            .catch((err) => console.log(err));
+            body = JSON.stringify(
+                {
+                    is_applied: !isApplied,
+                    title: data.find((job) => job.id === id).title,
+                    company: data.find((job) => job.id === id).company,
+                    location: data.find((job) => job.id === id).location,
+                    description: data.find((job) => job.id === id).description,
+                    requirements: data.find((job) => job.id === id).requirements,
+                    updated_at: new Date().toISOString().slice(0, 19).replace('T', ' '),
+                }
+            );
+        }
+        console.log(body);
+        try {
+            const response = await fetch(url, {method: 'PUT', headers, body});
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                setIsApplied(!isApplied);
+                await fetchJobs();
+                console.log(data);
+            }
+        } catch (error) {
+            console.log(error);
+        }
     };
+
 
     return (
         <div>
@@ -72,6 +91,10 @@ function JobCard({job, handleCheck, dark}) {
         return text.split(' ').length > 3 ? `${text.split(' ').slice(0, 4).join(' ')} ...` : text;
     }
 
+    const [showEdit, setShowEdit] = useState(false);
+
+    const handleEdit = () => setShowEdit(true);
+    const handleEditClose = () => setShowEdit(false);
     return (
         <div className="col-md-3 mb-3">
             <Card data-testid="cards-component" style={{backgroundColor: dark ? '#070f23' : 'white'}}>
@@ -91,13 +114,17 @@ function JobCard({job, handleCheck, dark}) {
                         >
                             {job.is_applied
                                 ? `Applied At: ${new Date(job.updated_at).toString().split(' ').slice(0, 4).join(' ')}`
-                                : 'If Applied Click Here'}
+                                : 'If you applied, click here!'}
                         </h6>
                     </Card.Text>
                 </Card.Body>
                 <br/>
                 <Card.Footer>
-                    <Delete id={job.id}/>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Delete id={job.id}/>
+                        <Button variant="outline-warning" onClick={handleEdit}>Edit</Button>
+                    </div>
+                    <EditJob id={job.id} showEdit={showEdit} closeEdit={handleEditClose} job={job}/>
                 </Card.Footer>
             </Card>
         </div>
