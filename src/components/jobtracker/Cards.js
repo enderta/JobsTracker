@@ -87,7 +87,7 @@ function JobCard({job, handleCheck, dark}) {
     }
 
     function getText(text) {
-        return text.split(' ').length > 3 ? `${text.split(' ').slice(0, 4).join(' ')} ...` : text;
+        return text && text.split(' ').length > 3 ? `${text.split(' ').slice(0, 4).join(' ')} ...` : text;
     }
 
     const [showEdit, setShowEdit] = useState(false);
@@ -101,10 +101,10 @@ function JobCard({job, handleCheck, dark}) {
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
                     <Card.Text
-                        onMouseOver={(e) => onMouseOver(e, job.description)}>{getText(job.description)}</Card.Text>
+                        onMouseOver={(e) => onMouseOver(e, job.description)}>{getText(job.description || '')}</Card.Text>
                     <Card.Text>{job.location}</Card.Text>
                     <Card.Text
-                        onMouseOver={(e) => onMouseOver(e, job.requirements)}>{getText(job.requirements)}</Card.Text>
+                        onMouseOver={(e) => onMouseOver(e, job.requirements)}>{getText(job.requirements || '')}</Card.Text>
                     <Card.Text>
                         <h6
                             cy-data="applied-at"
