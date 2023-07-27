@@ -46,7 +46,7 @@ function AddJobs(props) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Form>
+                    <Form style={{color: "black"}}>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
                             <Form.Control type="text" placeholder="Enter Title" name="title"

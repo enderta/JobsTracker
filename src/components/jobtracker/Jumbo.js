@@ -6,23 +6,18 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import AddJobs from './AddJobs';
 import Cards from './Cards';
 import LogOut from "./LogOut";
+import useDarkMode from "./useDarkMode";
+
 
 const Jumbo = () => {
 
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [darkMode, setDarkMode] = useState(true);
+    const [darkMode, setDarkMode] = useDarkMode();
     const [show, setShowModal] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [jumboData, setJumboData] = useState({});
 
-    useEffect(() => {
-        if (darkMode) {
-            document.body.classList.add('bg-dark', 'text-white');
-        } else {
-            document.body.classList.remove('bg-dark', 'text-white');
-        }
-    }, [darkMode]);
 
     useEffect(() => {
         fetchJobs();
@@ -59,6 +54,7 @@ const Jumbo = () => {
                     +
                 </Button>
 
+
                 <Button variant={darkMode ? 'outline-warning' : 'outline-dark'} id={"darkMode"}
                         onClick={handleDarkMode}>
                     {darkMode ? (
@@ -68,6 +64,7 @@ const Jumbo = () => {
             </div>
 
             <AddJobs show={show} handleClose={handleClose}/>
+
 
             {loading ? (<h1>Loading...</h1>) : (<motion.div
                 className="jumbotron jumbotron-fluid"

@@ -1,5 +1,5 @@
-const fetchJobs = async (setJobs, setIsLoading) => {
-    setIsLoading(true);
+const fetchJobs = async (setJobs, setLoading) => {
+    setLoading(true);
 
     const userId = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
@@ -12,7 +12,7 @@ const fetchJobs = async (setJobs, setIsLoading) => {
     const {data} = await response.json();
 
     setJobs(data);
-    setIsLoading(false);
+    setLoading(false);
 };
 
 export default fetchJobs;

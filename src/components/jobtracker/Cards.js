@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {Card} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
 import Filters from './Filters';
 import Delete from "./Delete";
+import EditJob from "./EditJob";
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -12,6 +13,7 @@ function Cards(props) {
     const userId = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
     const headers = {'Content-Type': 'application/json', Authorization: token};
+
 
     function fetchJobs() {
         const url = `${API_URL}/jobs/${userId}?search=${search}`;
@@ -62,6 +64,7 @@ function Cards(props) {
         }
     };
 
+
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
@@ -88,6 +91,10 @@ function JobCard({job, handleCheck, dark}) {
         return text.split(' ').length > 3 ? `${text.split(' ').slice(0, 4).join(' ')} ...` : text;
     }
 
+    const [showEdit, setShowEdit] = useState(false);
+
+    const handleEdit = () => setShowEdit(true);
+    const handleEditClose = () => setShowEdit(false);
     return (
         <div className="col-md-3 mb-3">
             <Card data-testid="cards-component" style={{backgroundColor: dark ? '#070f23' : 'white'}}>
@@ -113,7 +120,11 @@ function JobCard({job, handleCheck, dark}) {
                 </Card.Body>
                 <br/>
                 <Card.Footer>
-                    <Delete id={job.id}/>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <Delete id={job.id}/>
+                        <Button variant="outline-warning" onClick={handleEdit}>Edit</Button>
+                    </div>
+                    <EditJob id={job.id} showEdit={showEdit} closeEdit={handleEditClose} job={job}/>
                 </Card.Footer>
             </Card>
         </div>
