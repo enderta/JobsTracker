@@ -5,7 +5,6 @@ import Delete from "./Delete";
 import EditJob from "./EditJob";
 
 const API_URL = 'https://jobapi-5ktz.onrender.com/api';
-
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
     const [isApplied, setIsApplied] = useState(false);
