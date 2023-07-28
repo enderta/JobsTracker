@@ -46,7 +46,7 @@ const isApplied = (props) => {
                 style={{color: data.is_applied ? 'forestgreen' : 'goldenrod',}}
             >
                 {props.job.is_applied
-                    ? `Applied At: ${new Date(data.updated_at).toISOString().split(' ').slice(0, 4).join(' ')}`
+                    ? `Applied At: ${new Date(data.updated_at).toISOString()}`
                     : 'If you applied, click here!'}
             </h6>
         </div>
