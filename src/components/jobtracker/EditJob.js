@@ -12,7 +12,7 @@ const EditJob = (props) => {
         requirements: props.job.requirements,
         is_applied: props.job.is_applied,
         posted_at: props.job.posted_at,
-        updated_at: new Date().toLocaleString().slice(0, 19).replace('T', ' '),
+        updated_at: new Date().toISOString().split(' ').slice(0, 4).join(' '),
         user_id: localStorage.getItem('user_id'),
     })
     const handleChange = (e) => {

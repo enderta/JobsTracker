@@ -22,7 +22,7 @@ const isApplied = (props) => {
                     description: data.description,
                     requirements: data.requirements,
                     posted_at: data.posted_at,
-                    updated_at: new Date().toLocaleString().split(' ').slice(0, 4).join(' '),
+                    updated_at: new Date().toISOString().split(' ').slice(0, 4).join(' '),
                 })
             try {
                 const response = await fetch(url, {method: 'PUT', headers, body});
@@ -46,7 +46,7 @@ const isApplied = (props) => {
                 style={{color: data.is_applied ? 'forestgreen' : 'goldenrod',}}
             >
                 {props.job.is_applied
-                    ? `Applied At: ${new Date(data.updated_at).toLocaleString().split(' ').slice(0, 4).join(' ')}`
+                    ? `Applied At: ${new Date(data.updated_at).toISOString().split(' ').slice(0, 4).join(' ')}`
                     : 'If you applied, click here!'}
             </h6>
         </div>
