@@ -19,8 +19,8 @@ function AddJobs(props) {
         description: '',
         requirements: '',
         is_applied: false,
-        posted_at: '',
-        updated_at: '',
+        posted_at: new Date().toLocaleString().split(' ').slice(0, 4).join(' '),
+        updated_at: new Date().toLocaleString().split(' ').slice(0, 4).join(' '),
         user_id: localStorage.getItem('user_id'),
     });
 

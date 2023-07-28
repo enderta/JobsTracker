@@ -6,6 +6,7 @@ import Delete from "./Delete";
 import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
+
 const API_URL = 'http://localhost:5000/api';
 
 function Cards(props) {
@@ -29,7 +30,7 @@ function Cards(props) {
     }
 
     useEffect(fetchJobs, [search]);
-
+    console.log(data)
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
