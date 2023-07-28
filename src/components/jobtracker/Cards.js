@@ -29,7 +29,7 @@ function Cards(props) {
     }
 
     useEffect(fetchJobs, [search]);
-
+    console.log(data)
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>

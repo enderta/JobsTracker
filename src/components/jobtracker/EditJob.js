@@ -1,4 +1,7 @@
-import React, {useState} from 'react';
+iimport
+React, {useState}
+from
+'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
 const EditJob = (props) => {
@@ -12,7 +15,7 @@ const EditJob = (props) => {
         requirements: props.job.requirements,
         is_applied: props.job.is_applied,
         posted_at: props.job.posted_at,
-        updated_at: props.job.updated_at,
+        updated_at: new Date().toLocaleString().slice(0, 19).replace('T', ' '),
         user_id: localStorage.getItem('user_id'),
     })
     const handleChange = (e) => {
@@ -92,6 +95,5 @@ const EditJob = (props) => {
         </div>
     );
 };
-
 
 export default EditJob;
