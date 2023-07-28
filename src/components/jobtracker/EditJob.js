@@ -3,7 +3,6 @@ import {Button, Form, Modal} from "react-bootstrap";
 
 const EditJob = (props) => {
 
-
     const [job, setJob] = useState({
         title: props.job.title,
         company: props.job.company,

@@ -7,7 +7,6 @@ import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
 const API_URL = 'https://jobapi-5ktz.onrender.com/api';
-
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
     const [search, setSearch] = useState('');
@@ -30,6 +29,11 @@ function Cards(props) {
 
     useEffect(fetchJobs, [search]);
     console.log(data)
+    const sortedJobs = useMemo(() => {
+        if (!data || data.length === 0) return [];
+
+        return [...data].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    }, [data]);
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
@@ -37,13 +41,9 @@ function Cards(props) {
             </div>
 
             <div className="row" data-testid="cards-component">
-                {data && data.length > 0
-                    ? data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-                        .map((job, index) => (
-                            <JobCard key={index} job={job} {...props} />
-                        ))
-                    : []
-                }
+                {sortedJobs.map((job, index) => (
+                    <JobCard key={index} job={job} {...props} />
+                ))}
             </div>
         </div>
     );
