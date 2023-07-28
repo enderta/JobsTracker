@@ -12,18 +12,23 @@ async function addJob(job) {
 }
 
 function AddJobs(props) {
-    const [job, setJob] = useState({
+    const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
+    const user_id = localStorage.getItem('user_id');
+
+    const initialJobState = {
         title: '',
         company: '',
         location: '',
         description: '',
         requirements: '',
         is_applied: false,
-        posted_at: new Date().toLocaleString().split(' ').slice(0, 4).join(' '),
-        updated_at: new Date().toLocaleString().split(' ').slice(0, 4).join(' '),
-        user_id: localStorage.getItem('user_id'),
-    });
+        posted_at: currentDate,
+        updated_at: currentDate,
+        user_id,
+    };
 
+// Initialize state
+    const [job, setJob] = useState(initialJobState);
     const onSubmitForm = async (e) => {
         e.preventDefault();
         try {
