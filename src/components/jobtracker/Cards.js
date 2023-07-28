@@ -42,7 +42,8 @@ function Cards(props) {
                         .map((job, index) => (
                             <JobCard key={index} job={job} {...props} />
                         ))
-                    : []}
+                    : []
+                }
             </div>
         </div>
     );

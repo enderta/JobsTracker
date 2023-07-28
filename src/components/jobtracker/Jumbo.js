@@ -91,7 +91,9 @@ const Jumbo = () => {
                 ></div>
                 <Container>
                     <h1 className="display-4 text-center">
-                        {jobs.length <= 1 ? 'Job' : jobs.length + ' Jobs'}
+                        {!jobs ? window.location.href = "/login"
+                            : jobs.length === 1 ? 'Job'
+                                : `${jobs.length} Jobs`}
                     </h1>
                     <p className="lead"></p>
                     <Carousel
