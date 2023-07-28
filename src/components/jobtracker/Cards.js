@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {Button, Card} from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import Filters from './Filters';
