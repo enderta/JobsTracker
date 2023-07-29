@@ -39,15 +39,18 @@ const isApplied = (props) => {
     };
     return (
         <div>
-            <h6
-                cy-data="applied-at"
-                onClick={() => handleCheck(data.id, data.is_applied)}
-                style={{color: data.is_applied ? 'forestgreen' : 'goldenrod',}}
-            >
-                {props.job.is_applied
-                    ? `Applied At: ${new Date(data.updated_at).toISOString().split("T")[0]}`
-                    : 'If you applied, click here!'}
-            </h6>
+            <p>
+        <span
+            cy-data="applied-at"
+            onClick={() => handleCheck(data.id, data.is_applied)}
+            style={{color: data.is_applied ? 'forestgreen' : 'goldenrod',}}
+        >
+            {props.job.is_applied
+                ? `Applied At: ${new Date(data.updated_at).toISOString().split("T")[0]}`
+                : 'If you applied, click here!'}
+        </span>
+            </p>
+
         </div>
     );
 };

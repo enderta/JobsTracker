@@ -61,8 +61,10 @@ function JobCard({job, handleCheck, dark}) {
     const handleEditClose = () => setShowEdit(false);
 
     return (
-        <div className="col-md-3 mb-3">
-            <Card data-testid="cards-component" style={{backgroundColor: dark ? '#070f23' : 'white'}}>
+        <div className="col-md-4">
+            <Card data-testid="cards-component"
+                  className="card mb-4 shadow-sm"
+                  style={{backgroundColor: dark ? '#070f23' : 'white'}}>
                 <Card.Body style={{height: '200px', width: '400px'}}>
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>

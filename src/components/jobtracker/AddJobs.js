@@ -1,23 +1,20 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
-const url = `http://localhost:5000/api/jobs/`
-const headers = {
-    'Content-Type': 'application/json',
-    Authorization: localStorage.getItem('token')
-};
 
+const BASE_URL = 'http://localhost:5000/api/jobs/createJob/';
 async function addJob(job) {
-    return await fetch(url + job.user_id, {
+    return await fetch(BASE_URL + job.user_id, {
         method: 'POST',
-        headers: headers,
+        headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
         body: JSON.stringify(job),
     });
 }
 
+const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
+const user_id = localStorage.getItem('user_id');
+
 function AddJobs(props) {
-    const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
-    const user_id = localStorage.getItem('user_id');
 
     const initialJobState = {
         title: '',
