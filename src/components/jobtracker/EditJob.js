@@ -1,6 +1,11 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
+const url = `http://localhost:5000/api/jobs/`
+const headers = {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token')
+};
 const EditJob = (props) => {
 
 
@@ -20,12 +25,7 @@ const EditJob = (props) => {
     }
 
     const handleEdit = (id) => {
-        const apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}/${id}`;
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token')
-        };
-
+        const apiUrl = `${url}${localStorage.getItem('user_id')}/${id}`;
         fetch(apiUrl, {
             method: 'PUT',
             headers: headers,

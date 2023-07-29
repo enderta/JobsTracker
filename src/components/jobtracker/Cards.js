@@ -7,7 +7,11 @@ import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/api/jobs/';
+const headers = {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token')
+};
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
     const [search, setSearch] = useState('');
@@ -19,9 +23,9 @@ function Cards(props) {
 
     const fetchJobs = () => {
         const userId = localStorage.getItem('user_id');
-        const token = localStorage.getItem('token');
-        const headers = {'Content-Type': 'application/json', Authorization: token};
-        const url = `${API_URL}/jobs/${userId}?search=${search}`;
+
+
+        const url = `${API_URL}${userId}?search=${search}`;
         fetch(url, {method: 'GET', headers})
             .then((res) => res.json())
             .then((data) => setData(data.status === 'success' ? data.data : []))

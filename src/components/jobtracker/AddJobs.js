@@ -1,12 +1,16 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
-const BASE_URL = 'http://localhost:5000/api/jobs/createJob/';
+const url = `http://localhost:5000/api/jobs/`
+const headers = {
+    'Content-Type': 'application/json',
+    Authorization: localStorage.getItem('token')
+};
 
 async function addJob(job) {
-    return await fetch(BASE_URL + job.user_id, {
+    return await fetch(url + job.user_id, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
+        headers: headers,
         body: JSON.stringify(job),
     });
 }

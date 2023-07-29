@@ -2,10 +2,9 @@ import React from 'react';
 
 
 const API_URL = 'http://localhost:5000/api';
+const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
 const isApplied = (props) => {
     const userId = localStorage.getItem('user_id');
-    const token = localStorage.getItem('token');
-    const headers = {'Content-Type': 'application/json', Authorization: token};
     const data = props.job;
     const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
     const baseJobData = {

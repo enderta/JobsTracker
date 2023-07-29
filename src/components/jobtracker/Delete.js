@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
+
 const Delete = (props) => {
     const handleDelete = (id) => {
         const apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}/${id}`;
