@@ -1,4 +1,3 @@
-// JobCarousel.js
 import React from 'react';
 import {Button, Modal} from 'react-bootstrap';
 import {Carousel} from 'react-responsive-carousel';
@@ -22,7 +21,8 @@ const JobCarousel = ({jobs, isOpen, openModal, closeModal, selectedJob}) => (
                 <h3>{job.title}</h3>
                 <h4>{job.company}</h4>
                 <Button
-                    variant={'outline-danger'} onClick={() => openModal(job.id)}>View</Button>
+                    variant={'outline-danger'} style={{margin: "10px"}} onClick={() => openModal(job.id)}>View
+                </Button>
                 <Modal show={isOpen} onHide={closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>
