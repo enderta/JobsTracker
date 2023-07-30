@@ -1,12 +1,13 @@
 import React from 'react';
 
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = 'http://localhost:5000/api/jobs';
 const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
+const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
+const userId = localStorage.getItem('user_id');
+
 const isApplied = (props) => {
-    const userId = localStorage.getItem('user_id');
     const data = props.job;
-    const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
     const baseJobData = {
         title: data.title,
         company: data.company,
@@ -19,7 +20,7 @@ const isApplied = (props) => {
     };
 
     const handleCheck = async (id, isApplied) => {
-        const url = `${API_URL}/jobs/${userId}/${id}`;
+        const url = `${API_URL}/${userId}/${id}`;
 
         if (isApplied === false) {
             const updatedJobData = {...baseJobData, is_applied: true, updated_at: currentDate};

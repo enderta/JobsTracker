@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Card, Form, Image} from "react-bootstrap";
 
+const ApiURL = 'http://localhost:5000/api/users/login'
+
 function Login() {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
@@ -23,7 +25,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/users/login', {
+        const response = await fetch(ApiURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

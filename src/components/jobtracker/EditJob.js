@@ -7,8 +7,6 @@ const headers = {
     Authorization: localStorage.getItem('token')
 };
 const EditJob = (props) => {
-
-
     const [job, setJob] = useState({
         title: props.job.title,
         company: props.job.company,

@@ -8,7 +8,9 @@ import Cards from './Cards';
 import LogOut from "./LogOut";
 import useDarkMode from "./useDarkMode";
 
-
+const API_URL = 'http://localhost:5000/api/jobs/';
+const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
+const userId = localStorage.getItem('user_id');
 const Jumbo = () => {
 
     const [jobs, setJobs] = useState([]);
@@ -24,8 +26,9 @@ const Jumbo = () => {
     }, []);
 
     const fetchJobs = async () => {
-        const response = await fetch(`http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}`, {
-            method: 'GET', headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
+        const response = await fetch(API_URL + userId, {
+            method: 'GET',
+            headers: headers,
         });
         const data = await response.json();
         setJobs(data.data);

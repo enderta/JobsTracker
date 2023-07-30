@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Card, Form, Image} from 'react-bootstrap';
 
 
+const ApiURL = 'http://localhost:5000/api/users/register';
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +30,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/users/register', {
+        const response = await fetch(ApiURL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
