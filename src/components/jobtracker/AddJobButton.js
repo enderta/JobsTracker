@@ -1,10 +1,10 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 
-const AddJobButton = ({darkMode, handleShow}) => (
+const AddJobButton = ({darkMode, handleOpen}) => (
     <Button
         variant={darkMode ? 'outline-warning' : 'outline-dark'}
-        onClick={handleShow}
+        onClick={handleOpen}
         data-testid={"addJobs"}
     >
         +

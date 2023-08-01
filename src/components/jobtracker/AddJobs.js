@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import JobForm from './JobForm';
+import AddJobButton from "./AddJobButton";
 
 function AddJobs(props) {
     const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
     const user_id = localStorage.getItem('user_id');
+    const [showModal, setShowModal] = useState(false);
 
+    const handleOpenModal = () => setShowModal(true);
+    const handleCloseModal = () => setShowModal(false);
     const initialJobState = {
         title: '',
         company: '',
@@ -22,7 +26,11 @@ function AddJobs(props) {
 
     return (
         <div className="container">
-            <JobForm initialJobState={job} handleClose={props.handleClose} handleChanges={handleChanges}/>
+            <AddJobButton handleOpen={handleOpenModal}/>
+
+            {showModal && (
+                <JobForm initialJobState={job} handleClose={handleCloseModal} handleChanges={handleChanges}/>
+            )}
         </div>
     );
 }
