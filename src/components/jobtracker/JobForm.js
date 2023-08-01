@@ -17,7 +17,7 @@ function JobForm({initialJobState, handleClose, handleChanges}) {
     const {title, company, location, description, requirements} = initialJobState;
 
     return (
-        <Modal show={true} onHide={handleClose}>
+        <Modal show={false} onHide={handleClose}>
             <Modal.Header closeButton>
                 <Modal.Title><h3 style={{color: "black"}}>Add Job</h3></Modal.Title>
             </Modal.Header>
