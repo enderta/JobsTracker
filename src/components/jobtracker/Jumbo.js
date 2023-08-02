@@ -13,6 +13,7 @@ import JumbotronBackground from './JumbotronBackground';
 const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
 const userId = localStorage.getItem('user_id');
 
+
 const Jumbo = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -44,7 +45,6 @@ const Jumbo = () => {
         const selectedJumbo = jobs.find((job) => job.id === id);
         setJumboData(selectedJumbo);
     };
-
 
     const handleDarkMode = () => setDarkMode(!darkMode);
 
