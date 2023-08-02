@@ -11,9 +11,10 @@ async function addJob(job) {
     });
 }
 
+const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
+const user_id = localStorage.getItem('user_id');
+
 function AddJobs(props) {
-    const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
-    const user_id = localStorage.getItem('user_id');
 
     const initialJobState = {
         title: '',
