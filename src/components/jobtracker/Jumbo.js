@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {Container} from 'react-bootstrap';
 import AddJobs from './AddJobs';
 import Cards from './Cards';
-import LogOut from './LogOut';
 import useDarkMode from './useDarkMode';
 import JobCarousel from './JobCarousel';
 import LogInRedirect from './LogInRedirect';
 import DarkModeButton from './DarkModeButton';
 import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
+import Footer from "./Footer";
 
 const API_URL = 'http://localhost:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
@@ -71,16 +71,21 @@ const Jumbo = () => {
                         </JumbotronBackground>
                     )}
 
+
                     <div style={{margin: '10px'}}>
                         <Container>
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                         </Container>
                     </div>
+                    <div>
+                        <Footer/>
+                    </div>
 
-                    <br/>
-                    <LogOut/>
+
                 </div>
-            ) : <LogInRedirect/>}
+            ) : (
+                <LogInRedirect/>
+            )}
         </>
     );
 };

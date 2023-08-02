@@ -1,0 +1,115 @@
+footer {
+    position: relative;
+    align-items: flex-start;
+    gap: 2px;
+    left: 0;
+    bottom: 0;
+    background-color: #070707;
+}
+
+footer h3 {
+    color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+footer p {
+    color: #fff;
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+
+.policy {
+    display: flex;
+    justify-content: space-between;
+}
+
+footer ul {
+    list-style: none;
+    font-size: 10px;
+    padding-left: 0;
+    justify-content: center;
+}
+
+footer ul li a {
+    color: #6b0707;
+    text-decoration: none;
+    font-size: 4px;
+}
+
+.logo {
+    position: absolute;
+    height: 50px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.5rem;
+    width: 2.5rem;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.social-icons a:hover {
+    background-color: #15485f;
+}
+
+.social-icons a:focus {
+    outline: none;
+}
+
+.social-icons svg {
+    width: 20px;
+    height: 20px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.terms a {
+    color: #fff;
+}
+
+.terms a:hover {
+    color: #e3ebee;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 767px) {
+    footer {
+        padding: 1px 0 0 5px;
+    }
+
+    footer h3 {
+        font-size: 10px;
+    }
+
+    footer p {
+        font-size: 10px;
+        text-align: center;
+    }
+
+    footer ul li a {
+        font-size: 5px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
