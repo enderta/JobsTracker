@@ -4,9 +4,13 @@ require("cypress-xpath");
 
 Given('I am on the login page', () => {
     cy.visit("http://localhost:3000");
+
 })
 
 Then('I enter username {string} into the {string} field', (text, field) => {
+    cy.xpath('//h1[contains(text(),"Login")]').should('be.visible').click(
+        {force: true}
+    );
     cy.get('[data-testid="username"]').type(text);
 })
 

@@ -1,4 +1,5 @@
 Feature: Login testing
+
   Scenario: Login with invalid credentials
     Given I am on the login page
     When I enter username "test" into the "username" field
