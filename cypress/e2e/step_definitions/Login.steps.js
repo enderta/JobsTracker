@@ -3,7 +3,7 @@ require("cypress-xpath");
 
 
 Given('I am on the login page', () => {
-    cy.visit("https://jobtracker-vkb4.onrender.com/login");
+    cy.visit("http://localhost:3000");
 })
 
 Then('I enter username {string} into the {string} field', (text, field) => {
