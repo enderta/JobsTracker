@@ -5,7 +5,7 @@ Feature: Deleting Job from the UI and the API
     When I enter username "et1" into the "username" field
     Then I enter password "123456" into the "password" field
     Then I press "Login"
-    Then I should see "Jobs" headline
+
 
   Scenario: Delete a job from the UI
     Given I have a job

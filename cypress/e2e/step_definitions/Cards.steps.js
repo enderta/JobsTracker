@@ -9,37 +9,51 @@ Then('I should see {string}', (content) => {
     cy.title().should('include', content);
 })
 
-/*  Scenario: I same number of jobs as the app and database
-    When I make a GET request to
-    Then the status code should be 200
-    And the number of jobs in the response should be the same as the number of jobs in the app
-        */
+let token = ''
+let userId = ''
+Given(`I login to the api {string} and password {string}`, (username, password) => {
+    cy.request({
+        method: "POST",
+        url: "http://localhost:5000/api/users/login",
+        body: {
+            username: 'et1',
+            password: "123456"
+        }
+    })
+
+        .then(
+            (response) => {
+                expect(response.status).to.eq(200)
+                console.log(response.body.token)
+                token = response.body.token
+                userId = response.body.user.id
+            }
+        )
+
+})
+
 let body = []
 When(`I make a GET request`, () => {
-    /* cy.request('http://localhost:5000/api/jobs',{
-         method: 'GET',
-         headers: {
-             'Content-Type': 'application/json',
-
-         }
-     })
-         .then(
-             (response) => {
-                 expect(response.status).to.eq(200)
-                 console.log(response.body.data)
-                 body=response.body.data
-                 console.log(body)
-             }
-         )
- */
-    cy.intercept('GET', 'http://localhost:5000/api/jobs', (req) => {
-        req.reply((res) => {
-            res.send({
-                statusCode: 200,
-                body: body
-            })
-        })
+    const headers = {
+        'Content-Type': 'application/json',
+        Authorization: localStorage.getItem('token')
+    };
+    cy.request('http://localhost:5000/api/jobs/' + userId, {
+        method: 'GET',
+        headers: headers
     })
+        .then(
+            (response) => {
+                expect(response.status).to.eq(200)
+                console.log(response.body.data)
+                body = response.body.data
+                console.log(body)
+            }
+        )
+
+
+
+
 })
 
 Then(`the number of jobs in the response should be the same as the number of jobs in the app`, () => {

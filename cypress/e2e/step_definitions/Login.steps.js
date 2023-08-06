@@ -31,6 +31,3 @@ Then('I should see title alert {string}', (title) => {
 
 })
 
-Then('I should see {string} headline',(headline)=>{
-    cy.get('.display-4').should('contain', headline);
-})

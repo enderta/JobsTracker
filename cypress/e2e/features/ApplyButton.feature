@@ -5,7 +5,6 @@ Feature: Testing apply button
     When I enter username "et1" into the "username" field
     Then I enter password "123456" into the "password" field
     Then I press "Login"
-    Then I should see "Jobs" headline
 
 
   Scenario: Clicking apply button

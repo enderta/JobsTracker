@@ -32,7 +32,7 @@ function Cards(props) {
     }
 
     useEffect(fetchJobs, [search]);
-    console.log(data)
+
     const sortedJobs = useMemo(() => {
         if (!data || data.length === 0) return [];
 
