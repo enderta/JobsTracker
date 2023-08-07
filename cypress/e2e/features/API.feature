@@ -2,7 +2,7 @@ Feature: API testing
 
   Scenario: Full circle CRUD test
     When I register a new user with following details:
-      | username | email         | password |
+      | username   | email             | password |
       | testuser11 | test11@gmail1.com | 123456   |
     Then I get the register message User "username" registered successfully
     When I login to the API as new user
@@ -12,8 +12,8 @@ Feature: API testing
     When I get the user by id
     Then I get the retrieved message equal Retrieved user with id "id"
     When I update the user with the following details:
-      | username | password | email |
-      | et2      | 123456   | et3@gmail.com|
+      | username | password | email         |
+      | et2      | 123456   | et3@gmail.com |
     Then I get the update message User "username" updated successfully
     When I delete the user
     Then I get delete the message User "username" deleted successfully

@@ -1,4 +1,4 @@
-const {Given, When, Then,And } = require("@badeball/cypress-cucumber-preprocessor");
+const {Given, When, Then, And} = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
 
@@ -33,7 +33,7 @@ Then('I click on the submit button', () => {
 })
 
 Then('I should see the job I just added', () => {
-    const text=[]
+    const text = []
     cy.xpath("//div[@class='card-body']//div").then(
         (elements) => {
             elements.each((index, element) => {

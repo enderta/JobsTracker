@@ -4,14 +4,19 @@ require("cypress-xpath");
 
 Given('I am on the login page', () => {
     cy.visit("http://localhost:3000");
+
 })
 
 Then('I enter username {string} into the {string} field', (text, field) => {
-    cy.get('[data-testid="username"]').type(text);
+    cy.xpath('//h1[contains(text(),"Login")]').should('be.visible').click(
+        {force: true}
+    );
+
+    cy.get('[data-testid="username"]').clear().type(text);
 })
 
 Then('I enter password {string} into the {string} field', (text, field) => {
-    cy.get('[data-testid="password"]').type(text);
+    cy.get('[data-testid="password"]').clear().type(text);
 })
 
 Then('I press {string}', (button) => {
@@ -23,8 +28,5 @@ Then('I should see title alert {string}', (title) => {
         expect(str).to.equal(title);
     })
 
-})
 
-Then('I should see {string} headline',(headline)=>{
-    cy.get('.display-4').should('contain', headline);
 })
