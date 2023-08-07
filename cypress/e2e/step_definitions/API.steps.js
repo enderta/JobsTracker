@@ -6,8 +6,6 @@ let password = "";
 let email = "";
 let body = {}
 
-/* Then I get the retrive message contains "Retrieved user with id <id>"*/
-Then("")
 
 When("I register a new user with following details:", (dataTable) => {
     console.log(dataTable.rawTable)
