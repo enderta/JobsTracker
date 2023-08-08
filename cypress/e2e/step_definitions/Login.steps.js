@@ -1,4 +1,4 @@
-const {Given, When, Then, And} = require("@badeball/cypress-cucumber-preprocessor");
+const {Given, Then} = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
 
@@ -27,6 +27,4 @@ Then('I should see title alert {string}', (title) => {
     cy.on('window:alert', (str) => {
         expect(str).to.equal(title);
     })
-
-
 })

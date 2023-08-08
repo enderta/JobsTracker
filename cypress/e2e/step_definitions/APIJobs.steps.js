@@ -1,4 +1,4 @@
-const {Given, When, Then, And} = require("@badeball/cypress-cucumber-preprocessor");
+const {Given, When, Then} = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
 let token = ''
