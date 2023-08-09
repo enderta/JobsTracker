@@ -1,7 +1,6 @@
 const {Given, Then} = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
-
 Given('I am on the login page', () => {
     cy.visit("http://localhost:3000");
 
