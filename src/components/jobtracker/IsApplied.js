@@ -1,13 +1,14 @@
-import React from 'react';
-
+import React, {useState} from 'react';
 
 const API_URL = 'https://jobapi-5ktz.onrender.com/api';
-const isApplied = (props) => {
+const IsApplied = (props) => {
     const userId = localStorage.getItem('user_id');
     const token = localStorage.getItem('token');
+    const [isApplied, setIsApplied] = useState(props.job.is_applied);
     const headers = {'Content-Type': 'application/json', Authorization: token};
     const data = props.job;
-    const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
+    const currentDate = new Date().toISOString();
+
     const baseJobData = {
         title: data.title,
         company: data.company,
@@ -15,37 +16,34 @@ const isApplied = (props) => {
         description: data.description,
         requirements: data.requirements,
         posted_at: currentDate,
-        is_applied: data.is_applied,
+        is_applied: isApplied,
         user_id: userId,
     };
 
     const handleCheck = async (id, isApplied) => {
         const url = `${API_URL}/jobs/${userId}/${id}`;
+        const updatedJobData = {...baseJobData, is_applied: true, updated_at: currentDate};
+        const body = JSON.stringify(updatedJobData);
 
-        if (isApplied === false) {
-            const updatedJobData = {...baseJobData, is_applied: true, updated_at: currentDate};
-            const body = JSON.stringify(updatedJobData);
-
-            try {
-                const response = await fetch(url, {method: 'PUT', headers, body});
-                const data = await response.json();
-
-                if (data.status === 'success') {
-                    window.location.reload();
-                }
-            } catch (error) {
-                console.log(error);
+        try {
+            const response = await fetch(url, {method: 'PUT', headers, body});
+            const data = await response.json();
+            if (data.status === 'success') {
+                setIsApplied(true)
             }
+        } catch (error) {
+            console.log(error);
         }
     };
+
     return (
         <div>
             <h6
                 cy-data="applied-at"
-                onClick={() => handleCheck(data.id, data.is_applied)}
-                style={{color: data.is_applied ? 'forestgreen' : 'goldenrod',}}
+                onClick={() => handleCheck(data.id, isApplied)}
+                style={{color: isApplied ? 'forestgreen' : 'goldenrod',}}
             >
-                {props.job.is_applied
+                {isApplied
                     ? `Applied At: ${new Date(data.updated_at).toISOString().split("T")[0]}`
                     : 'If you applied, click here!'}
             </h6>
@@ -53,4 +51,4 @@ const isApplied = (props) => {
     );
 };
 
-export default isApplied;
+export default IsApplied;

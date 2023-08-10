@@ -7,6 +7,7 @@ import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
 const API_URL = 'https://jobapi-5ktz.onrender.com/api';
+
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
     const [search, setSearch] = useState('');
