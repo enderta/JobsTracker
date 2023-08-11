@@ -7,7 +7,7 @@ import Delete from "./Delete";
 import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
-const API_URL = 'http://localhost:5000/api/jobs/';
+const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
 
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
