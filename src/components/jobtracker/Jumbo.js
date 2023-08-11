@@ -8,7 +8,7 @@ import LogInRedirect from './LogInRedirect';
 import DarkModeButton from './DarkModeButton';
 import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
-import Footer from "./Footer";
+import LogOut from "./LogOut";
 
 const API_URL = 'http://localhost:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
@@ -78,7 +78,8 @@ const Jumbo = () => {
                         </Container>
                     </div>
                     <div>
-                        <Footer/>
+                        {/* <Footer/>*/}
+                        <LogOut/>
                     </div>
 
 
