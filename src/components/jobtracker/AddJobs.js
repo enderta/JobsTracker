@@ -28,6 +28,7 @@ function AddJobs(props) {
         user_id,
     };
 
+// Initialize state
     const [job, setJob] = useState(initialJobState);
     const onSubmitForm = async (e) => {
         e.preventDefault();
