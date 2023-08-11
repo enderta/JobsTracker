@@ -54,7 +54,7 @@ function Cards(props) {
             </div>
 
             {visibleJobs < sortedJobs.length && (
-                <Button onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
+                <Button variant={"outline-primary"} onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
                     Show More
                 </Button>
             )}

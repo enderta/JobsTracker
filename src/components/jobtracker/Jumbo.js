@@ -9,6 +9,7 @@ import DarkModeButton from './DarkModeButton';
 import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
 import LogOut from "./LogOut";
+import ScrollToTop from "./ScrollToTop";
 
 const API_URL = 'http://localhost:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
@@ -49,6 +50,7 @@ const Jumbo = () => {
 
     return (
         <>
+            <ScrollToTop/>
             {localStorage.getItem('token') ? (
                 <div style={{margin: '10px'}}>
                     <div className="d-flex justify-content-between" style={{margin: '10px'}}>
@@ -78,8 +80,8 @@ const Jumbo = () => {
                         </Container>
                     </div>
                     <div>
-                        {/* <Footer/>*/}
                         <LogOut/>
+                        <br/>
                     </div>
 
 
