@@ -8,7 +8,7 @@ const headers = {
 };
 const Delete = (props) => {
     const handleDelete = (id) => {
-        fetch(apiUrl + id, {
+        fetch(apiUrl + id, { // fetch data from the api
             method: 'DELETE',
             headers: headers,
         })
