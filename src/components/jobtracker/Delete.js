@@ -1,14 +1,14 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
-const Url = `https://jobapi-5ktz.onrender.com/api/jobs/`;
+const Url = `https://jobapi-5ktz.onrender.com/api/jobs/${localStorage.getItem('user_id')}/`;
 const headers = {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token')
 };
 const Delete = (props) => {
     const handleDelete = (id) => {
-        fetch(Url + id, {
+        fetch(apiUrl + id, {
             method: 'DELETE',
             headers: headers,
         })
