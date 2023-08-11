@@ -2,17 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {Container} from 'react-bootstrap';
 import AddJobs from './AddJobs';
 import Cards from './Cards';
-import LogOut from './LogOut';
 import useDarkMode from './useDarkMode';
 import JobCarousel from './JobCarousel';
 import LogInRedirect from './LogInRedirect';
 import DarkModeButton from './DarkModeButton';
 import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
+import LogOut from "./LogOut";
+import ScrollToTop from "./ScrollToTop";
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
+const API_URL = 'http://localhost:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
-
 
 const Jumbo = () => {
     const [jobs, setJobs] = useState([]);
@@ -50,6 +50,7 @@ const Jumbo = () => {
 
     return (
         <>
+            <ScrollToTop/>
             {localStorage.getItem('token') ? (
                 <div style={{margin: '10px'}}>
                     <div className="d-flex justify-content-between" style={{margin: '10px'}}>
@@ -72,16 +73,22 @@ const Jumbo = () => {
                         </JumbotronBackground>
                     )}
 
+
                     <div style={{margin: '10px'}}>
                         <Container>
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                         </Container>
                     </div>
+                    <div>
+                        <LogOut/>
+                        <br/>
+                    </div>
 
-                    <br/>
-                    <LogOut/>
+
                 </div>
-            ) : <LogInRedirect/>}
+            ) : (
+                <LogInRedirect/>
+            )}
         </>
     );
 };

@@ -1,40 +1,46 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import {Button, Card} from 'react-bootstrap';
 import PropTypes from 'prop-types';
+
 import Filters from './Filters';
 import Delete from "./Delete";
 import EditJob from "./EditJob";
 import IsApplied from "./IsApplied";
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api';
+const API_URL = 'http://localhost:5000/api/jobs/';
 
 function Cards(props) {
     const [data, setData] = useState(props.data || []);
     const [search, setSearch] = useState('');
+    const [visibleJobs, setVisibleJobs] = useState(3);
 
-    const handleSearch = e => {
+    const handleSearch = useCallback((e) => {
         e.preventDefault();
         setSearch(e.target.value);
-    }
+    }, []);
 
-    const fetchJobs = () => {
+    const fetchJobs = useCallback(() => {
+        const headers = {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token')
+        };
         const userId = localStorage.getItem('user_id');
-        const token = localStorage.getItem('token');
-        const headers = {'Content-Type': 'application/json', Authorization: token};
-        const url = `${API_URL}/jobs/${userId}?search=${search}`;
+        const url = `${API_URL}${userId}?search=${search}`;
         fetch(url, {method: 'GET', headers})
             .then((res) => res.json())
             .then((data) => setData(data.status === 'success' ? data.data : []))
             .catch((err) => console.log(err));
-    }
+    }, [search]);
 
-    useEffect(fetchJobs, [search]);
-    console.log(data)
+    useEffect(() => {
+        fetchJobs();
+    }, [fetchJobs]);
+
     const sortedJobs = useMemo(() => {
         if (!data || data.length === 0) return [];
-
         return [...data].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     }, [data]);
+
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
@@ -42,23 +48,30 @@ function Cards(props) {
             </div>
 
             <div className="row" data-testid="cards-component">
-                {sortedJobs.map((job, index) => (
-                    <JobCard key={index} job={job} {...props} />
+                {sortedJobs.slice(0, visibleJobs).map((job) => (
+                    <JobCard key={job.id} job={job} dark={props.dark}/>
                 ))}
             </div>
+
+            {visibleJobs < sortedJobs.length && (
+                <Button variant={"outline-primary"} onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
+                    Show More
+                </Button>
+            )}
         </div>
     );
 }
 
-function JobCard({job, handleCheck, dark}) {
+function JobCard({job, dark}) {
     const [showEdit, setShowEdit] = useState(false);
-
     const handleEdit = () => setShowEdit(true);
     const handleEditClose = () => setShowEdit(false);
 
     return (
-        <div className="col-md-3 mb-3">
-            <Card data-testid="cards-component" style={{backgroundColor: dark ? '#070f23' : 'white'}}>
+        <div className="col-md-4">
+            <Card data-testid="cards-component"
+                  className="card mb-4 shadow-sm"
+                  style={{backgroundColor: dark ? '#070f23' : 'white'}}>
                 <Card.Body style={{height: '200px', width: '400px'}}>
                     <Card.Title>{job.title}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
@@ -82,7 +95,6 @@ function JobCard({job, handleCheck, dark}) {
 
 JobCard.propTypes = {
     job: PropTypes.object.isRequired,
-    handleCheck: PropTypes.func,
     dark: PropTypes.bool
 }
 
