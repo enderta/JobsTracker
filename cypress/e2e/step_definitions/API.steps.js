@@ -6,7 +6,6 @@ let password = "";
 let email = "";
 let body = {}
 
-
 When("I register a new user with following details:", (dataTable) => {
     console.log(dataTable.rawTable)
     username = dataTable.rawTable[1][0];

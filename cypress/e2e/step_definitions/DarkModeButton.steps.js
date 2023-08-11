@@ -1,8 +1,6 @@
 const {When, Then} = require("@badeball/cypress-cucumber-preprocessor");
 require("cypress-xpath");
 
-
-
 When('I click on the dark mode button', () => {
     cy.xpath(`//button[@id='darkMode']//span`).click()
 })
