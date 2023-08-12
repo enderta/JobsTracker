@@ -8,13 +8,16 @@ const asyncHandler = fn => (req, res, next) =>
         .catch(next);
 
 const getJobs = asyncHandler(async (req, res) => {
-    const searchTerm = req.query?.search;
-    const user_id = req.params?.user_id;
-    const jobs = await jobService.getJobs(user_id, searchTerm);
+    const {search: searchTerm, limit, offset} = req.query;
+    const {user_id} = req.params;
+
+    const jobs = await jobService.getJobs(user_id, searchTerm, limit, offset);
+
     res.json({
         status: "success",
         message: `Retrieved ${jobs.length} jobs`,
-        data: jobs
+        data: jobs,
+        pagination: {limit, offset}
     });
 });
 

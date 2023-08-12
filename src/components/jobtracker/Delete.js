@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
-const apiUrl = `https://jobapi-5ktz.onrender.com/api/jobs/${localStorage.getItem('user_id')}/`;
+const apiUrl = `http://localhost:5000/api/jobs/${localStorage.getItem('user_id')}/`;
 const headers = {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token')

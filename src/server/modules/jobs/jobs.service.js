@@ -1,24 +1,22 @@
 const pool = require("../../config/db.config");
 
-const getJobs = async (userId, searchTerm = '') => {
-    if (!searchTerm && userId) {
-        const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1", [
-            userId,
-        ]);
-        return jobs.rows;
-    } else if (searchTerm && userId) {
-        const jobs = await pool.query(
-            `SELECT *
-             FROM jobs
-             WHERE (title ILIKE $1
-                 OR company ILIKE $1
-                 OR location ILIKE $1
-                 OR description ILIKE $1
-                 OR requirements ILIKE $1)
-               AND user_id = $2`,
-            [`%${searchTerm}%`, userId],
-        );
-        return jobs.rows;
+const getJobs = async (userId, searchTerm = '', limit = 10, offset = 0) => {
+    try {
+        if (!searchTerm && userId) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 limit $2", [userId, limit]);
+            return jobs.rows;
+        } else if (searchTerm && userId) {
+            const jobs = await pool.query(
+                "SELECT * FROM jobs WHERE user_id = $1 AND (title ILIKE $2 OR company ILIKE $2 OR location ILIKE $2 OR description ILIKE $2 OR requirements ILIKE $2) LIMIT $3 OFFSET $4",
+                [userId, `%${searchTerm}%`, limit, offset]
+            );
+            return jobs.rows;
+        } else {
+            throw new Error("Both userId and searchTerm are missing!");
+        }
+    } catch (error) {
+        console.log(error);
+        // Implement more robust error handling here
     }
 };
 
