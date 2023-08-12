@@ -10,9 +10,7 @@ const asyncHandler = fn => (req, res, next) =>
 const getJobs = asyncHandler(async (req, res) => {
     const {search: searchTerm, limit, offset} = req.query;
     const {user_id} = req.params;
-
     const jobs = await jobService.getJobs(user_id, searchTerm, limit, offset);
-
     res.json({
         status: "success",
         message: `Retrieved ${jobs.length} jobs`,
