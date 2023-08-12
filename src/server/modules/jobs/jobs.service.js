@@ -1,27 +1,22 @@
 const pool = require("../../config/db.config");
 
-const getJobs = async (userId, searchTerm = '', limit = 10, offset = 0) => {
+const getJobs = async (userId, searchTerm = '', limit = 0) => {
     try {
-
-        let query = "SELECT * FROM jobs WHERE user_id = $1";
-        let values = [userId];
-
-        if (searchTerm) {
-            query += " AND title ILIKE $" + (values.push(`%${searchTerm}%`));
+        if (!searchTerm && userId && limit === 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 ORDER BY posted_at DESC", [userId]);
+            return jobs.rows;
+        } else if (searchTerm && userId && limit === 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 AND title ILIKE $2 ORDER BY posted_at DESC", [userId, `%${searchTerm}%`]);
+            return jobs.rows;
+        } else if (!searchTerm && userId && limit > 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 ORDER BY posted_at DESC LIMIT $2 ", [userId, limit]);
+            return jobs.rows;
+        } else if (searchTerm && userId && limit > 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 AND title ILIKE $2 ORDER BY posted_at DESC LIMIT $3", [userId, `%${searchTerm}%`, limit]);
+            return jobs.rows;
+        } else {
+            throw new Error("Something went wrong");
         }
-
-        query += " ORDER BY posted_at DESC";
-
-        if (limit) {
-            query += " LIMIT $" + (values.push(limit));
-        }
-
-        if (offset) {
-            query += " OFFSET $" + (values.push(offset));
-        }
-
-        const jobs = await pool.query(query, values);
-        return jobs.rows;
     } catch (error) {
         throw new Error(error.message);
     }
