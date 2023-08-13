@@ -7,10 +7,11 @@ import useFetchJobs from './useFetchJobs';
 
 function Cards(props) {
     const [search, setSearch] = useState('');
-    const [visibleJobs, setVisibleJobs] = useState(3);
     const [limit, setLimit] = useState(3);
 
-    const data = useFetchJobs(search, limit);
+    const jobsInfo = useFetchJobs(search, limit);
+    const data = jobsInfo[0]
+    const jobNumber = jobsInfo[1]
 
     const handleSearch = useCallback((e) => {
         e.preventDefault();
@@ -27,12 +28,13 @@ function Cards(props) {
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
             <div>
-                <h4>Number of jobs: {data.length}</h4>
+                <h4>Showing {data.length} jobs of {" "}{jobNumber.length}</h4>
             </div>
-            <div>
-                <h4>Number of jobs per page: </h4>
+            <div style={{marginTop: '10px', marginBottom: '10px'}}>
+                <h4 style={{marginRight: '10px'}}>Number of Jobs to Show</h4>
                 <Form.Select
                     aria-label="Default select example"
+                    style={{width: '100px'}} // adjust width as needed
                     value={limit}
                     onChange={e => setLimit(parseInt(e.target.value))}
                 >
@@ -51,11 +53,6 @@ function Cards(props) {
                 ))}
             </div>
 
-            {/*  {visibleJobs < sortedJobs.length && (
-                <Button variant={"outline-primary"} onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
-                    Show More
-                </Button>
-            )}*/}
 
         </div>
     );

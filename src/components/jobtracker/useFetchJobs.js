@@ -4,6 +4,7 @@ const API_URL = 'http://localhost:5000/api/jobs/';
 
 function useFetchJobs(search, limit) {
     const [data, setData] = useState([]);
+    const [jobsArray, setJobsArray] = useState([]);
 
     const fetchJobs = useCallback(() => {
         const headers = {
@@ -28,6 +29,19 @@ function useFetchJobs(search, limit) {
 
         console.log(limit);
     }, [search, limit]);
+    useEffect(() => {
+        const headers = {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('token')
+        };
+        const userId = localStorage.getItem('user_id');
+        const url = `${API_URL}${userId}`;
+        fetch(url, {method: 'GET', headers})
+            .then((res) => res.json())
+            .then((data) => setJobsArray(data.status === 'success' ? data.data : []))
+            .catch((err) => console.log(err));
+    }, [])
+
 
     useEffect(() => {
         fetchJobs();
@@ -35,7 +49,7 @@ function useFetchJobs(search, limit) {
     }, [fetchJobs]);
 
 
-    return data;
+    return [data, jobsArray];
 }
 
 export default useFetchJobs;
