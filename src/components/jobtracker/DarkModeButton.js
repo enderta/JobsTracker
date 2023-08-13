@@ -2,7 +2,9 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 
 const DarkModeButton = ({darkMode, handleDarkMode}) => (
+
     <Button
+        style={{position: "fixed", top: "10px", right: "10px"}}
         variant={darkMode ? 'outline-warning' : 'outline-dark'}
         id={"darkMode"}
         onClick={handleDarkMode}
@@ -12,6 +14,7 @@ const DarkModeButton = ({darkMode, handleDarkMode}) => (
             : <span className={"darkModeOff"} style={{color: 'darkgray'}}>&#127769;</span>
         }
     </Button>
+
 );
 
 export default DarkModeButton;
