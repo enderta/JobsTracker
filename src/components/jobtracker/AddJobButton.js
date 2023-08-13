@@ -2,6 +2,7 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 
 const AddJobButton = ({darkMode, handleShow}) => (
+    <div style={{position: "fixed", top: "10px", left: "10px"}}>
     <Button
         variant={darkMode ? 'outline-warning' : 'outline-dark'}
         onClick={handleShow}
@@ -9,6 +10,7 @@ const AddJobButton = ({darkMode, handleShow}) => (
     >
         +
     </Button>
+    </div>
 );
 
 export default AddJobButton;

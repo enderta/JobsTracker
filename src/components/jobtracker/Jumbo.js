@@ -52,13 +52,14 @@ const Jumbo = () => {
         <>
             <ScrollToTop/>
             {localStorage.getItem('token') ? (
-                <div style={{margin: '10px'}}>
+                <div style={{marginTop: "43px", marginLeft: "10px", marginRight: "10px"}}>
                     <div className="d-flex justify-content-between" style={{margin: '10px'}}>
                         <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
                         <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
                     </div>
 
                     <AddJobs show={show} handleClose={handleModalToggle}/>
+
 
                     {loading ? (<h1>Loading...</h1>) : (
                         <JumbotronBackground>
@@ -79,9 +80,8 @@ const Jumbo = () => {
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                         </Container>
                     </div>
-                    <div>
+                    <div style={{position: "fixed", bottom: "10px", left: "10px"}}>
                         <LogOut/>
-                        <br/>
                     </div>
 
 
