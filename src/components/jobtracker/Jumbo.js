@@ -34,7 +34,6 @@ const Jumbo = () => {
             setJobs(data.data);
             setLoading(false);
         }
-
         fetchJobs();
     }, []);
 
@@ -52,14 +51,12 @@ const Jumbo = () => {
         <>
             <ScrollToTop/>
             {localStorage.getItem('token') ? (
-                <div style={{margin: '10px'}}>
+                <div style={{marginTop: "43px", marginLeft: "10px", marginRight: "10px"}}>
                     <div className="d-flex justify-content-between" style={{margin: '10px'}}>
                         <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
                         <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
                     </div>
-
                     <AddJobs show={show} handleClose={handleModalToggle}/>
-
                     {loading ? (<h1>Loading...</h1>) : (
                         <JumbotronBackground>
                             <JobCarousel
@@ -72,19 +69,14 @@ const Jumbo = () => {
                             />
                         </JumbotronBackground>
                     )}
-
-
                     <div style={{margin: '10px'}}>
                         <Container>
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
                         </Container>
                     </div>
-                    <div>
+                    <div style={{position: "fixed", bottom: "10px", left: "10px"}}>
                         <LogOut/>
-                        <br/>
                     </div>
-
-
                 </div>
             ) : (
                 <LogInRedirect/>
@@ -92,6 +84,5 @@ const Jumbo = () => {
         </>
     );
 };
-
 
 export default Jumbo;
