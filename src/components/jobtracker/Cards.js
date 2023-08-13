@@ -1,101 +1,65 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {Button, Card} from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React, {useCallback, useMemo, useState} from 'react';
+import {Form} from 'react-bootstrap';
 
 import Filters from './Filters';
-import Delete from "./Delete";
-import EditJob from "./EditJob";
-import IsApplied from "./IsApplied";
-
-const API_URL = 'http://localhost:5000/api/jobs/';
+import JobCard from './JobCard';
+import useFetchJobs from './useFetchJobs';
 
 function Cards(props) {
-    const [data, setData] = useState(props.data || []);
     const [search, setSearch] = useState('');
     const [visibleJobs, setVisibleJobs] = useState(3);
+    const [limit, setLimit] = useState(3);
+
+    const data = useFetchJobs(search, limit);
 
     const handleSearch = useCallback((e) => {
         e.preventDefault();
         setSearch(e.target.value);
     }, []);
 
-    const fetchJobs = useCallback(() => {
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token')
-        };
-        const userId = localStorage.getItem('user_id');
-        const url = `${API_URL}${userId}?search=${search}`;
-        fetch(url, {method: 'GET', headers})
-            .then((res) => res.json())
-            .then((data) => setData(data.status === 'success' ? data.data : []))
-            .catch((err) => console.log(err));
-    }, [search]);
-
-    useEffect(() => {
-        fetchJobs();
-    }, [fetchJobs]);
-
     const sortedJobs = useMemo(() => {
         if (!data || data.length === 0) return [];
         return [...data].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     }, [data]);
-
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
+            <div>
+                <h4>Number of jobs: {data.length}</h4>
+            </div>
+            <div>
+                <h4>Number of jobs per page: </h4>
+                <Form.Select
+                    aria-label="Default select example"
+                    value={limit}
+                    onChange={e => setLimit(parseInt(e.target.value))}
+                >
+
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                    <option value="0">All</option>
+                </Form.Select>
+            </div>
 
             <div className="row" data-testid="cards-component">
-                {sortedJobs.slice(0, visibleJobs).map((job) => (
+                {sortedJobs.map((job) => (
                     <JobCard key={job.id} job={job} dark={props.dark}/>
                 ))}
             </div>
 
-            {visibleJobs < sortedJobs.length && (
+            {/*  {visibleJobs < sortedJobs.length && (
                 <Button variant={"outline-primary"} onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
                     Show More
                 </Button>
-            )}
+            )}*/}
+
         </div>
     );
 }
 
-function JobCard({job, dark}) {
-    const [showEdit, setShowEdit] = useState(false);
-    const handleEdit = () => setShowEdit(true);
-    const handleEditClose = () => setShowEdit(false);
-
-    return (
-        <div className="col-md-4">
-            <Card data-testid="cards-component"
-                  className="card mb-4 shadow-sm"
-                  style={{backgroundColor: dark ? '#070f23' : 'white'}}>
-                <Card.Body style={{height: '200px', width: '400px'}}>
-                    <Card.Title>{job.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
-                    <Card.Text>{job.description}</Card.Text>
-                    <Card.Text>{job.location}</Card.Text>
-                    <Card.Text>{job.requirements}</Card.Text>
-                    <Card.Text><IsApplied job={job}/></Card.Text>
-                </Card.Body>
-                <br/>
-                <Card.Footer>
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <Delete id={job.id}/>
-                        <Button variant="outline-warning" onClick={handleEdit}>Edit</Button>
-                    </div>
-                    <EditJob id={job.id} showEdit={showEdit} closeEdit={handleEditClose} job={job}/>
-                </Card.Footer>
-            </Card>
-        </div>
-    );
-}
-
-JobCard.propTypes = {
-    job: PropTypes.object.isRequired,
-    dark: PropTypes.bool
-}
 
 export default Cards;
