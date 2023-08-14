@@ -16,7 +16,13 @@ const JobCarousel = ({jobs, isOpen, openModal, closeModal, selectedJob}) => (
         stopOnHover={true}
         autoPlay={true}
     >
-        {jobs.map((job) => (
+        {!jobs ?
+            <div>
+                <h3>Something Went Wrong!</h3>
+                <h4>Logout and Login Again</h4>
+
+            </div> :
+            jobs.map((job) => (
             <div key={job.id}>
                 <h3>{job.title}</h3>
                 <h4>{job.company}</h4>
