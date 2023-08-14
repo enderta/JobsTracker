@@ -28,7 +28,7 @@ function Cards(props) {
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
             <div>
-                <h4>Showing {data.length} jobs of {" "}{jobNumber.length}</h4>
+                <h4>Total Jobs: {jobNumber.length}</h4>
             </div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <h4 style={{marginRight: '10px'}}>Number of Jobs to Show</h4>
