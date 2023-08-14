@@ -18,10 +18,11 @@ const JobCarousel = ({jobs, isOpen, openModal, closeModal, selectedJob}) => (
     >
         {!jobs ?
             <div>
-                <h3>Something Went Wrong!</h3>
-                <h4>Logout and Login Again</h4>
+                <h3>Something Went Wrong</h3>
+                {window.location.href = '/login'}
 
             </div> :
+
             jobs.map((job) => (
             <div key={job.id}>
                 <h3>{job.title}</h3>
