@@ -18,7 +18,8 @@ const JobCarousel = ({jobs, isOpen, openModal, closeModal, selectedJob}) => (
     >
         {!jobs ?
             <div>
-                <h3>No jobs found</h3>
+                <h3>Something Went Wrong</h3>
+                {window.location.href = '/login'}
 
             </div> :
 
