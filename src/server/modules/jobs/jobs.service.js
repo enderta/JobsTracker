@@ -1,24 +1,24 @@
 const pool = require("../../config/db.config");
 
-const getJobs = async (userId, searchTerm = '') => {
-    if (!searchTerm && userId) {
-        const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1", [
-            userId,
-        ]);
-        return jobs.rows;
-    } else if (searchTerm && userId) {
-        const jobs = await pool.query(
-            `SELECT *
-             FROM jobs
-             WHERE (title ILIKE $1
-                 OR company ILIKE $1
-                 OR location ILIKE $1
-                 OR description ILIKE $1
-                 OR requirements ILIKE $1)
-               AND user_id = $2`,
-            [`%${searchTerm}%`, userId],
-        );
-        return jobs.rows;
+const getJobs = async (userId, searchTerm = '', limit = 0) => {
+    try {
+        if (!searchTerm && userId && limit === 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 ORDER BY posted_at DESC", [userId]);
+            return jobs.rows;
+        } else if (searchTerm && userId && limit === 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 AND title ILIKE $2 ORDER BY posted_at DESC", [userId, `%${searchTerm}%`]);
+            return jobs.rows;
+        } else if (!searchTerm && userId && limit > 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 ORDER BY posted_at DESC LIMIT $2 ", [userId, limit]);
+            return jobs.rows;
+        } else if (searchTerm && userId && limit > 0) {
+            const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 AND title ILIKE $2 ORDER BY posted_at DESC LIMIT $3", [userId, `%${searchTerm}%`, limit]);
+            return jobs.rows;
+        } else {
+            throw new Error("Something went wrong");
+        }
+    } catch (error) {
+        throw new Error(error.message);
     }
 };
 

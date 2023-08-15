@@ -34,6 +34,7 @@ const Jumbo = () => {
             setJobs(data.data);
             setLoading(false);
         }
+
         fetchJobs();
     }, []);
 
@@ -56,7 +57,10 @@ const Jumbo = () => {
                         <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
                         <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
                     </div>
+
                     <AddJobs show={show} handleClose={handleModalToggle}/>
+
+
                     {loading ? (<h1>Loading...</h1>) : (
                         <JumbotronBackground>
                             <JobCarousel
@@ -69,6 +73,8 @@ const Jumbo = () => {
                             />
                         </JumbotronBackground>
                     )}
+
+
                     <div style={{margin: '10px'}}>
                         <Container>
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
@@ -77,6 +83,8 @@ const Jumbo = () => {
                     <div style={{position: "fixed", bottom: "10px", left: "10px"}}>
                         <LogOut/>
                     </div>
+
+
                 </div>
             ) : (
                 <LogInRedirect/>
@@ -84,5 +92,6 @@ const Jumbo = () => {
         </>
     );
 };
+
 
 export default Jumbo;

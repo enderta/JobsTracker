@@ -1,101 +1,82 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {Button, Card} from 'react-bootstrap';
-import PropTypes from 'prop-types';
+import React, {useCallback, useMemo, useState} from 'react';
+import {Form} from 'react-bootstrap';
 
 import Filters from './Filters';
-import Delete from "./Delete";
-import EditJob from "./EditJob";
-import IsApplied from "./IsApplied";
+import JobCard from './JobCard';
+import useFetchJobs from './useFetchJobs';
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
-
-function Cards(props) {
-    const [data, setData] = useState(props.data || []);
+function Cards({dark}) {
     const [search, setSearch] = useState('');
-    const [visibleJobs, setVisibleJobs] = useState(3);
+    const [limit, setLimit] = useState(3);
+    const [data, jobNumber] = useFetchJobs(search, limit);
 
     const handleSearch = useCallback((e) => {
         e.preventDefault();
         setSearch(e.target.value);
     }, []);
 
-    const fetchJobs = useCallback(() => {
-        const headers = {
-            'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('token')
-        };
-        const userId = localStorage.getItem('user_id');
-        const url = `${API_URL}${userId}?search=${search}`;
-        fetch(url, {method: 'GET', headers})
-            .then((res) => res.json())
-            .then((data) => setData(data.status === 'success' ? data.data : []))
-            .catch((err) => console.log(err));
-    }, [search]);
-
-    useEffect(() => {
-        fetchJobs();
-    }, [fetchJobs]);
-
     const sortedJobs = useMemo(() => {
-        if (!data || data.length === 0) return [];
+        if (!jobNumber || jobNumber.length === 0) {
+            return [];
+        }
         return [...data].sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
     }, [data]);
+
+    const renderOptions = () => {
+        const options = [];
+
+        for (let i = 3; i <= jobNumber.length && i <= 12; i += 3) {
+            options.push(<option value={i.toString()} key={i}>{i}</option>);
+        }
+
+        if (jobNumber.length > 12 || jobNumber.length % 3 !== 0) {
+            options.push(<option value="0" key="all">All</option>);
+        }
+
+        return options;
+    };
 
     return (
         <div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
-
-            <div className="row" data-testid="cards-component">
-                {sortedJobs.slice(0, visibleJobs).map((job) => (
-                    <JobCard key={job.id} job={job} dark={props.dark}/>
-                ))}
+            <div>
+                <h4>
+                    {jobNumber.length === 0 ? 'No job click + button to add job'
+                        : jobNumber.length === 1
+                            ? '1 job' : `${jobNumber.length} jobs`}
+                </h4>
             </div>
+            <div style={{marginTop: '10px', marginBottom: '10px'}}>
+                {jobNumber.length > 3 ? (
+                    <>
+                        <h4 style={{marginRight: '10px'}}>Show</h4>
+                        <Form.Select
+                            aria-label="Default select example"
+                            style={{width: '100px'}} // adjust width as needed
+                            value={limit}
+                            onChange={(e) => setLimit(parseInt(e.target.value))}
+                        >
+                            {renderOptions()}
+                        </Form.Select>
 
-            {visibleJobs < sortedJobs.length && (
-                <Button variant={"outline-primary"} onClick={() => setVisibleJobs((prevValue) => prevValue + 3)}>
-                    Show More
-                </Button>
-            )}
-        </div>
-    );
-}
-
-function JobCard({job, dark}) {
-    const [showEdit, setShowEdit] = useState(false);
-    const handleEdit = () => setShowEdit(true);
-    const handleEditClose = () => setShowEdit(false);
-
-    return (
-        <div className="col-md-4">
-            <Card data-testid="cards-component"
-                  className="card mb-4 shadow-sm"
-                  style={{backgroundColor: dark ? '#070f23' : 'white'}}>
-                <Card.Body style={{height: '200px', width: '400px'}}>
-                    <Card.Title>{job.title}</Card.Title>
-                    <Card.Subtitle className="mb-2 text-muted">{job.company}</Card.Subtitle>
-                    <Card.Text>{job.description}</Card.Text>
-                    <Card.Text>{job.location}</Card.Text>
-                    <Card.Text>{job.requirements}</Card.Text>
-                    <Card.Text><IsApplied job={job}/></Card.Text>
-                </Card.Body>
-                <br/>
-                <Card.Footer>
-                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
-                        <Delete id={job.id}/>
-                        <Button variant="outline-warning" onClick={handleEdit}>Edit</Button>
+                        <div className="row" data-testid="cards-component">
+                            {sortedJobs.map((job) => (
+                                <JobCard key={job.id} job={job} dark={dark}/>
+                            ))}
+                        </div>
+                    </>
+                ) : (
+                    <div className="row" data-testid="cards-component">
+                        {data.map((job) => (
+                            <JobCard key={job.id} job={job} dark={dark}/>
+                        ))}
                     </div>
-                    <EditJob id={job.id} showEdit={showEdit} closeEdit={handleEditClose} job={job}/>
-                </Card.Footer>
-            </Card>
+                )}
+            </div>
         </div>
     );
-}
-
-JobCard.propTypes = {
-    job: PropTypes.object.isRequired,
-    dark: PropTypes.bool
 }
 
 export default Cards;
