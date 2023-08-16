@@ -25,11 +25,12 @@ const JobCarousel = ({jobs, isOpen, openModal, closeModal, selectedJob}) => (
 
             jobs.map((job) => (
             <div key={job.id}>
-                <h3>{job.title}</h3>
-                <h4>{job.company}</h4>
-                <Button
+                <h3>Title: {job.title}</h3>
+                <h4>Company: {job.company}</h4>
+                <h4>Location: {job.location}</h4>
+                {/* <Button
                     variant={'outline-danger'} style={{margin: "10px"}} onClick={() => openModal(job.id)}>View
-                </Button>
+                </Button>*/}
                 <Modal show={isOpen} onHide={closeModal}>
                     <Modal.Header closeButton>
                         <Modal.Title>
