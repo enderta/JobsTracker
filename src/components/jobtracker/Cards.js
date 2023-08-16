@@ -41,7 +41,7 @@ function Cards({dark}) {
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
-            <div>
+            <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <h4>
                     {jobNumber.length === 0 ? 'No job click + button to add job'
                         : jobNumber.length === 1
