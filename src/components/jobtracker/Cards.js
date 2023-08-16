@@ -54,7 +54,7 @@ function Cards({dark}) {
                         <h4 style={{marginRight: '10px'}}>Show</h4>
                         <Form.Select
                             aria-label="Default select example"
-                            style={{width: '100px', margin: "10px"}} // adjust width as needed
+                            style={{width: '100px', marginBottom: '10px'}} // adjust width as needed
                             value={limit}
                             onChange={(e) => setLimit(parseInt(e.target.value))}
                         >
