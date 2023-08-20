@@ -10,6 +10,7 @@ import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
 import LogOut from "./LogOut";
 import ScrollToTop from "./ScrollToTop";
+import NewsTicker from "./NewsTicker";
 
 const API_URL = 'http://localhost:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
@@ -50,6 +51,7 @@ const Jumbo = () => {
 
     return (
         <>
+
             <ScrollToTop/>
             {localStorage.getItem('token') ? (
                 <div style={{marginTop: "43px", marginLeft: "10px", marginRight: "10px"}}>
@@ -78,10 +80,17 @@ const Jumbo = () => {
                     <div style={{margin: '10px'}}>
                         <Container>
                             <Cards data={jobs} setData={setJobs} dark={darkMode}/>
+                            <div style={{bottom: "10px", left: "10px"}}>
+                                <LogOut/>
+                            </div>
                         </Container>
+
                     </div>
-                    <div style={{position: "fixed", bottom: "10px", left: "10px"}}>
-                        <LogOut/>
+
+                    <br/>
+
+                    <div style={{margin: "20px"}}>
+                        <NewsTicker/>
                     </div>
 
 
