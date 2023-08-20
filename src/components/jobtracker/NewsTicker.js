@@ -10,16 +10,29 @@ const newsHeadlines = [
 
 const NewsTicker = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [newsHeadlines, setNewsHeadlines] = useState([])
+
+    const getNewsHeadlines = async () => {
+        const response = await fetch('https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=895b50e9e60744729f4308b9e8ff9aae');
+        const data = await response.json();
+        const headlines = data.articles;
+        setNewsHeadlines(headlines);
+    }
+    console.log(newsHeadlines)
+
 
     useEffect(() => {
-        const tickerInterval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % newsHeadlines.length);
-        }, 3000); // Change this value to adjust the ticker speed (in milliseconds)
+        getNewsHeadlines();
+    }, [])
 
-        return () => {
-            clearInterval(tickerInterval);
-        };
-    }, []);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex(currentIndex => (currentIndex + 1) % newsHeadlines.length);
+        }, 8000);  // Displays next news after 6 seconds
+        return () => clearInterval(interval);
+    }, [newsHeadlines.length]);
+
+
 
     return (
         <div className="news-ticker-container">
@@ -29,7 +42,10 @@ const NewsTicker = () => {
                         key={index}
                         className={`ticker-item ${index === currentIndex ? 'active' : ''}`}
                     >
-                        {headline}
+                        <a className="myLinkStyle" href={headline.url} target="_blank" rel="noreferrer">
+                            {`${headline.source.Name}: ${headline.title.replace(` - ${headline.source.Name}`, '')}`}
+                        </a>
+
                     </div>
                 ))}
             </div>

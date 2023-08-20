@@ -9,7 +9,7 @@
 
 .news-ticker {
     display: flex;
-    animation: slide 20s linear infinite;
+    animation: slide 120s linear infinite;
     width: max-content;
 }
 
@@ -17,7 +17,7 @@
     padding: 8px;
     margin-right: 20px;
     white-space: nowrap;
-    transition: opacity 10s ease-out;
+    transition: opacity 50s ease-out;
     font-weight: bold;
 }
 
@@ -25,9 +25,17 @@
     opacity: 1;
 }
 
+.news-ticker:hover {
+    animation-play-state: paused;
+}
+
+.myLinkStyle {
+    text-decoration: none;
+    color: white;
+}
 @keyframes slide {
     0% {
-        transform: translateX(100%);
+        transform: translateX(0%);
     }
     100% {
         transform: translateX(-100%);

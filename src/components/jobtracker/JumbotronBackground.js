@@ -3,7 +3,7 @@ import React from 'react';
 const JumbotronBackground = ({children}) => {
     return (
         <div className="jumbotron jumbotron-fluid"
-             style={{position: 'relative', width: '100%', height: '500px', borderRadius: '0'}}>
+             style={{position: 'relative', width: '100%', height: '400px', borderRadius: '0'}}>
             <div
                 className="jumbotron-background"
                 style={{

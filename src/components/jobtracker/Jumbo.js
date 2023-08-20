@@ -54,8 +54,8 @@ const Jumbo = () => {
 
             <ScrollToTop/>
             {localStorage.getItem('token') ? (
-                <div style={{marginTop: "43px", marginLeft: "10px", marginRight: "10px"}}>
-                    <div className="d-flex justify-content-between" style={{margin: '10px'}}>
+                <div style={{marginLeft: "10px", marginRight: "10px"}}>
+                    <div className="d-flex justify-content-between">
                         <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
                         <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
                     </div>
