@@ -11,7 +11,7 @@ import JumbotronBackground from './JumbotronBackground';
 import LogOut from "./LogOut";
 import ScrollToTop from "./ScrollToTop";
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
+const API_URL = 'http://16.171.23.17:5000/api/jobs/';
 const userId = localStorage.getItem('user_id');
 
 const Jumbo = () => {

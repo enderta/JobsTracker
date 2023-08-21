@@ -1,5 +1,5 @@
 export async function addJob(job) {
-    const BASE_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/createJob/';
+    const BASE_URL = 'http://16.171.23.17:5000/api/jobs/createJob/';
     return await fetch(BASE_URL + job.user_id, {
         method: 'POST',
         headers: {
