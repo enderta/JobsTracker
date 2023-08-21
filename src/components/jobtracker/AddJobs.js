@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
-const BASE_URL = 'http://16.171.23.17:5000/api/jobs/createJob/';
+const BASE_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/createJob/';
 
 async function addJob(job) {
     return await fetch(BASE_URL + job.user_id, {

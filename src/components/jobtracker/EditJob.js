@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
-const baseUrl = 'http://16.171.23.17:5000/api/jobs/';
+const baseUrl = 'https://jobapi-5ktz.onrender.com/api/jobs/';
 const headers = {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token')
