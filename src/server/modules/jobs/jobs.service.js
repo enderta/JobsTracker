@@ -1,6 +1,8 @@
 const pool = require("../../config/db.config");
 
+
 const getJobs = async (userId, searchTerm = '', limit = 0) => {
+
     try {
         if (!searchTerm && userId && limit === 0) {
             const jobs = await pool.query("SELECT * FROM jobs WHERE user_id = $1 ORDER BY posted_at DESC", [userId]);

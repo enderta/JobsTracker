@@ -5,6 +5,14 @@ const jobController = require("./jobs.controller");
 const { check } = require("express-validator");
 const verifyToken = require("../../middlewares/verifyToken");
 const {createJob} = require("./jobs.service");
+const cors = require("cors");
+
+//give cors permission all the routes all origins
+const corsOptions = {
+    origin: "*",
+    optionsSuccessStatus: 200,
+};
+router.use(cors(corsOptions));
 
 router.get("/:user_id", verifyToken, jobController.getJobs);
 router.get("/:user_id/:id", verifyToken, jobController.getJob);
