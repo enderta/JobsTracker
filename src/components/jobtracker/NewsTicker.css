@@ -1,0 +1,44 @@
+.news-ticker-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #bf3232;
+}
+
+.news-ticker {
+    display: flex;
+    animation: slide 120s linear infinite;
+    width: max-content;
+}
+
+.ticker-item {
+    padding: 8px;
+    margin-right: 20px;
+    white-space: nowrap;
+    transition: opacity 50s ease-out;
+    font-weight: bold;
+}
+
+.ticker-item.active {
+    opacity: 1;
+}
+
+.news-ticker:hover {
+    animation-play-state: paused;
+}
+
+.myLinkStyle {
+    text-decoration: none;
+    color: white;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
