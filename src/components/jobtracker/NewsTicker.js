@@ -16,7 +16,7 @@ const NewsTicker = () => {
         const response = await fetch('https://newsapi.org/v2/top-headlines?category=technology&language=en&apiKey=895b50e9e60744729f4308b9e8ff9aae');
         const data = await response.json();
         const headlines = data.articles;
-        setNewsHeadlines(headlines);
+        headlines.length !== 0 ? setNewsHeadlines(headlines) : setNewsHeadlines(["No news available"])
     }
     console.log(newsHeadlines)
 
