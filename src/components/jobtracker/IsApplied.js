@@ -1,6 +1,6 @@
 import React from 'react';
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs';
+const API_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs';
 const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
 const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
 const userId = localStorage.getItem('user_id');

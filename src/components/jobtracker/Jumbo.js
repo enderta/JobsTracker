@@ -12,7 +12,7 @@ import LogOut from "./LogOut";
 import ScrollToTop from "./ScrollToTop";
 import NewsTicker from "./NewsTicker";
 
-const API_URL = 'https://jobapi-5ktz.onrender.com/api/jobs/';
+const API_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs/';
 const userId = localStorage.getItem('user_id');
 const Jumbo = () => {
     const [jobs, setJobs] = useState([]);

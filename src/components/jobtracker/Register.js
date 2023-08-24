@@ -29,7 +29,7 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const response = await fetch('https://jobapi-5ktz.onrender.com/api/users/register', {
+        const response = await fetch('https://jobsapi-pxm2.onrender.com/api/users/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
