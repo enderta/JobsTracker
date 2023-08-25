@@ -27,7 +27,7 @@ const defulatNews = [
         "url": "https://www.theverge.com/23844068/destiny-2-the-final-shape-joe-blackburn-interview",
         "urlToImage": "https://cdn.vox-cdn.com/thumbor/nCbPVRPxiSUj5hf2zvPw61b9Ck0=/0x0:3840x2160/1200x628/filters:focal(1920x1080:1921x1081)/cdn.vox-cdn.com/uploads/chorus_asset/file/24870278/2023_Final_Shape_Reveal_Press_Kit_Standard_Key_Art_16x9.jpg",
         "publishedAt": "2023-08-24T14:00:01Z",
-        "content": "As one Destiny 2 saga ends, Bungie prepares for the future\r\nAs one Destiny 2 saga ends, Bungie prepares for the future\r\n / We sat down with game director Joe Blackburn to talk about the future of the… [+10244 chars]"
+        "content": "As one Destiny 2 saga ends, Bungie prepares for the future As one Destiny 2 saga ends, Bungie prepares for the future\r\n / We sat down with game director Joe Blackburn to talk about the future of the… [+10244 chars]"
     }]
 
 
@@ -67,7 +67,7 @@ const NewsTicker = () => {
                         key={index}
                         className={`ticker-item ${index === currentIndex ? 'active' : ''}`}>
                         <a className="myLinkStyle" href={headline.url} target="_blank" rel="noreferrer">
-                            {`${headline.source.Name}: ${headline.title.replace(` - ${headline.source.Name}`, '')}`}
+                            {`${headline.source.name}: ${headline.title.replace(` - ${headline.source.name}`, '')}`}
                         </a>
                     </div>
                 ))}
