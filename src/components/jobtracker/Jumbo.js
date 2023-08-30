@@ -12,8 +12,10 @@ import LogOut from "./LogOut";
 import ScrollToTop from "./ScrollToTop";
 import NewsTicker from "./NewsTicker";
 
-const API_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs/';
+
 const userId = localStorage.getItem('user_id');
+const API_URL = `https://jobsapi-topaz.vercel.app/api/${userId}/jobs`;
+
 const Jumbo = () => {
     const [jobs, setJobs] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -25,7 +27,7 @@ const Jumbo = () => {
     useEffect(() => {
         const fetchJobs = async () => {
             const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
-            const response = await fetch(`${API_URL}${userId}`, {
+            const response = await fetch(API_URL, {
                 method: 'GET',
                 headers: headers,
             });

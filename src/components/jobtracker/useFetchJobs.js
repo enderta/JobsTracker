@@ -1,6 +1,5 @@
 import {useCallback, useEffect, useState} from 'react';
 
-const API_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs/';
 
 function useFetchJobs(search, limit) {
     const [data, setData] = useState([]);
@@ -13,13 +12,13 @@ function useFetchJobs(search, limit) {
         };
         const userId = localStorage.getItem('user_id');
         if (limit === 0) {
-            const url = `${API_URL}${userId}?search=${search}`;
+            const url = `https://jobsapi-topaz.vercel.app/api/${userId}/jobs?search=${search}`;
             fetch(url, {method: 'GET', headers})
                 .then((res) => res.json())
                 .then((data) => setData(data.status === 'success' ? data.data : []))
                 .catch((err) => console.log(err));
         } else {
-            const url = `${API_URL}${userId}?search=${search}&limit=${limit}`;
+            const url = `https://jobsapi-topaz.vercel.app/api/${userId}/jobs?search=${search}&limit=${limit}`;
             fetch(url, {method: 'GET', headers})
                 .then((res) => res.json())
                 .then((data) => setData(data.status === 'success' ? data.data : []))
@@ -35,7 +34,7 @@ function useFetchJobs(search, limit) {
             Authorization: localStorage.getItem('token')
         };
         const userId = localStorage.getItem('user_id');
-        const url = `${API_URL}${userId}`;
+        const url = `https://jobsapi-topaz.vercel.app/api/${userId}/jobs`;
         fetch(url, {method: 'GET', headers})
             .then((res) => res.json())
             .then((data) => setJobsArray(data.status === 'success' ? data.data : []))

@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from 'react-bootstrap';
 
-const BASE_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs/createJob/';
 
 async function addJob(job) {
-    return await fetch(BASE_URL + job.user_id, {
+    return await fetch("https://jobsapi-topaz.vercel.app/api/" + job.user_id + "/jobs", {
         method: 'POST',
         headers: {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')},
         body: JSON.stringify(job),

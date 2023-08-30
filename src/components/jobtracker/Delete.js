@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
-const apiUrl = `https://jobsapi-pxm2.onrender.com/api/jobs/${localStorage.getItem('user_id')}/`;
+const apiUrl = `https://jobsapi-topaz.vercel.app/api/${localStorage.getItem('user_id')}/jobs/`;
 const headers = {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token')

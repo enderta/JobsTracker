@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Form, Modal} from "react-bootstrap";
 
-const baseUrl = 'https://jobsapi-pxm2.onrender.com/api/jobs/';
+
 const headers = {
     'Content-Type': 'application/json',
     Authorization: localStorage.getItem('token')
@@ -23,7 +23,7 @@ const EditJob = (props) => {
     }
 
     const handleEdit = (id) => {
-        const apiUrl = `${baseUrl}${localStorage.getItem('user_id')}/${id}`;
+        const apiUrl = `https://jobsapi-topaz.vercel.app/api/${localStorage.getItem('user_id')}/jobs/${id}`;
         fetch(apiUrl, {
             method: 'PUT',
             headers: headers,

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const API_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs';
+
 const headers = {'Content-Type': 'application/json', Authorization: localStorage.getItem('token')};
 const currentDate = new Date().toISOString().split(' ').slice(0, 4).join(' ');
 const userId = localStorage.getItem('user_id');
-
+const API_URL = `https://jobsapi-topaz.vercel.app/api/${userId}/jobs`;
 const isApplied = (props) => {
     const data = props.job;
     const baseJobData = {
@@ -19,7 +19,7 @@ const isApplied = (props) => {
     };
 
     const handleCheck = async (id, isApplied) => {
-        const url = `${API_URL}/${userId}/${id}`;
+        const url = `${API_URL}/${id}`;
 
         if (isApplied === false) {
             const updatedJobData = {...baseJobData, is_applied: true, updated_at: currentDate};

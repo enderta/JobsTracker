@@ -1,6 +1,7 @@
 export async function addJob(job) {
-    const BASE_URL = 'https://jobsapi-pxm2.onrender.com/api/jobs/createJob/';
-    return await fetch(BASE_URL + job.user_id, {
+    const user_id = job.user_id;
+    const BASE_URL = `https://jobsapi-topaz.vercel.app/api/${user_id}/jobs/createJob`;
+    return await fetch(BASE_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
