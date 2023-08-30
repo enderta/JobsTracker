@@ -1,7 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {memo, useCallback, useEffect, useState} from 'react';
 import './NewsTicker.css';
 
-const defulatNews = [
+// Default News Data
+const defaultNews = [
 
     {
         "source": {
@@ -30,50 +31,62 @@ const defulatNews = [
         "content": "As one Destiny 2 saga ends, Bungie prepares for the future As one Destiny 2 saga ends, Bungie prepares for the future\r\n / We sat down with game director Joe Blackburn to talk about the future of the… [+10244 chars]"
     }]
 
-
-const fetchArticles = async () => {
-    const response = await fetch('https://newsapi-fn68.onrender.com/news');
-    const data = await response.json();
-    if (data.articles.length === 0) return defulatNews;
-    return data.articles;
+// Custom hook to fetch articles
+const useFetchArticles = () => {
+    return useCallback(async () => {
+        try {
+            const response = await fetch('https://news-api-one.vercel.app/news');
+            const data = await response.json();
+            return data.articles.length > 0 ? data.articles : defaultNews;
+        } catch (error) {
+            console.error(error);
+            return defaultNews;
+        }
+    }, []);
 };
 
+// Custom hook for News ticker
 const useNewsTicker = () => {
+    const fetchArticles = useFetchArticles();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [articles, setArticles] = useState([]);
+    const [articles, setArticles] = useState(defaultNews);
 
     useEffect(() => {
-        fetchArticles().then(articles => setArticles(articles));
-    }, []);
+        fetchArticles().then(setArticles).catch(e => console.error('Unable to fetch articles:', e));
+    }, [fetchArticles]);
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCurrentIndex(currentIndex => (currentIndex + 1) % articles.length);
+            setCurrentIndex((currentIndex) => (currentIndex + 1) % articles.length);
         }, 8000);
+
         return () => clearInterval(interval);
     }, [articles]);
 
     return {articles, currentIndex};
 };
 
-const NewsTicker = () => {
+const NewsTicker = memo(() => {
     const {articles, currentIndex} = useNewsTicker();
 
     return (
         <div className="news-ticker-container">
             <div className="news-ticker">
-                {articles.map((headline, index) => (
-                    <div
-                        key={index}
-                        className={`ticker-item ${index === currentIndex ? 'active' : ''}`}>
-                        <a className="myLinkStyle" href={headline.url} target="_blank" rel="noreferrer">
-                            {`${headline.source.name}: ${headline.title.replace(` - ${headline.source.name}`, '')}`}
-                        </a>
-                    </div>
-                ))}
+                {articles.map(({url, source: {name}, title}, index) => {
+                    const cleanedTitle = title ? title.replace(` - ${name}`, '') : 'No Title';
+                    const isActive = index === currentIndex ? 'active' : '';
+
+                    return (
+                        <div key={`${title}-${index}`} className={`ticker-item ${isActive}`}>
+                            <a className="myLinkStyle" href={url} target="_blank" rel="noreferrer">
+                                {`${name}: ${cleanedTitle}`}
+                            </a>
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );
-};
+});
 
 export default NewsTicker;
