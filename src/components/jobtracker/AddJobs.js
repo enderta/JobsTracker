@@ -34,6 +34,9 @@ function AddJobs(props) {
         try {
             await addJob(job);
             alert('Job added successfully');
+            //wait for click to close modal and refresh page
+            props.handleClose();
+            window.location.reload();
         } catch (err) {
             console.error(err.message);
         }
@@ -95,6 +98,7 @@ function AddJobs(props) {
                     </Button>
                     <div>
                         <Button variant="primary" onClick={onSubmitForm}
+
                                 data-testid={"submit-button"}>
                             Save Changes
                         </Button>
