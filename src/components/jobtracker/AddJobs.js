@@ -37,7 +37,6 @@ function AddJobs(props) {
         } catch (err) {
             console.error(err.message);
         }
-
     };
 
     const handleChanges = (e) => setJob({...job, [e.target.name]: e.target.value});
