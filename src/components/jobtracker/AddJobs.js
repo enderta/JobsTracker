@@ -33,9 +33,9 @@ function AddJobs(props) {
         e.preventDefault();
         try {
             await addJob(job);
-            alert('Job added successfully');
-            //wait for click to close modal and refresh page
-            props.handleClose();
+            /* alert('Job added successfully');
+             //wait for click to close modal and refresh page
+             props.handleClose();*/
             window.location.reload();
         } catch (err) {
             console.error(err.message);
