@@ -15,7 +15,7 @@ const Delete = (props) => {
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                alert('Job deleted successfully');
+                //alert('Job deleted successfully');
                 window.location.reload();
             })
             .catch((err) => {
