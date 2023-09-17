@@ -1,0 +1,40 @@
+.stocks-ticker-container {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: #041a64;
+}
+
+.stocks-ticker {
+    display: flex;
+    animation: slide 50s linear infinite;
+    width: max-content;
+}
+
+.ticker-item {
+    padding: 8px;
+    margin-right: 10px;
+    white-space: nowrap;
+    transition: opacity 50s ease-out;
+    font-weight: bold;
+}
+
+.stocks-ticker:hover {
+    animation-play-state: paused;
+}
+
+.myLinkStyle {
+    text-decoration: none;
+
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}

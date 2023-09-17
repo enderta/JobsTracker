@@ -1,13 +1,17 @@
-
 import React from 'react';
 import './App.css';
-import Pages from "./components/jobtracker/Pages";
+
+import Main from "./components/jobtracker/Main";
 
 function App() {
 
   return (
     <>
-   <Pages/>
+
+        <div>
+            <Main/>
+        </div>
+
     </>
   );
 }

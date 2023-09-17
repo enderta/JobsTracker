@@ -10,8 +10,10 @@ function Pages() {
 
     return (
         <div>
+
             <Routes>
-                <Route path={"/*"} element={<HomePage/>}/>
+
+            <Route path={"/*"} element={<HomePage/>}/>
                 <Route path="/jobs" element={isLoggedIn ? <Jumbo/> : <Login/>}/>
                 <Route path="/register" element={<Register/>}/>
                 <Route path="/login" element={<Login/>}/>

@@ -53,52 +53,56 @@ const Jumbo = () => {
     return (
         <>
 
-            <ScrollToTop/>
-            {localStorage.getItem('token') ? (
-                <div style={{marginLeft: "10px", marginRight: "10px"}}>
-                    <div className="d-flex justify-content-between">
-                        <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
-                        <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
+
+            <div>
+                <ScrollToTop/>
+                {localStorage.getItem('token') ? (
+                    <div>
+
+
+                        {loading ? (<h1>Loading...</h1>) : (
+
+                            <JumbotronBackground>
+                                <JobCarousel
+                                    jobs={jobs}
+                                    darkMode={darkMode}
+                                    isOpen={isOpen}
+                                    openModal={handleJumboClick}
+                                    closeModal={() => setIsOpen(false)}
+                                    selectedJob={jumboData}
+                                />
+                            </JumbotronBackground>
+                        )}
+                        <div className="d-flex justify-content-between">
+                            <AddJobButton darkMode={darkMode} handleShow={handleModalToggle}/>
+                            <DarkModeButton darkMode={darkMode} handleDarkMode={handleDarkMode}/>
+                        </div>
+
+                        <AddJobs show={show} handleClose={handleModalToggle}/>
+
+                        <div style={{margin: '10px'}}>
+                            <Container>
+                                <Cards data={jobs} setData={setJobs} dark={darkMode}/>
+                                <div style={{bottom: "10px", left: "10px"}}>
+                                    <LogOut/>
+                                </div>
+                            </Container>
+
+                        </div>
+
+                        <br/>
+
+                        <div style={{margin: "20px"}}>
+                            <NewsTicker/>
+                        </div>
+
+
                     </div>
+                ) : (
+                    <LogInRedirect/>
+                )}
+            </div>
 
-                    <AddJobs show={show} handleClose={handleModalToggle}/>
-
-
-                    {loading ? (<h1>Loading...</h1>) : (
-                        <JumbotronBackground>
-                            <JobCarousel
-                                jobs={jobs}
-                                darkMode={darkMode}
-                                isOpen={isOpen}
-                                openModal={handleJumboClick}
-                                closeModal={() => setIsOpen(false)}
-                                selectedJob={jumboData}
-                            />
-                        </JumbotronBackground>
-                    )}
-
-
-                    <div style={{margin: '10px'}}>
-                        <Container>
-                            <Cards data={jobs} setData={setJobs} dark={darkMode}/>
-                            <div style={{bottom: "10px", left: "10px"}}>
-                                <LogOut/>
-                            </div>
-                        </Container>
-
-                    </div>
-
-                    <br/>
-
-                    <div style={{margin: "20px"}}>
-                        <NewsTicker/>
-                    </div>
-
-
-                </div>
-            ) : (
-                <LogInRedirect/>
-            )}
         </>
     );
 };

@@ -38,7 +38,9 @@ function Cards({dark}) {
 
     return (
         <div>
-            <div style={{marginTop: '10px', marginBottom: '10px'}}>
+
+
+        <div style={{marginTop: '10px', marginBottom: '10px'}}>
                 <Filters data={data} value={search} handleSearch={handleSearch}/>
             </div>
             <div style={{marginTop: '10px', marginBottom: '10px'}}>
