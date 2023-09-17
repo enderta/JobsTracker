@@ -10,7 +10,6 @@ import AddJobButton from './AddJobButton';
 import JumbotronBackground from './JumbotronBackground';
 import LogOut from "./LogOut";
 import ScrollToTop from "./ScrollToTop";
-import NewsTicker from "./NewsTicker";
 
 
 const userId = localStorage.getItem('user_id');
@@ -91,10 +90,6 @@ const Jumbo = () => {
                         </div>
 
                         <br/>
-
-                        <div style={{margin: "20px"}}>
-                            <NewsTicker/>
-                        </div>
 
 
                     </div>
